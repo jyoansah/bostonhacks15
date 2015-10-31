@@ -10,4 +10,9 @@ form{
 
 h2{
     color: #C5919D;
+    text-align: center;
+}
+
+input.submit{
+    text-align: center;
 }
