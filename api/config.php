@@ -9,7 +9,7 @@
     define("BASE_URL", "");
 
     function OpenConnection(){
-        $error;
+        $error = "";
         $dbhost = HOST;
         $dbuser = USER;
         $dbport = PORT;
@@ -17,22 +17,15 @@
         $dbname = DATABASE;
         $serverName = "tcp:$dbhost,$dbport";
 
-        echo("starting!");
-        try
-        {
-            
-
-        echo("connected!");
-            $serverName = "tcp:c3185u2dmj.database.windows.net,1433";
-            $connectionOptions = array("Database"=>"deeque",
-                "Uid"=>"deeque", "PWD"=>"ASdf1234");
+        try {
+            $connectionOptions = array("Database"=>"$dbname", "Uid"=>"$dbuser", "PWD"=>"$dbpass");
             $conn = sqlsrv_connect($serverName, $connectionOptions);
-            if($conn == false)
+            if ($conn == false) {
                 die(FormatErrors(sqlsrv_errors()));
-        }
-        catch(Exception $e)
-        {
+            }
+        } catch(Exception $e){
             echo("Error!");
+            $error = $e->getMessage();
         }
     }
 
