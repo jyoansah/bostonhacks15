@@ -31,6 +31,8 @@
         ehco("connected!");
     }
 
+    OpenConnection();
+
     ?>
 
 </body>
