@@ -1,10 +1,3 @@
-<!DOCTYPE html>
-<head>
-	<title>
-		I hate queues!
-	</title>
-</head>
-<body>
 <?php
 class Database
 {
@@ -45,5 +38,3 @@ class Database
     }
 }
 ?>
-</body>
-</html>
