@@ -5,14 +5,16 @@
     </head>
     <body>
         <h2>Please enter sign up details:</h2>
-        <form action="" method="post">
+        <form action="addLoc.php" method="post">
             <label for="name">Name:</label>
-            <input type="text"><br>
+            <input type="text" name="name"><br>
             <label for="address">Address Line 1:</label>
-            <input type="text"><br>
+            <input type="text" name="address"><br>
             <label for="city">City:</label>
-            <input type="text" width="50px"><br>
+            <input type="text" width="50px" name="city"><br>
             <input type="button" value="Join Now!">
         </form>
+        <?php
+        ?>
     </body>
 </html>
