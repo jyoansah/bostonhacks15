@@ -10,3 +10,8 @@ form{
 h2{
     color: #C5919D;
 }
+
+input{
+    line-height: 20px;
+    float: right;
+}
