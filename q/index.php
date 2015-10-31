@@ -1,6 +1,7 @@
 <html>
     <head>
         <title>User Sign Up</title>
+        <link href="index.css" type="text/css" rel="stylesheet">
     </head>
     <body>
         <h2>Please enter sign up details:</h2>
