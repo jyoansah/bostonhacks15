@@ -3,8 +3,9 @@
     <head>
         <title>Member Metrics</title>
     </head>
+    <?php
     $now = new DateTime();
-    echo $now->format('d m, Y');
+    echo $now->format('Y-m-d');
             ?>
         </header>
         
