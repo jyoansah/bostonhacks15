@@ -1,4 +1,9 @@
 body{
-    width: 300px;
+    background-color: #E78183
+    width: 600px;
     margin: 10px auto 10px auto;
+}
+
+h2{
+    color: #C5919D;
 }
