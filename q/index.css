@@ -5,12 +5,9 @@ body{
 
 form{
     background-color: #E78183;
+    line-height: 20px;
 }
 
 h2{
     color: #C5919D;
-}
-
-input{
-    line-height: 20px;
 }
