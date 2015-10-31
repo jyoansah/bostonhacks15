@@ -12,9 +12,7 @@
             <input type="text" name="address"><br>
             <label for="city">City:</label>
             <input type="text" width="50px" name="city"><br>
-            <input type="button" value="Join Now!">
+            <input type="button" value="Sign Up!">
         </form>
-        <?php
-        ?>
     </body>
 </html>
