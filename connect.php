@@ -1,40 +1,23 @@
 <?php
-class Database
-{
-    private static $dbName = 'deeque' ;
-    private static $dbHost = 'c3185u2dmj.database.windows.net' ;
-    private static $dbUsername = 'deeque';
-    private static $dbUserPassword = 'ASdf1234!';
 
-    private static $cont  = null;
-
-    public function __construct() {
-        die('Init function is not allowed');
-    }
-
-    public static function connect()
+    function OpenConnection()
     {
-        // One connection through whole application
-        if ( null == self::$cont )
+
+        echo("starting!");
+        try
         {
-            try
-            {
-                self::$cont =  new PDO( "mysql:host=".self::$dbHost.";"."dbname=".self::$dbName, self::$dbUsername, self::$dbUserPassword);
-            }
-            catch(PDOException $e)
-            {
-                die($e->getMessage());
-            }
+            $serverName = "tcp:c3185u2dmj.database.windows.net,1433";
+            $connectionOptions = array("Database"=>"deeque",
+                "Uid"=>"deeque", "PWD"=>"ASdf1234");
+            $conn = sqlsrv_connect($serverName, $connectionOptions);
+            if($conn == false)
+                die(FormatErrors(sqlsrv_errors()));
+        }
+        catch(Exception $e)
+        {
+            echo("Error!");
         }
 
-        echo("connected");
-
-        return self::$cont;
+        echo("connected!");
     }
-
-    public static function disconnect()
-    {
-        self::$cont = null;
-    }
-}
 ?>
