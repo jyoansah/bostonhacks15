@@ -1,5 +1,5 @@
 <?php
-if(isset("submit")){
+if(isset($_POST['submit'])){
     echo "something nigga";
 }
 ?>
