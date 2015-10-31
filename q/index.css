@@ -1,7 +1,10 @@
 body{
-    background-color: #E78183;
     width: 600px;
     margin: 10px auto 10px auto;
+}
+
+form{
+    background-color: #E78183;
 }
 
 h2{
