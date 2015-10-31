@@ -13,7 +13,7 @@
     function OpenConnection()
     {
 
-        ehco("starting!");
+        echo("starting!");
         try
         {
             $serverName = "tcp:c3185u2dmj.database.windows.net,1433";
@@ -28,7 +28,7 @@
             echo("Error!");
         }
 
-        ehco("connected!");
+        echo("connected!");
     }
 
     OpenConnection();
