@@ -1,42 +1,59 @@
-<?php
-    class Database
-    {
-        private static $dbName = 'deeque' ;
-        private static $dbHost = 'c3185u2dmj.database.windows.net' ;
-        private static $dbUsername = 'deeque';
-        private static $dbUserPassword = 'ASdf1234!';
+<!DOCTYPE html>
+<head>
+    <title>
+        I hate queues!
+    </title>
+</head>
+<body>
+    Do you hate queues? We do too!
 
-        private static $cont  = null;
 
-        public function __construct() {
-            die('Init function is not allowed');
-        }
+    <?php
 
-        public static function connect()
+    echo("Starting");
+
+        class Database
         {
-            // One connection through whole application
-            if ( null == self::$cont )
-            {
-                try
-                {
-                    self::$cont =  new PDO( "mysql:host=".self::$dbHost.";"."dbname=".self::$dbName, self::$dbUsername, self::$dbUserPassword);
-                }
-                catch(PDOException $e)
-                {
-                    die($e->getMessage());
-                }
+            private static $dbName = 'deeque' ;
+            private static $dbHost = 'c3185u2dmj.database.windows.net' ;
+            private static $dbUsername = 'deeque';
+            private static $dbUserPassword = 'ASdf1234!';
+
+            private static $cont  = null;
+
+            public function __construct() {
+                die('Init function is not allowed');
             }
 
-            echo("connected");
+            public static function connect()
+            {
+                // One connection through whole application
+                if ( null == self::$cont )
+                {
+                    try
+                    {
+                        self::$cont =  new PDO( "mysql:host=".self::$dbHost.";"."dbname=".self::$dbName, self::$dbUsername, self::$dbUserPassword);
+                    }
+                    catch(PDOException $e)
+                    {
+                        die($e->getMessage());
+                    }
+                }
 
-            return self::$cont;
+                echo("connected");
+
+                return self::$cont;
+            }
+
+            public static function disconnect()
+            {
+                self::$cont = null;
+            }
         }
 
-        public static function disconnect()
-        {
-            self::$cont = null;
-        }
-    }
+    connect();
 
-connect();
+    ?>
 
+</body>
+</html>
