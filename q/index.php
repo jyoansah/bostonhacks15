@@ -5,7 +5,7 @@
     </head>
     <body>
         <h2>Please enter sign up details:</h2>
-        <form action="q/metricsPage.php" method="post">
+        <form action="metricsPage.php" method="post">
             <label for="name">Name:</label>
             <input type="text" name="name"><br>
             <label for="address">Address Line 1:</label>
