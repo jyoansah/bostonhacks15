@@ -41,7 +41,7 @@
 
             }
 
-            echo("here 2<br>$queues");
+            echo("here 2<br>$queues[1]");
             sqlsrv_free_stmt($getQueues);
 
             if (!empty($queues)) {
