@@ -20,7 +20,7 @@
     //Default selects everything in table
     function Select($param, $table) {
 
-        $tsql = "SELECT [$param] FROM dbo.[$table]";
+        $tsql = "SELECT $param FROM dbo.$table";
         $data = sqlsrv_query($this->conn, $tsql);
 
         if ($data == FALSE) {
