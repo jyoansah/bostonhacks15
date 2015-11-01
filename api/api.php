@@ -26,7 +26,7 @@ class api {
             switch ($action) {
                 case API_CALL:
                         echo "This is a test api call<br/>";
-                        ReadData($conn);
+                        ReadData(OpenConnection());
                     break;
 
                 //Aux command calls
