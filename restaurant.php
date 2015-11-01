@@ -29,9 +29,7 @@
 	if(isset($_GET['id'])){
 		$_SESSION['id'] = $_GET['id'];	
 		//Get list of all people in the queue
-		var_dump($_SESSION['id']);
 		$queue_users = getUsers($conn);
-		var_dump($queue_users);
 		foreach($queue_users as $queue_user){
 				echo "id: ".$queue_user->id.", ";
 				echo "Queue id: ".$queue_user->queue_id.", ";
