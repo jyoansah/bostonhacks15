@@ -5,12 +5,13 @@
     </head>
     <body>
         <header>
-            <h2><?php getMemberName($_POST['member_id']);?></h2>
-            <span id="date"></span>
+            <h2>Member Name</h2>
+            <span id="date">
             <?php
             $now = new DateTime();
             echo $now->format('Y-m-d');
             ?>
+            </span>
         </header>
     </body>
 </html>
