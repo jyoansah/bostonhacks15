@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php 
  header("access-control-allow-origin: *");
- include_once 'api/api.php';
+ include_once 'api/DBMethods.php';
  global $conn, $api;
  session_start();
 ?>
