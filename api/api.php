@@ -34,6 +34,7 @@ class api {
                     echo "This is a test api call\n\n";
                     $queues = getQueues($this->conn);
                     foreach($queues as &$queue){
+                        echo("Here");
                         echo($queue->getName()." + ".$queue->getLocation()."\n");
                     }
                     break;
