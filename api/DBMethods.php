@@ -61,6 +61,10 @@
         echo("herexx");
         $queues = queueGetter($conn, $cond);
         echo("here3");
+
+        if (empty($queues)){
+            return "not found";
+        }
         return $queues[1];
     }
 
