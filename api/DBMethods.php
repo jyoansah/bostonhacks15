@@ -32,7 +32,6 @@
 
             while($row = sqlsrv_fetch_array($getQueues, SQLSRV_FETCH_ASSOC))
             {
-                echo("here 1");
                 $queue = new Queue($row['id'],$row['Name'],$row['Location']);
                 $queues[] = $queue;
 
@@ -43,7 +42,6 @@
             if (!empty($queues)) {
                 return  $queues;
             }else{
-                echo 'empty';
                 return 'Empty';
             }
         }
@@ -56,13 +54,11 @@
     function getQueue($conn, $id){
         $cond = "id = $id";
         $queues = queueGetter($conn, $cond);
-        echo("here3");
 
-        var_dump($queues);
         if (empty($queues)){
             return "not found";
         }
-        $ret = $queues[1];
+        $ret = $queues[0];
         echo $ret;
         return $ret;
     }
