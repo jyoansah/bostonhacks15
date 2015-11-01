@@ -38,13 +38,13 @@ class api {
                         echo($queue);
                     }
 
-                    echo("<br>");
-                    echo("<br>");
-                    echo "Add queues<br>";
-
-                    $q = new Queue(0, 'Test3', 'A location');
-                    echo($q);
-                    addQueue($this->conn, $q);
+//                    echo("<br>");
+//                    echo("<br>");
+//                    echo "Add queues<br>";
+//
+//                    $q = new Queue(0, 'Test3', 'A location');
+//                    echo($q);
+//                    addQueue($this->conn, $q);
 
                     echo("<br>");
                     echo("<br>");

@@ -74,16 +74,12 @@
         $Location = $queue->getLocation();
 
         try {
-            echo("here 111");
             $tsql = "INSERT INTO dbo.Queue (id, Name, Location)
-            OUTPUT INSERTED.id VALUES (0, '$Name','$Location')";
+            OUTPUT INSERTED.id VALUES (6, '$Name','$Location')";
             //Insert query
             $insertReview = sqlsrv_query($conn, $tsql);
 
-            echo("here 222 $insertReview");
             if ($insertReview == FALSE) {
-
-                echo("here 333");
                 die(print_r( sqlsrv_errors(), true));
             }
 
@@ -91,7 +87,6 @@
 
             while($row = sqlsrv_fetch_array($insertReview, SQLSRV_FETCH_ASSOC))
             {
-                echo("here 444");
                 echo($row['id']);
             }
             sqlsrv_free_stmt($insertReview);
