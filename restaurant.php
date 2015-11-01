@@ -8,8 +8,13 @@
 
 <?php
 	echo "test";
-	$queues = queueGetter($this->conn, NULL);
-	var_dump($queues);
+	try{
+		$queues = queueGetter($this->conn, NULL);
+		var_dump($queues);
+	}
+	catch(Exception $e){
+		echo $e->getMessage();
+	}
 	/**
 	while($row = sqlsrv_fetch_array($queues)){
 		echo $row;
