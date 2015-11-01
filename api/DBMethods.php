@@ -57,8 +57,39 @@
     }
 
     function getQueue($conn, $id){
-        $cond = "id = $id";
+        $cond = "id = '$id''";
         $queues = getQueues($conn, $cond);
 
         return $queues[1];
+    }
+
+
+    function addQueue($queue){
+
+        $Name = $queue->getName();
+        $Location = $queue->getLocation();
+
+        try
+        {
+            $conn = OpenConnection();
+
+            $tsql = "INSERT INTO dbo.Users (queue_id, queue_location)
+            OUTPUT INSERTED.id VALUES ('$Name', '$Location')";
+            //Insert query
+            $insertReview = sqlsrv_query($conn, $tsql);
+            if($insertReview == FALSE)
+                die(FormatErrors( sqlsrv_errors()));
+            echo "Product Key inserted is :";
+            while($row = sqlsrv_fetch_array($insertReview, SQLSRV_FETCH_ASSOC))
+            {
+                echo($row['id']);
+            }
+            sqlsrv_free_stmt($insertReview);
+            sqlsrv_close($conn);
+        }
+        catch(Exception $e)
+        {
+            echo("Error!");
+        }
+
     }
