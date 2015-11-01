@@ -8,6 +8,7 @@
     <head>
         <meta charset="UTF-8">
         <title>I hate queues!</title>
+        <link rel="stylesheet" type="text/css" href="style/index.css">
     </head>
     <body>
         Do you hate queues? We do too!
