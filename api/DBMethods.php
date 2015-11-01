@@ -214,9 +214,10 @@ function getfirstInLine($conn, $queue_id){
 
 function deQueueUser($conn, $queue_id){
     try{
-        $tsql = "DELETE FROM dbo.Users AS user
+        $tsql = "DELETE FROM dbo.Users
                  JOIN(SELECT MIN(position) AS min_queue_pos FROM dbo.Users) user2
-                 WHERE user2.min_queue_pos = user.position AND user.queue_id = ".$_SESSION['id'];
+                 WHERE user2.min_queue_pos = dbo.Users.position 
+                 AND dbo.Users.queue_id = ".$queue_id;
         $results = sqlsrv_query($conn, $tsql);
 
         if ($results == FALSE) {

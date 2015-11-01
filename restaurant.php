@@ -41,7 +41,7 @@
 	//Get current customer
 	if(isset($_POST['next_customer'])){
 		try{
-			$result = deQueueUser($conn, $_SESSION['id']);;		
+			$result = deQueueUser($conn, $_SESSION['id']);
 		}
 		catch(Exception $e){
 			echo $e->getMessage();
