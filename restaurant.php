@@ -7,6 +7,8 @@
 ?>
 
 <?php
+	/**
+
 	echo "test";
 	try{
 		$queues = queueGetter($conn, NULL);
@@ -17,7 +19,6 @@
 	catch(Exception $e){
 		echo $e->getMessage();
 	}
-	/**
 	if(isset($_GET['$id'])){
 		$_SESSION['id'] = $_GET['$id'];
 	}
