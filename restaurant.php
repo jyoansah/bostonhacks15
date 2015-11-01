@@ -39,6 +39,7 @@
 
 	
 	//Get current customer
+	/**
 	if(isset($_POST['next_customer'])){
 		try{
 			$result = sqlsrv_fetch_array(sqlsrv_query($this->conn, "DELETE FROM dbo.Users 
@@ -49,7 +50,7 @@
 		catch(Exception $e){
 			echo $e->getMessage();
 		}
-	}
+	}**/
 	/**
 	try{
 		$current_position = getfirstInLine($conn, $_SESSION['id']);
