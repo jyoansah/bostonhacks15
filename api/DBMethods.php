@@ -27,7 +27,7 @@
 
             $getQueues = sqlsrv_query($conn, $tsql);
             if ($getQueues == FALSE) {
-                echo("Error!!");
+                echo("Error!!<br>");
                 die(print_r( sqlsrv_errors(), true));
             }
 
@@ -57,7 +57,7 @@
     }
 
     function getQueue($conn, $id){
-        $cond = "id = '$id''";
+        $cond = "id = $id";
         $queues = queueGetter($conn, $cond);
 
         return $queues[1];
