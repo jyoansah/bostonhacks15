@@ -15,7 +15,7 @@
             $token = strtok(" ");
             $user = new User(intval($token));
             $user->setTel($_REQUEST['From']);
-            $position = addUser($conn, $user);
+            $this->position = addUser($conn, $user);
         }
     }
 ?>
@@ -23,15 +23,14 @@
 <Response>
     <Message>Hello, Welcome to Deeque
         <?php
-        if (empty($position)) {
+        if (empty($this->position)) {
             echo "Please select a Queue: \n";
             $queues = getQueues($conn);
             foreach ($queues as $queue) {
                 echo $queue->id . " --> " . $queue->name . "\n";
             }
         } else {
-            echo "You are num: " . $position;
-
+            echo "You are num: ".$this->position;
         }
         ?>
     </Message>
