@@ -12,9 +12,9 @@
 	try{
 		echo "conn is:";
 		$queues = queueGetter($conn, NULL);
-		var_dump($queues);
-		while($row = sqlsrv_fetch_array($queues)){
-			echo '<a href="restaurant.php/?id='.$row["id"].'">'.$row['name'].'</a>"';
+		//var_dump($queues);
+		foreach ($queues as $queue){
+			echo '<a href="restaurant.php/?id='.$queue["id"].'">'.$queue['name'].'</a>"';
 		}
 	}
 	catch(Exception $e){
