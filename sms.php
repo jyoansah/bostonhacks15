@@ -5,6 +5,10 @@
     include_once 'api/api.php';
     global $conn, $api;
     session_start();
+
+    if(isset($_REQUEST['Body'])){
+        $body =  $_REQUEST['Body'];
+    }
 ?>
 
 
@@ -12,6 +16,7 @@
     <Message>Hello, Welcome to Deeque
     Please select a Queue:
         <?php
+        echo $body;
             $queues = getQueues($conn);
             foreach ($queues as $queue) {
                 echo $queue->id." --> ".$queue->name."\n";
