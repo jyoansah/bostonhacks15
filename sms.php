@@ -1,8 +1,8 @@
 <?php
-header("access-control-allow-origin: *");
-include_once 'api/api.php';
-global $conn, $api;
-session_start();
+    header("access-control-allow-origin: *");
+    include_once 'api/api.php';
+    global $conn, $api;
+    session_start();
 ?>
 
 
@@ -12,7 +12,7 @@ session_start();
     Please select a 3queue:
         <?php
             echo 'here';
-            $queues = getqueues($this->conn);
+            $queues = getQueues($this->conn);
             echo 'here1';
             foreach ($queues as $queue) {
                 echo 'here2';
