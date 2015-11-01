@@ -9,14 +9,14 @@
 
 <Response>
     <Sms>Hello, Welcome to Deeque<br>
-    Please select a 3queue:
+    Please select a 4queue:
         <?php
             echo 'here';
             $queues = getQueues($this->conn);
             echo 'here1';
             foreach ($queues as $queue) {
                 echo 'here2';
-                echo 'Queue ID: '.$queue->getId().' --> '.$queue->getName().'<br>';
+                echo 'Queue ID: '.$queue->id.' --> '.$queue->name.'<br>';
             }
         ?>
     </Sms>
