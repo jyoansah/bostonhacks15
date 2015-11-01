@@ -151,7 +151,7 @@
     }
 
     function getUsers($conn){
-        $users = usereGetter($conn, null);
+        $users = userGetter($conn, null);
         return $users;
     }
 
