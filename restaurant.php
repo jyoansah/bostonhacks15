@@ -38,6 +38,9 @@
 	if(isset($_POST['next_customer'])){
 		try{
 			$result = deQueueUser($conn, $_SESSION['id']);
+			echo '<form method="POST" action="">';
+        	echo '<button name="next_customer" value="submit">Next customer</button>';
+        	echo '</form>';
 		}
 		catch(Exception $e){
 			echo $e->getMessage();
@@ -66,8 +69,7 @@
 		
 		
 ?>
-    	<form method="POST" action="">
-        	<button name="next_customer" value="submit">Next customer</button>
-        </form>
+
+    	
     </body>
 </html>

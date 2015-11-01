@@ -48,12 +48,13 @@
 				echo '</div>';
 			}
 			else{
-		?>
-    	<form method="POST" action="">
-        	<button name="new_customer" value="submit">Get Number</button>
-        </form>
-        <?php
+	
+    	echo '<form method="POST" action="">';
+        echo '<button name="new_customer" value="submit">Get Number</button>';
+        echo '</form>';
+        
     }
-    ?>
+   
+   ?>
     </body>
 </html>
