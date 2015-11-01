@@ -12,7 +12,7 @@
         }
     }
 
-    function queueGetter($conn, $condition){
+    function queueGetter($condition){
         try
         {
 
@@ -23,7 +23,7 @@
                 $tsql = "SELECT [id],[Name],[Location] FROM dbo.Queue WHERE $condition";
 
             }
-            $getQueues = sqlsrv_query($conn, $tsql);
+            $getQueues = sqlsrv_query($this->conn, $tsql);
             if ($getQueues == FALSE) {
                 echo("Error!!<br>");
                 die(print_r( sqlsrv_errors(), true));
@@ -51,29 +51,29 @@
         }
     }
 
-    function getQueue($conn, $id){
+    function getQueue($id){
         $cond = "id = $id";
-        $queues = queueGetter($conn, $cond);
+        $queues = queueGetter($this->conn, $cond);
 
         if (empty($queues)){
             return "not found";
         }
-        $ret = $queues[0];
-        return $ret;
+
+        return $queues[0];
     }
 
-    function getQueues($conn){
-        $queues = queueGetter($conn, null);
+    function getQueues(){
+        $queues = queueGetter($this->conn, null);
         return $queues;
     }
 
-    function addQueue($conn, $queue){
+    function addQueue($queue){
         $Name = $queue->getName();
         $Location = $queue->getLocation();
 
         try {
-            $tsql = "INSERT INTO dbo.Queue (id, Name, Location)
-            OUTPUT INSERTED.id VALUES (6, '$Name','$Location')";
+            $tsql = "INSERT INTO dbo.Queue ( Name, Location)
+            OUTPUT INSERTED.id VALUES ('$Name','$Location')";
             //Insert query
             $insertReview = sqlsrv_query($conn, $tsql);
 
@@ -85,7 +85,7 @@
 
             while($row = sqlsrv_fetch_array($insertReview, SQLSRV_FETCH_ASSOC))
             {
-                echo($row['id']);
+                $new_id = $row['id'];
             }
             sqlsrv_free_stmt($insertReview);
             sqlsrv_close($conn);
@@ -95,11 +95,16 @@
             echo("Add Queue Error!");
         }
 
+        if (empty($new_id)){
+            return "not found";
+        }
+        return $new_id;
+
     }
 
 
 
-    function userGetter($conn, $condition){
+    function userGetter($condition){
         try
         {
             if($condition == NULL) {
@@ -109,7 +114,7 @@
                 $tsql = "SELECT [id],[queue_id],[position] FROM dbo.Users WHERE $condition";
 
             }
-            $getUsers = sqlsrv_query($conn, $tsql);
+            $getUsers = sqlsrv_query($this->conn, $tsql);
             if ($getUsers == FALSE) {
                 echo("Error!!<br>");
                 die(print_r( sqlsrv_errors(), true));
@@ -137,32 +142,31 @@
         }
     }
 
-    function getUser($conn, $id){
+    function getUser( $id){
         $cond = "id = $id";
-        $users = queueGetter($conn, $cond);
+        $users = queueGetter($this->conn, $cond);
 
         if (empty($users)){
-            return "not found";
+            return null;
         }
-        $ret = $users[0];
-        return $ret;
+
+        return $users[0];
     }
 
-    function getUsers($conn){
-        $users = userGetter($conn, null);
+    function getUsers(){
+        $users = userGetter($this->conn, null);
         return $users;
     }
 
-
-    function addUser($conn, $user){
+    function addUser($user){
         $QueueId = $user->getQueueId();
         $Position = $user->getLocation();
 
         try {
-            $tsql = "INSERT INTO dbo.Queue (id, queue_id, position)
-                OUTPUT INSERTED.id VALUES (6, '$QueueId','$Position')";
+            $tsql = "INSERT INTO dbo.Queue (queue_id, position)
+                OUTPUT INSERTED.id VALUES ('$QueueId','$Position')";
             //Insert query
-            $insertReview = sqlsrv_query($conn, $tsql);
+            $insertReview = sqlsrv_query($this->conn, $tsql);
 
             if ($insertReview == FALSE) {
                 die(print_r( sqlsrv_errors(), true));
@@ -172,7 +176,7 @@
 
             while($row = sqlsrv_fetch_array($insertReview, SQLSRV_FETCH_ASSOC))
             {
-                echo($row['id']);
+                $new_id = $row['id'];
             }
             sqlsrv_free_stmt($insertReview);
             sqlsrv_close($conn);
@@ -181,5 +185,16 @@
         {
             echo("Add Queue Error!");
         }
+        if (empty($new_id)){
+            return null;
+        }else{
+            return $new_id;
+        }
+
+
+    }
+
+
+    function getUsersForQueue(){
 
     }
