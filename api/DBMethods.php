@@ -142,7 +142,6 @@
             echo "<br>TSQL= ".$tsql."<br>";
             $getUsers = sqlsrv_query($conn, $tsql);
 
-            echo "Testing this".$getUsers;
             if ($getUsers == FALSE) {
                 echo("Error!!<br>");
                 die(print_r( sqlsrv_errors(), true));
