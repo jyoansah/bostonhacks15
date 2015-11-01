@@ -14,6 +14,7 @@
 		var_dump($queues);
 		foreach($queues as $queue){
 			echo "hi";
+			echo "id:".$queue['id']."\n Name: ".$queue['Name'];
 			//echo '<a href="restaurant.php/?id='.$queue["id"].'">'."sup".$queue['name'].'</a>"';
 		}
 		
