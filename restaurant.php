@@ -7,11 +7,15 @@
 ?>
 
 <?php
+	$queues = queueGetter($this->conn, NULL);
+	print_r($queues);
+	while($row = sqlsrv_fetch_array($queues)){
+		echo $row;
+	}
 	//Get current customer
-	$query = mysql_fetch_row(mysql_query("SELECT queue_position FROM user" WHERE ));
 	if(isset($_POST['next_customer'])){
 		try{
-			$result = mysql_fetch_row(mysql_query("DELETE FROM user 
+			$result = sqlsrv_fetch_array(sqlsrv_query($this->conn, "DELETE FROM user 
 						JOIN(SELECT MIN(queue_position) AS min_queue_pos FROM user) user2
 						WHERE user.queue_position = user2.min_queue_pos
 						"));		
@@ -21,7 +25,7 @@
 		}
 	}
 	try{
-		$result = mysql_fetch_row(mysql_query("SELECT * FROM user ORDER BY queue_position DESC LIMIT 1 WHERE queue_id=".$_SESSION['queue_id']));
+		$result = sqlsrv_fetch_array(sqlsrv_query($this->conn, "SELECT * FROM user ORDER BY queue_position DESC LIMIT 1 WHERE queue_id=".$_SESSION['queue_id']));
 		$current_user = $result['queue_position'];	
 	}
 		catch(Exception $e){
