@@ -7,8 +7,9 @@
 ?>
 
 <?php
+	echo "test";
 	$queues = queueGetter($this->conn, NULL);
-	print_r($queues);
+	var_dump($queues);
 	while($row = sqlsrv_fetch_array($queues)){
 		echo $row;
 	}
