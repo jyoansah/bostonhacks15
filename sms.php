@@ -3,20 +3,6 @@
     include_once 'api/api.php';
     global $conn, $body, $position, $api;
     session_start();
-
-    if(isset($_REQUEST['Body'])){
-        $body =  $_REQUEST['Body'];
-
-        $token = strtok($body, " ");
-
-        if (strtolower($token) == 'join'){
-            $position = "You are num: ";
-            $token = strtok(" ");
-            $user = new User(intval($token));
-            $user->setTel( $_REQUEST['From']);
-            $position = $position.addUser($conn, $user);
-        }
-    }
 ?>
 
 
@@ -24,6 +10,20 @@
     <Message>Hello, Welcome to Deeque
     Please select a Queue:
         <?php
+            if(isset($_REQUEST['Body'])){
+                $body =  $_REQUEST['Body'];
+
+                $token = strtok($body, " ");
+                echo "Here".$token;
+
+                if (strtolower($token) == 'join'){
+                    echo "Here2";
+                    $token = strtok(" ");
+                    $user = new User(intval($token));
+                    $user->setTel( $_REQUEST['From']);
+                    $position = "You are num: ".$position.addUser($conn, $user);
+                }
+            }
             if(!empty($position)) {
                 echo  $position;
             }
