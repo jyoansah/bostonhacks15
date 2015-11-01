@@ -31,7 +31,7 @@ class api {
 
                 case DB_METHODS:
 
-                    $q = new Queue("TestQueue2", "Test Location2");
+                    $q = new Queue("TestQueue2", "Test Location2<br>");
                     $q->setId(addQueue($this->conn, $q));
                     echo "New Queue Created: ".getQueue($this->conn, $q->getId())."<br>";
 
