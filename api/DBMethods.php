@@ -71,8 +71,8 @@ function addQueue($conn, $queue){
     $Location = $queue->getLocation();
 
     try {
-        $tsql = "INSERT INTO dbo.Queue (id, Name, Location)
-            OUTPUT INSERTED.id VALUES (6, '$Name','$Location')";
+        $tsql = "INSERT INTO dbo.Queue (Name, Location)
+            OUTPUT INSERTED.id VALUES ('$Name','$Location')";
         //Insert query
         $insertReview = sqlsrv_query($conn, $tsql);
 
@@ -165,8 +165,8 @@ function addUser($conn, $user){
     $Position = $user->getLocation();
 
     try {
-        $tsql = "INSERT INTO dbo.Queue (id, queue_id, position)
-                OUTPUT INSERTED.id VALUES (6, '$QueueId','$Position')";
+        $tsql = "INSERT INTO dbo.Queue (queue_id, position)
+                OUTPUT INSERTED.id VALUES ('$QueueId','$Position')";
         //Insert query
         $insertReview = sqlsrv_query($conn, $tsql);
 
