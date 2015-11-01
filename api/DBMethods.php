@@ -75,7 +75,7 @@
 
         try {
             echo("here 111");
-            $tsql = "INSERT INTO dbo.Users (queue_id, queue_location)
+            $tsql = "INSERT INTO dbo.Users (Name, Location)
             OUTPUT INSERTED.id VALUES ('$Name','$Location')";
             //Insert query
             $insertReview = sqlsrv_query($conn, $tsql);
