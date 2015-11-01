@@ -9,11 +9,12 @@
     if(isset($_REQUEST['Body'])){
         $body =  $_REQUEST['Body'];
 
-        $tokens = strtok($body, " ");
+        $token = strtok($body, " ");
 
-        if ($body[0] == 'join' || $body[0] == 'Join'){
+        if ($token == 'join' || $token == 'Join'){
             echo "here";
-            $user = new User(intval($body[1]));
+            $token = strtok($body, " ");
+            $user = new User(intval($token[1]));
             $user->setTel( $_REQUEST['From']);
             $position = addUser($conn, $user);
         }
