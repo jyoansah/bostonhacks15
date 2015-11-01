@@ -35,7 +35,7 @@
 		foreach($queue_users as $queue_user){
 				echo "id: ".$queue_user->id.", ";
 				echo "Queue id: ".$queue_user->queue_id.", ";
-				echo "Position: ".$queue_user->position;
+				echo "Position: ".$queue_user->position."<br>";
 			}
 	}
 
