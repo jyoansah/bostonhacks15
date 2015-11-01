@@ -27,12 +27,12 @@ class api {
             switch ($action) {
                 case API_CALL:
                         echo "This is a test api call<br/>";
-                        ReadData();
                     break;
 
                 case DB_METHODS:
                     echo "This is a test api call\n\n";
                     $queues = getQueues($this->conn);
+                    echo("Here");
                     foreach($queues as &$queue){
                         echo("Here");
                         echo($queue->getName()." + ".$queue->getLocation()."\n");
