@@ -32,7 +32,7 @@
             }
 
 
-
+            echo("here 1");
             while($row = sqlsrv_fetch_array($getQueues, SQLSRV_FETCH_ASSOC))
             {
 
@@ -41,8 +41,8 @@
 
             }
 
+            echo("here 2<br>$queues");
             sqlsrv_free_stmt($getQueues);
-//            sqlsrv_close($conn);
 
             if (!empty($queues)) {
                 return  $queues;
@@ -57,9 +57,10 @@
     }
 
     function getQueue($conn, $id){
-        $cond = "id = $id";
+        $cond = "[id] = $id";
+        echo("herexx");
         $queues = queueGetter($conn, $cond);
-        echo("here");
+        echo("here3");
         return $queues[1];
     }
 
