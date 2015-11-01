@@ -192,6 +192,21 @@ function addUser($conn, $user){
     }else{
         return $new_id;
     }
+}
 
+function getfirstInLine($conn, $queue_id){
+    try{
+        $tsql = "SELECT position FROM user ORDER BY position DESC LIMIT 1 WHERE queue_id=".$queue_id;
+        $results = sqlsrv_query($conn, $tsql);
 
+        if ($results == FALSE) {
+            die(print_r( sqlsrv_errors(), true));
+        }
+
+        return $results[0];
+
+    }
+    catch(){
+
+    }
 }

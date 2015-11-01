@@ -51,8 +51,7 @@
 		}
 	}
 	try{
-		$result = sqlsrv_fetch_array(sqlsrv_query($this->conn, "SELECT * FROM user ORDER BY queue_position DESC LIMIT 1 WHERE queue_id=".$_SESSION['queue_id']));
-		$current_user = $result['queue_position'];	
+		$current_position = getfirstInLine($conn, $_SESSION['id']);
 	}
 		catch(Exception $e){
 			echo $e->getMessage();
@@ -65,7 +64,7 @@
         <title>Restaurant Control Panel</title>
     </head>
     <body>
-    	Now serving: <?php echo $current_user; ?>
+    	Now serving: <?php echo $current_position; ?>
     	<form method="POST" action="">
         	<button name="next_customer" value="submit">Next customer</button>
         </form>
