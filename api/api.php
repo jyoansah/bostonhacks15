@@ -49,15 +49,17 @@ class api {
 
 
                     echo "All Users<br>";
-                    echo getUsers($this->conn, 39);
-//
+                    $users = getUsers($this->conn, 39);
+                    foreach($users as &$user){
+                        echo($user);
+                    }
 
                     echo "<br>";
                     echo "<br>";
 
                     $u = new User(39);
                     $u = addUser($this->conn, $u);
-                    echo $u;
+                    echo getUser($this->conn, $u->getUserId());
 
 
 
