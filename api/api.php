@@ -25,8 +25,10 @@ class api {
             //NQAssertSession();
             switch ($action) {
                 case API_CALL:
-                        echo "This is a test api call";
+                        echo "This is a test api call<br/>";
                         testFunction($conn);
+                        testFunction($this->conn);
+                        testFunction(OpenConnection());
                         //createSampleTable(OpenConnection());
                     break;
 
