@@ -114,6 +114,7 @@ function userGetter($conn, $condition){
             $tsql = "SELECT [id],[queue_id],[position] FROM dbo.Users WHERE $condition";
 
         }
+        echo "<br>TSQL= ".$tsql."<br>";
         $getUsers = sqlsrv_query($conn, $tsql);
         if ($getUsers == FALSE) {
             echo("Error!!<br>");

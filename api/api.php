@@ -48,18 +48,17 @@ class api {
 //                    echo getQueue($this->conn, $q->getId());
 
 
-                    echo "All Users<br>";
-                    $users = getUsers($this->conn, 39);
-                    foreach($users as &$user){
-                        echo($user);
-                    }
+//                    echo "All Users<br>";
+//                    $users = getUsers($this->conn, 39);
+//                    foreach($users as &$user){
+//                        echo($user);
+//                    }
 
-                    echo "<br>";
-                    echo "<br>";
+//                    echo "<br>";
+//                    echo "<br>";
 
                     $u = new User(39);
                     $u->setId(addUser($this->conn, $u));
-                    echo $u;
                     echo getUser($this->conn, $u->getId());
 
 
