@@ -136,14 +136,8 @@
 
 
 
-
-
-			
-
-          </div>
-
-          <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
-				<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+          <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col" style="margin-top:20px;">
+				<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp" width="100%">
 				  <thead>
 				    <tr>
 				      <th class="mdl-data-table__cell--non-numeric">ID</th>
@@ -160,6 +154,12 @@
 				  </tbody>
 				</table>
           </div>
+
+
+			
+
+          </div>
+
         </div>
         <footer class="demo-footer mdl-mini-footer">
           <div class="mdl-mini-footer--left-section">
