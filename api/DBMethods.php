@@ -191,7 +191,6 @@ function addUser($conn, $user){
     if (empty($new_id)){
         return null;
     }else{
-        echo "<br>Add User Success $new_id<br>";
         return $new_id;
     }
 }

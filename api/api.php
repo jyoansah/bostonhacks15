@@ -58,7 +58,7 @@ class api {
                     echo "<br>";
 
                     $u = new User(39);
-                    $u = addUser($this->conn, $u);
+                    $u->setId(addUser($this->conn, $u));
                     echo getUser($this->conn, $u->getUserId());
 
 
