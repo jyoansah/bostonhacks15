@@ -10,10 +10,11 @@
         $token = strtok($body, " ");
 
         if (strtolower($token) == 'join'){
+            $position = "You are num: ";
             $token = strtok(" ");
             $user = new User(intval($token));
             $user->setTel( $_REQUEST['From']);
-            $position = "You are num:".addUser($conn, $user);
+            $position = $position.addUser($conn, $user);
         }
     }
 ?>
