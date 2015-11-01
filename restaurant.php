@@ -11,9 +11,10 @@
 	echo "test";
 	try{
 		$queues = queueGetter($conn, NULL);
-		while ($queue = sqlsrv_fetch_array($queues)){
+		foreach($queues as $queue){
 			echo '<a href="restaurant.php/?id='.$queue["id"].'">'."sup".$queue['name'].'</a>"';
 		}
+		
 	}
 	catch(Exception $e){
 		echo $e->getMessage();
