@@ -16,7 +16,7 @@ function sanitizeResult($result, $code = 200) {
 function queueGetter($conn, $condition){
     try
     {
-
+echo "queuegetter";
         if($condition == NULL) {
             $tsql = "SELECT [id],[Name],[Location] FROM dbo.Queue";
         }
