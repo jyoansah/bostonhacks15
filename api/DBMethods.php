@@ -221,7 +221,7 @@ function deQueueUser($conn, $queue_id){
         if ($results == FALSE) {
             die(print_r( sqlsrv_errors(), true));
         }
-        results $results;
+        return $results;
     }
     catch(Exception $e){
         echo $e->getMessage();
