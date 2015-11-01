@@ -40,10 +40,8 @@
     {
         $getQueues = Select($conn, 'Name', 'Queue');
         $queueCount = 0;
-        $c = count($getQueues);
-
-
-        while ($c > $queueCount) {
+        
+        while (count($getQueues) >= $queueCount) {
 
                 echo("<br/>");
                 echo($getQueues['Name']);
