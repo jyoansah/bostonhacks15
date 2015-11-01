@@ -114,6 +114,7 @@
                 $tsql = "SELECT [id],[queue_id],[position] FROM dbo.Users WHERE $condition";
 
             }
+            var_dump($this->conn);
             $getUsers = sqlsrv_query($this->conn, $tsql);
             if ($getUsers == FALSE) {
                 echo("Error!!<br>");
