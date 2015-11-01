@@ -12,7 +12,7 @@
     <body>
         Do you hate queues? We do too!
         <?php
-          //$api->api(API_CALL);
+          $api->api(API_CALL);
         ?>
     </body>
 </html>
