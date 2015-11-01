@@ -12,7 +12,7 @@
     Please select a 4queue:
         <?php
             echo 'here';
-            $queues = getQueues($this->conn);
+            $queues = getQueues($conn);
             echo 'here1';
             foreach ($queues as $queue) {
                 echo 'here2';
