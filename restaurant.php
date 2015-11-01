@@ -26,7 +26,7 @@
 		echo $e->getMessage();
 	}
 
-	if(isset($_GET['$id'])){
+	if(isset($_GET['id'])){
 		$_SESSION['id'] = $_GET['$id'];	
 		//Get list of all people in the queue
 		$queue_entries = getQueue($conn, $_SESSION['id']);
