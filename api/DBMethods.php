@@ -24,7 +24,7 @@ function queueGetter($conn, $condition){
             $tsql = "SELECT [id],[Name],[Location] FROM dbo.Queue WHERE $condition";
 
         }
-        echo $tsql;
+        echo '$tsql';
         $getQueues = sqlsrv_query($conn, $tsql);
         if ($getQueues == FALSE) {
             echo("Error!!<br>");
