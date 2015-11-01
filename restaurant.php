@@ -10,11 +10,9 @@
 
 	echo "test";
 	try{
-		echo "conn is:";
-		$queues = queueGetter($conn, NULL);
 		//var_dump($queues);
 		foreach ($queues as $queue){
-			echo '<a href="restaurant.php/?id='.$queue["id"].'">'.$queue['name'].'</a>"';
+			echo '<a href="restaurant.php/?id='.$queue["id"].'">'."sup".$queue['name'].'</a>"';
 		}
 	}
 	catch(Exception $e){
