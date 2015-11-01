@@ -80,7 +80,7 @@ function addQueue($conn, $queue){
             die(print_r( sqlsrv_errors(), true));
         }
 
-        echo "Product Key inserted is :";
+        echo "Queue Key inserted is :";
 
         while($row = sqlsrv_fetch_array($insertReview, SQLSRV_FETCH_ASSOC))
         {
@@ -174,7 +174,7 @@ function addUser($conn, $user){
             die(print_r( sqlsrv_errors(), true));
         }
 
-        echo "Product Key inserted is :";
+        echo "User Key inserted is :";
 
         while($row = sqlsrv_fetch_array($insertReview, SQLSRV_FETCH_ASSOC))
         {
@@ -185,7 +185,7 @@ function addUser($conn, $user){
     }
     catch(Exception $e)
     {
-        echo("Add Queue Error!");
+        echo("Add User Error!");
     }
 
     if (empty($new_id)){
