@@ -41,9 +41,9 @@
 	//Get current customer
 	if(isset($_POST['next_customer'])){
 		try{
-			$result = sqlsrv_fetch_array(sqlsrv_query($this->conn, "DELETE FROM dbo.Users 
+			$result = sqlsrv_fetch_array(sqlsrv_query($this->conn, "DELETE FROM dbo.Users as user
 						JOIN(SELECT MIN(position) AS min_queue_pos FROM dbo.Users) user2
-						WHERE min_queue_pos = user2.position AND user.queue_id = ".$_SESSION['id']."
+						WHERE user2.min_queue_pos = user.position AND user.queue_id = ".$_SESSION['id']."
 						"));		
 		}
 		catch(Exception $e){
