@@ -85,6 +85,7 @@ function addQueue($conn, $queue){
         while($row = sqlsrv_fetch_array($insertReview, SQLSRV_FETCH_ASSOC))
         {
             $new_id = $row['id'];
+            echo $new_id."<br>";
         }
         sqlsrv_free_stmt($insertReview);
         sqlsrv_close($conn);
@@ -179,6 +180,7 @@ function addUser($conn, $user){
         while($row = sqlsrv_fetch_array($insertReview, SQLSRV_FETCH_ASSOC))
         {
             $new_id = $row['id'];
+            echo $new_id."<br>";
         }
         sqlsrv_free_stmt($insertReview);
         sqlsrv_close($conn);

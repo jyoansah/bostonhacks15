@@ -44,6 +44,7 @@ class api {
                     $q = new Queue(0, 'Test3', 'A location');
                     $q->setId(addQueue($this->conn, $q));
 
+                    echo $q->getId();
                     echo getQueue($this->conn, $q->getId());
 
                     echo "Add User<br>";
