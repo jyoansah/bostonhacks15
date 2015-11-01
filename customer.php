@@ -34,7 +34,7 @@
 		</div>
 		<?php
 			//Get current customer
-			if(isset($_POST['new_customer']) && isset($_GET['id'])){
+			if(isset($_POST['new_customer'])){
 				echo '<div id="queue_number">';
 				try{
 					$new_user = new User($_GET['id']);
