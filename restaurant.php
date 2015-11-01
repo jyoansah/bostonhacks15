@@ -11,10 +11,7 @@
 	echo "test";
 	try{
 		echo "conn is:";
-		var_dump($conn);
-		echo "$this->conn is:";
-		var_dump($this->conn);
-		$queues = queueGetter($this->conn, NULL);
+		$queues = queueGetter($conn, NULL);
 		var_dump($queues);
 		/**while($row = sqlsrv_fetch_array($queues)){
 			echo '<a href="restaurant.php/?id='.$row["id"].'">'.$row['name'].'</a>"';
