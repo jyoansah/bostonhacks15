@@ -206,7 +206,7 @@ function getfirstInLine($conn, $queue_id){
         return $results[0];
 
     }
-    catch(){
-
+    catch(Exception $e){
+        echo $e->getMessage();
     }
 }
