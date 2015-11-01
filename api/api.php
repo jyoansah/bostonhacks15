@@ -19,20 +19,23 @@ class api {
     
     // API interface
     function api($action = null, $msg = null) {
-        echo "we are here";
-        
+
         if ((isset($action) && isset($msg)) || isset($action)) {
             
             //NQAssertSession();
             switch ($action) {
                 case API_CALL:
                         echo "This is a test api call<br/>";
-                        ReadData();
                     break;
 
                 case DB_METHODS:
-                    echo "This is a test api call";
+                    echo "This is a test api call\n\n";
                     $queues = getQueues($this->conn);
+                    echo("Here");
+                    foreach($queues as &$queue){
+                        echo("Here");
+                        echo($queue->getName()." + ".$queue->getLocation()."\n");
+                    }
                     break;
 
                 //Aux command calls
