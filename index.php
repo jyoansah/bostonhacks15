@@ -14,5 +14,6 @@
         <?php
           $api->api(API_CALL);
         ?>
+        Are you a <a href="customer.php">customer</a> or a <a href="restaurant.php">restaurant</a>
     </body>
 </html>
