@@ -10,12 +10,12 @@
     if (isset($_REQUEST['Body'])) {
         $body = $_REQUEST['Body'];
         $token = strtok($body, " ");
-
+        $position = "";
         if (strtolower($token) == 'join') {
             $token = strtok(" ");
             $user = new User(intval($token));
             $user->setTel($_REQUEST['From']);
-            $this->position = addUser($conn, $user);
+            $position = addUser($conn, $user);
         }
     }
 ?>
