@@ -111,7 +111,7 @@ function userGetter($conn, $condition){
             $tsql = "SELECT [id],[queue_id],[position] FROM dbo.Users";
         }
         else{
-            $tsql = "SELECT [id],[queue_id],[position] FROM dbo.Users WHERE $condition";
+            $tsql = "SELECT [id],[queue_id],[position] FROM dbo.Users WHERE ".$condition;
 
         }
         echo "<br>TSQL= ".$tsql."<br>";
