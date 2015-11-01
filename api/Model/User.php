@@ -35,9 +35,9 @@ class User {
     /**
      * @param mixed $id
      */
-    public function setId($id)
+    public function setId($idin)
     {
-        $this->id = $id;
+        $this->id = $idin;
     }
 
     /**
