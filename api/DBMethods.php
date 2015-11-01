@@ -58,5 +58,7 @@
 
     function getQueue($conn, $id){
         $cond = "id = $id";
-        $queue = getQueues($conn, $cond)[1];
+        $queues = getQueues($conn, $cond);
+
+        return $queues[1];
     }
