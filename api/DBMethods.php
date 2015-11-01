@@ -70,7 +70,6 @@
 
 
     function addQueue($conn, $queue){
-
         $Name = $queue->getName();
         $Location = $queue->getLocation();
 
