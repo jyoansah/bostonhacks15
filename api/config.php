@@ -33,4 +33,4 @@
         }
     }
 
-    //$conn = OpenConnection();
+    $conn = OpenConnection();
