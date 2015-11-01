@@ -192,6 +192,7 @@ function addUser($conn, $user){
     if (empty($new_id)){
         return null;
     }else{
+        echo "<br>Add User Success $new_id<br>";
         return $new_id;
     }
 }
@@ -225,6 +226,7 @@ function getLastInLine($conn, $queue_id){
 
         $results = sqlsrv_fetch_array($results, SQLSRV_FETCH_ASSOC);
         $result = $results['position'];
+        echo "<br>LastInLine Success $result<br>";
         return $result;
     }
     catch(Exception $e){
