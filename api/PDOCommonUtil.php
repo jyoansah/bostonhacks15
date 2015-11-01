@@ -97,7 +97,9 @@ function sanitizeResult($result, $code = 200) {
     }
 }
 
-function testDumdum($conn){
+function createSampleTable($conn){
+    echo "inCreateSample method";
+    
     $tsql = "CREATE TABLE MyGuests (
     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
     firstname VARCHAR(30) NOT NULL,
@@ -105,9 +107,12 @@ function testDumdum($conn){
     email VARCHAR(50),
     reg_date TIMESTAMP
     )";
+    
     $getProducts = sqlsrv_query($conn, $tsql);
-    if ($getProducts == FALSE)
+    if ($getProducts == FALSE) {
+        echo "Product creation failed";
         die(FormatErrors(sqlsrv_errors()));
+    }
     $productCount = 0;
     while($row = sqlsrv_fetch_array($getProducts, SQLSRV_FETCH_ASSOC))
     {
@@ -118,6 +123,7 @@ function testDumdum($conn){
     sqlsrv_free_stmt($getProducts);
     sqlsrv_close($conn);
 }
+
 //Default selects everything in table
 function NQSelect($conn, $param, $table) {
     $sql = "SELECT $param FROM $table";

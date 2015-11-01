@@ -26,6 +26,7 @@ class api {
             switch ($action) {
                 case API_CALL:
                         echo "This is a test api call";
+                        createSampleTable($this->conn);
                     break;
 
                 //Aux command calls
@@ -38,6 +39,7 @@ class api {
             }
         } else {
             sanitizeResult('Invalid Request', 400);
+            echo "Bad Call. Boohoo";
         }
     }
 
