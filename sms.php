@@ -3,12 +3,14 @@
     include_once 'api/api.php';
     global $conn, $api;
     session_start();
+    header("content-type: text/xml");
+    echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
 ?>
 
 
 
 <Response>
-    <Sms>Hello, Welcome to Deeque<br>
+    <Message>Hello, Welcome to Deeque<br>
     Please select a Queue:<br>
         <?php
             $queues = getQueues($conn);
@@ -16,5 +18,5 @@
                 echo $queue->id.' --> '.$queue->name.'<br>';
             }
         ?>
-    </Sms>
+    </Message>
 </Response>
