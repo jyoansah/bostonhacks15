@@ -7,7 +7,6 @@
 ?>
 
 <?php
-	/**
 
 	echo "test";
 	try{
@@ -19,10 +18,11 @@
 	catch(Exception $e){
 		echo $e->getMessage();
 	}
+
 	if(isset($_GET['$id'])){
 		$_SESSION['id'] = $_GET['$id'];
 	}
-	
+	/**
 	//Get current customer
 	if(isset($_POST['next_customer'])){
 		try{
