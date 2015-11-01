@@ -8,14 +8,19 @@
 
 <?php
 	try{
-		$queues = queueGetter($conn, NULL);
-		foreach($queues as $queue){
-			echo "Location: ".$queue->location." ";
-			echo '<a href="restaurants.php/'.$queue->id.'">'.$queue->name.'</a><br>';
-			
-			//echo '<a href="restaurant.php/?id='.$queue["id"].'">'."sup".$queue['name'].'</a>"';
-		}
-		
+		?>
+		<div id="sidebar">
+			<?php
+			$queues = queueGetter($conn, NULL);
+			foreach($queues as $queue){
+				echo "Location: ".$queue->location." ";
+				echo '<a href="restaurants.php/'.$queue->id.'">'.$queue->name.'</a><br>';
+				
+				//echo '<a href="restaurant.php/?id='.$queue["id"].'">'."sup".$queue['name'].'</a>"';
+			}
+			?>
+		</div>
+		<?php
 	}
 	catch(Exception $e){
 		echo $e->getMessage();
@@ -24,6 +29,10 @@
 	if(isset($_GET['$id'])){
 		$_SESSION['id'] = $_GET['$id'];
 	}
+
+	//Get list of all people in the queue
+	$queue_entries = getQueue($conn, $_SESSION['id']);
+	var_dump($queue_entries);
 	/**
 	//Get current customer
 	if(isset($_POST['next_customer'])){
