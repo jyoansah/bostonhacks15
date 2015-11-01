@@ -57,12 +57,15 @@ class api {
 //                    echo "<br>";
 //                    echo "<br>";
 
+                    echo "From regular<br>";
+                    getUser($this->conn, 89);
+
+
+                    echo "From getID<br>";
+
                     $u = new User(39);
                     $u->setId(addUser($this->conn, $u));
-                    echo $u."<br>";
-                    $inter  = $u->getId();
-
-                    print_r( getUser($this->conn, intval($inter)));
+                    echo getUser($this->conn, intval($u->getId()));
 //                    echo getUser($this->conn, (int) $inter);
 
 
