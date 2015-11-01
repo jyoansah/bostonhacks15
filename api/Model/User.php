@@ -15,13 +15,13 @@ class User {
     }
 
     public function __construct($queue_id){
-        $this->$queue_id = $queue_id;
+        $this->queue_id = $queue_id;
     }
 
 
     function __toString()
     {
-        return $this->getId()." + ".$this->getQueueId()." + ".$this->getPosition()."<br>";
+        return "UserId: ".$this->getId()." QueueId: ".$this->getQueueId()." Position: ".$this->getPosition()."<br>";
     }
 
     /**

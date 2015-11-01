@@ -48,11 +48,34 @@ class api {
 //                    echo getQueue($this->conn, $q->getId());
 
 
-                    echo "Get User<br>";
-//                    $u = new User(39);
+//                    echo "All Users<br>";
+//                    $users = getUsers($this->conn, 39);
+//                    foreach($users as &$user){
+//                        echo($user);
+//                    }
 
-                    $u = getFirstinLine();
-                    echo $u;
+//                    echo "<br>";
+//                    echo "<br>";
+
+                    echo "From regular<br>";
+                    echo "Type num:".gettype(89);
+                    echo getUser($this->conn, 89);
+                    echo getUser($this->conn, 100);
+
+
+                    echo "From getID<br>";
+
+                    $u = new User(39);
+                    $u->setId(addUser($this->conn, $u));
+                    echo "<br>Type num2: ".gettype($u->getId());
+                    echo "<br>Type num3: ".gettype(intval($u->getId()));
+                    $tester = intval($u->getId());
+
+                    echo "Tester".$tester;
+                    $tester--;
+
+                    echo getUser($this->conn, $tester);
+//                    echo getUser($this->conn, (int) $inter);
 
 
 
