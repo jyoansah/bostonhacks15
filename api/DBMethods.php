@@ -162,7 +162,8 @@ function getUsers($conn, $queue_id){
 
 function addUser($conn, $user){
     $QueueId = $user->getQueueId();
-    $Position = getLastInLine($conn, $QueueId) + 1;
+    $Position = getLastInLine($conn, $QueueId);
+    $Position++;
 
     try {
         $tsql = "INSERT INTO dbo.Users (queue_id, position)
@@ -219,6 +220,7 @@ function getfirstInLine($conn, $queue_id){
 function getLastInLine($conn, $queue_id){
     try{
         $tsql = "SELECT TOP 1 position FROM dbo.Users WHERE queue_id=".$queue_id." ORDER BY position DESC";
+        echo $tsql;
         $results = sqlsrv_query($conn, $tsql);
 
         if ($results == FALSE) {
