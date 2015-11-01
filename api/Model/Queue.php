@@ -8,8 +8,13 @@ class Queue {
     public $eta;
 
 
-    public function __construct($id, $name, $location) {
+    public function newQueue($id, $queue_id, $position) {
         $this->id = $id;
+        $this->queue_id = $queue_id;
+        $this->position = $position;
+    }
+
+    public function __construct($name, $location) {
         $this->name = $name;
         $this->location = $location;
     }
