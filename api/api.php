@@ -57,16 +57,12 @@ class api {
 //                    echo "<br>";
 //                    echo "<br>";
 
-                    $inti = '89';
-                    echo getUser($this->conn, intval($inti));
-
                     $u = new User(39);
                     $u->setId(addUser($this->conn, $u));
                     echo $u."<br>";
                     $inter  = $u->getId();
-                    echo "opo".$inter;
 
-                    print_r( getUser($this->conn, (int) $inter));
+                    print_r( getUser($this->conn, $inter));
 //                    echo getUser($this->conn, (int) $inter);
 
 
