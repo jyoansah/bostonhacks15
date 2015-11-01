@@ -10,6 +10,7 @@
 	echo "test";
 	$queues = queueGetter($this->conn, NULL);
 	var_dump($queues);
+	/**
 	while($row = sqlsrv_fetch_array($queues)){
 		echo $row;
 	}
@@ -32,6 +33,7 @@
 		catch(Exception $e){
 			echo $e->getMessage();
 		}
+		**/
 ?>
 <html>
     <head>
