@@ -7,8 +7,7 @@ form{
     background-color: #fae3d9;
     line-height: 20px;
     padding: 10px;
-    border-width: 5px;
-    border-color: white;
+    margin: 20px;
 }
 
 label{

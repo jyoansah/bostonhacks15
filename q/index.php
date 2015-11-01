@@ -17,7 +17,7 @@
             <input type="text" name="address"><br>
             <label class="grid_3" for="city">City:</label>
             <input type="text" width="50px" name="city"><br>
-            <input class="grid_8" type="submit" name="submit" value="Sign Up!">
+            <input class="grid_4" type="submit" name="submit" value="Sign Up!">
         </form>
         </div>
     </body>
