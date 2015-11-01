@@ -10,12 +10,12 @@
 
 
 <Response>
-    <Message>Hello, Welcome to Deeque <br>
+    <Message>Hello, Welcome to Deeque </br>
     Please select a Queue:<br>
         <?php
             $queues = getQueues($conn);
             foreach ($queues as $queue) {
-                echo $queue->id.' --> '.$queue->name.'\n';
+                echo $queue->id.' --> '.$queue->name.'</br>';
             }
         ?>
     </Message>
