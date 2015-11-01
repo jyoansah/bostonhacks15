@@ -19,7 +19,9 @@ function listQs()
 <Response>
     <Message>Hello, Welcome to Deeque<br>
     Please select a queue:
-
+        <?php
+            listQs();
+        ?>
 
     </Message>
 </Response>
