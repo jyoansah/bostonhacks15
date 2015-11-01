@@ -1,6 +1,5 @@
 <?php
 
-echo "dbmethods";
 //Encode result in json format
 function sanitizeResult($result, $code = 200) {
     if (count($result) > 0) {
