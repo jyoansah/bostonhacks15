@@ -139,7 +139,6 @@
                 $tsql = "SELECT [id],[queue_id],[position] FROM dbo.Users WHERE ".$condition;
 
             }
-            echo "<br>TSQL= ".$tsql."<br>";
             $conn = OpenConnection();
             $getUsers = sqlsrv_query($conn, $tsql);
 
