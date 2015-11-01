@@ -75,6 +75,7 @@ class api {
                     $tester--;
 
                     echo getUser($this->conn, $tester);
+                    echo getUser($this->conn, 89);
 //                    echo getUser($this->conn, (int) $inter);
 
 

@@ -140,10 +140,12 @@
 
             }
             echo "<br>TSQL= ".$tsql."<br>";
+            $conn = OpenConnection();
             $getUsers = sqlsrv_query($conn, $tsql);
+
             if ($getUsers == FALSE) {
                 echo("Error!!<br>");
-                die(print_r( sqlsrv_errors(), true));
+                //die(print_r( sqlsrv_errors(), true));
             }
 
 
@@ -171,7 +173,7 @@
     }
 
     function getUser($conn, $id){
-        $cond = "id =".$id;
+        $cond = "id =$id";
         $users = userGetter($conn, $cond);
 
         if (empty($users)){
