@@ -52,7 +52,7 @@
         }
         catch(Exception $e)
         {
-            echo("Error!");
+            echo("Get Queue Error!");
         }
     }
 
@@ -64,14 +64,13 @@
     }
 
 
-    function addQueue($queue){
+    function addQueue($conn, $queue){
 
         $Name = $queue->getName();
         $Location = $queue->getLocation();
 
         try
         {
-            $conn = OpenConnection();
 
             $tsql = "INSERT INTO dbo.Users (queue_id, queue_location)
             OUTPUT INSERTED.id VALUES ('$Name', '$Location')";
@@ -89,7 +88,7 @@
         }
         catch(Exception $e)
         {
-            echo("Error!");
+            echo("Add Queue Error!");
         }
 
     }

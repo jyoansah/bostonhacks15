@@ -30,6 +30,9 @@ class api {
 
                 case DB_METHODS:
                     echo "This is a test api call<br><br>";
+
+                    echo "get queues<br>";
+
                     $queues = getQueues($this->conn);
                     foreach($queues as &$queue){
                         echo($queue->getId()." + ".$queue->getName()." + ".$queue->getLocation()."<br>");
@@ -37,9 +40,15 @@ class api {
 
                     echo("<br>");
                     echo("<br>");
+                    echo "Add queues<br>";
 
                     $q = new Queue(0, 'Test3', 'A location');
+                    addQueue($this->conn, $q);
 
+                    echo("<br>");
+                    echo("<br>");
+
+                    echo "Get 1 Queue<br>";
                     $queue1 = getQueue($this->conn, 1);
                     echo($queue1->getId()." + ".$queue1->getName()." + ".$queue1->getLocation()."<br>");
 

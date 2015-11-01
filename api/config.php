@@ -85,7 +85,7 @@
                 return $conn;
             }
         } catch(Exception $e){
-            echo("Error!");
+            echo(" Connection Open Error!");
             $error = $e->getMessage();
         }
     }
