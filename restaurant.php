@@ -6,6 +6,13 @@
  session_start();
 ?>
 
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Restaurant Control Panel</title>
+    </head>
+    <body>
+    	
 <?php
 	try{
 		?>
@@ -47,9 +54,10 @@
 				echo "Queue id: ".$queue_user->queue_id.", ";
 				echo "Position: ".$queue_user->position."<br>";
 			}
-			
+
 		try{
 			$current_position = getfirstInLine($conn, $_SESSION['id']);
+			echo 'Now serving: ' .$current_position;
 		}
 		catch(Exception $e){
 			echo $e->getMessage();
@@ -59,13 +67,6 @@
 		
 		
 ?>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Restaurant Control Panel</title>
-    </head>
-    <body>
-    	Now serving: <?php echo $current_position; ?>
     	<form method="POST" action="">
         	<button name="next_customer" value="submit">Next customer</button>
         </form>
