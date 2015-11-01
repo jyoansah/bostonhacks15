@@ -73,20 +73,25 @@
         $Name = $queue->getName();
         $Location = $queue->getLocation();
 
-        try
-        {
+        try {
             echo("here 111");
             $tsql = "INSERT INTO dbo.Users (queue_id, queue_location)
-            OUTPUT INSERTED.id VALUES ('$Name', '$Location')";
+            OUTPUT INSERTED.id VALUES ('$Name','$Location')";
             //Insert query
             $insertReview = sqlsrv_query($conn, $tsql);
 
             echo("here 222 $insertReview");
-            if($insertReview == FALSE)
-                die(FormatErrors( sqlsrv_errors()));
+            if ($insertReview == FALSE) {
+
+                echo("here 333");
+                die(FormatErrors(sqlsrv_errors()));
+            }
+
             echo "Product Key inserted is :";
+
             while($row = sqlsrv_fetch_array($insertReview, SQLSRV_FETCH_ASSOC))
             {
+                echo("here 444");
                 echo($row['id']);
             }
             sqlsrv_free_stmt($insertReview);
