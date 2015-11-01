@@ -203,7 +203,7 @@ function getfirstInLine($conn, $queue_id){
             die(print_r( sqlsrv_errors(), true));
         }
 
-        return sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC);
+        return sqlsrv_fetch_array($results, SQLSRV_FETCH_ASSOC);
 
     }
     catch(Exception $e){
