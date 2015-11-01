@@ -8,10 +8,9 @@
 ?>
 
 
-
 <Response>
     <Message>Hello, Welcome to Deeque
-    Please select a Queue:<br>
+    Please select a Queue:
         <?php
             $queues = getQueues($conn);
             foreach ($queues as $queue) {
