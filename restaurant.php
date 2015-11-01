@@ -107,33 +107,25 @@
           <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
           <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
             
-            <div class="demo-card-wide mdl-card mdl-shadow--2dp" style="margin-top:20px; left:27%;">
-			  <div class="mdl-card__title">
-			    <h2 class="mdl-card__title-text">Welcome</h2>
-			  </div>
-			  <div class="mdl-card__supporting-text">
-			    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-			    Mauris sagittis pellentesque lacus eleifend lacinia...
-			  </div>
-			  <div class="mdl-card__actions mdl-card--border">
-			    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-			      Get Started
-			    </a>
-			  </div>
-			  <div class="mdl-card__menu">
-			    <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-			      <i class="material-icons">share</i>
-			    </button>
-			  </div>
-			</div>
 
-			<div class="demo-card-wide mdl-card mdl-shadow--2dp" style="margin-top:20px; left:27%;">
+
+
+            
+
+
+
+			<?php
+			$queues = getqueues($conn);
+			foreach($queues as $queue){
+			?>
+				<div class="demo-card-wide mdl-card mdl-shadow--2dp" style="margin-top:20px; left:27%;">
 			  <div class="mdl-card__title">
-			    <h2 class="mdl-card__title-text">Welcome</h2>
+			    <h2 class="mdl-card__title-text"><?php 	$queue->location; ?></h2>
 			  </div>
 			  <div class="mdl-card__supporting-text">
-			    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-			    Mauris sagittis pellentesque lacus eleifend lacinia...
+			    <?php
+					echo '<a href="/restaurant.php/?id='.$queue->id.'">'.$queue->name.'</a><br>';
+			    ?>
 			  </div>
 			  <div class="mdl-card__actions mdl-card--border">
 			    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
@@ -145,7 +137,9 @@
 			      <i class="material-icons">share</i>
 			    </button>
 			  </div>
-			</div>
+			</div><?php
+			}
+			?>
 
           </div>
         </div>
