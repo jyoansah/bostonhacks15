@@ -1,7 +1,8 @@
 <?php
 
-//Encode result in json format
-function sanitizeResult($result, $code = 200) {
+
+    //Encode result in json format
+    function sanitizeResult($result, $code = 200) {
     if (count($result) > 0) {
         sendResponse($code, json_encode($result));
         return true;
@@ -11,37 +12,52 @@ function sanitizeResult($result, $code = 200) {
     }
 }
 
-function ReadData($conn) {
+    function ReadData() {
 
-}
+    }
 
-function getQueues($conn){
-    try
-    {
 
-        echo("Starting Select");
+    //Default selects everything in table
+    function Select($param, $table) {
 
-        $tsql = "SELECT [Name] FROM dbo.Queue";
-        $getQueues = sqlsrv_query($conn, $tsql);
-        if ($getQueues == FALSE) {
+        $tsql = "SELECT [$param] FROM dbo.[$table]";
+        $data = sqlsrv_query($this->conn, $tsql);
+
+        if ($data == FALSE) {
             echo("Error!!");
             die(FormatErrors(sqlsrv_errors()));
         }
-        $queueCount = 0;
-        while($row = sqlsrv_fetch_array($getQueues, SQLSRV_FETCH_ASSOC))
-        {
-            echo($row['Name']);
-            echo("<br/>");
-            $queueCount++;
-        }
-        sqlsrv_free_stmt($getQueues);
-        sqlsrv_close($conn);
 
-        echo("Selection done");
-        return "YES!!";
+        $array = sqlsrv_fetch_array($data, SQLSRV_FETCH_ASSOC);
+
+        sqlsrv_free_stmt($data);
+        sqlsrv_close($this->conn);
+
+        return $array;
     }
-    catch(Exception $e)
+
+    function getQueues()
     {
-        echo("Error!");
+        $getQueues = Select('Name', 'Queue');
+        while ($row = sqlsrv_fetch_array($getQueues, SQLSRV_FETCH_ASSOC)) {
+            $queueCount = 0;
+            while ($row = sqlsrv_fetch_array($getQueues, SQLSRV_FETCH_ASSOC)) {
+                echo("<br/>");
+                echo($row['Name']);
+                echo("<br/>");
+                $queueCount++;
+            }
+        }
     }
-}
+
+
+    //Inserts row in table
+    function Insert($conn, $searchBy, $table) {
+        $param = NQMultiplePreProcessor($searchBy);
+        $sql = "INSERT INTO $table $param";
+        $stmt = $conn->prepare($sql);
+        NQBasicBindParamPreProcessor($stmt, $searchBy, true);
+
+        return $stmt;
+    }
+

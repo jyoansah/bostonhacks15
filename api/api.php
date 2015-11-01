@@ -26,12 +26,12 @@ class api {
             switch ($action) {
                 case API_CALL:
                         echo "This is a test api call<br/>";
-                        ReadData($conn);
+                        ReadData();
                     break;
 
                 case DB_METHODS:
                     echo "This is a test api call";
-                    $queues = getQueues($this->conn);
+                    $queues = getQueues();
                     break;
 
                 //Aux command calls
