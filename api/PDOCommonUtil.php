@@ -89,10 +89,10 @@ function NQAssertSession() {
 //Encode result in json format
 function sanitizeResult($result, $code = 200) {
     if (count($result) > 0) {
-        NQSendResponse($code, json_encode($result));
+        sendResponse($code, json_encode($result));
         return true;
     } else {
-        NQSendResponse($code, json_encode("ERROR"));
+        sendResponse($code, json_encode("ERROR"));
         return true;
     }
 }
