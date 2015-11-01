@@ -162,6 +162,7 @@ function getUsers($conn){
 }
 
 function addUser($conn, $user){
+    echo "here 1111";
     $QueueId = $user->getQueueId();
     $Position = $user->getPosition();
 
