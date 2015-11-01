@@ -29,6 +29,12 @@ class api {
                         ReadData($conn);
                     break;
 
+                case DB_METHODS:
+                    echo "This is a test api call";
+                    $queues = getQueues($this->conn);
+                    break;
+
+
                 //Aux command calls
                 case SET_FEEDBACK_MSG:
                     setFeedbackMessage($msg);
