@@ -10,7 +10,7 @@
 
 	echo "test";
 	try{
-		//var_dump($queues);
+		$queues = queueGetter($conn, NULL);
 		foreach ($queues as $queue){
 			echo '<a href="restaurant.php/?id='.$queue["id"].'">'."sup".$queue['name'].'</a>"';
 		}
