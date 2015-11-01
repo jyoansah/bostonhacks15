@@ -36,8 +36,7 @@ class api {
                     echo "New Queue Created: ".getQueue($this->conn, $q->getId())."<br>";
 
                     $u = new User($q->getId());
-                    $u->setId(addUser($this->conn, $u));
-                    echo "New User Created: ".getUser($this->conn, $u->getId())."<br>";
+                    echo "New User Created at position: ".addUser($this->conn, $u)."<br>";
 
                     break;
 
