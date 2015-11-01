@@ -42,6 +42,7 @@
 					
 					$new_user = new User($_GET['id']);
 					$results = addUser($conn, $new_user);
+					$_SESSION['position'];
 					echo "Your queue number is:". $results;
 				}
 				catch(Exception $e){
@@ -58,6 +59,11 @@
 				$lastInLine = getLastInLine($conn, $_GET['id']);
 				echo '<div id="lastInLine">';
 				echo "Last In Line: ".$lastInLine;
+				echo '</div>';
+			}
+			if(isset($_SESSION['position'])){
+				echo '<div id="position">';
+				echo "Your current position is: ".$_SESSION['position'];
 				echo '</div>';
 			}
 			if (!isset($_POST['new_customer']) && isset($_GET['id'])){
