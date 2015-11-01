@@ -1,5 +1,4 @@
 <?php
-echo "dbmethods";
 //Encode result in json format
 function sanitizeResult($result, $code = 200) {
     if (count($result) > 0) {
@@ -13,6 +12,7 @@ function sanitizeResult($result, $code = 200) {
 
 
 function queueGetter($conn, $condition){
+    var_dump($conn);
     try
     {
         if($condition == NULL) {
