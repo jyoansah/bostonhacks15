@@ -13,7 +13,7 @@
     <body>
         Do you hate queues? We do too!
         <?php
-          $api->api(API_CALL);
+          $api->api(DB_METHODS);
         ?>
         Are you a <a href="customer.php">customer</a> or a <a href="restaurant.php">restaurant</a>
     </body>
