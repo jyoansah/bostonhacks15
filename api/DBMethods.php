@@ -24,7 +24,6 @@ function queueGetter($conn, $condition){
             $tsql = "SELECT [id],[Name],[Location] FROM dbo.Queue WHERE $condition";
 
         }
-        echo '$tsql';
         $getQueues = sqlsrv_query($conn, $tsql);
         if ($getQueues == FALSE) {
             echo("Error!!<br>");
@@ -110,7 +109,6 @@ function addQueue($conn, $queue){
 function userGetter($conn, $condition){
     try
 
-
     {
         if($condition == NULL) {
             $tsql = "SELECT [id],[queue_id],[position] FROM dbo.Users";
@@ -149,7 +147,7 @@ function userGetter($conn, $condition){
 
 function getUser($conn, $id){
     $cond = "id = $id";
-    $users = queueGetter($conn, $cond);
+    $users = userGetter($conn, $cond);
 
     if (empty($users)){
         return "not found";
