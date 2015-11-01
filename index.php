@@ -20,6 +20,8 @@
             <?php
               $api->api(DB_METHODS);
             ?>
+            <br>
+            <br>
             Are you a <a href="customer.php">customer</a> or a <a href="restaurant.php">restaurant</a>
         </div>
     </body>
