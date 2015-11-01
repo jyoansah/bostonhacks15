@@ -1,6 +1,7 @@
 <?php
 
 include_once 'controller.php';
+error_reporting(E_ALL);
 
 class api {
 
