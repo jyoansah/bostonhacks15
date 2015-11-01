@@ -23,14 +23,15 @@
 <Response>
     <Message>Hello, Welcome to Deeque
         <?php
-        if (empty($this->position)) {
-            echo "Please select a Queue: \n";
+        echo "Position: ".$position;
+        if (empty($position)) {
+            echo "$Please select a Queue: \n";
             $queues = getQueues($conn);
             foreach ($queues as $queue) {
                 echo $queue->id . " --> " . $queue->name . "\n";
             }
         } else {
-            echo "You are num: ".$this->position;
+            echo "You are num: ".$position;
         }
         ?>
     </Message>
