@@ -52,7 +52,7 @@ class api {
 
                     echo getUser($u->getId());
 
-                    
+
 //                    echo "get queues<br>";
 //
 //                    $queues = getQueues($this->conn);

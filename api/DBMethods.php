@@ -53,7 +53,7 @@
 
     function getQueue($id){
         $cond = "id = $id";
-        $queues = queueGetter($this->conn, $cond);
+        $queues = queueGetter($cond);
 
         if (empty($queues)){
             return "not found";
@@ -63,7 +63,7 @@
     }
 
     function getQueues(){
-        $queues = queueGetter($this->conn, null);
+        $queues = queueGetter(null);
         return $queues;
     }
 
@@ -144,7 +144,7 @@
 
     function getUser( $id){
         $cond = "id = $id";
-        $users = queueGetter($this->conn, $cond);
+        $users = queueGetter( $cond);
 
         if (empty($users)){
             return null;
@@ -154,7 +154,7 @@
     }
 
     function getUsers(){
-        $users = userGetter($this->conn, null);
+        $users = userGetter( null);
         return $users;
     }
 
