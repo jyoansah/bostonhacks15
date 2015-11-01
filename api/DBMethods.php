@@ -12,11 +12,18 @@
         }
     }
 
-    function getQueues($conn){
+    function getQueues($conn, $condition){
         try
         {
 
-            $tsql = "SELECT [id],[Name],[Location] FROM dbo.Queue";
+            if($condition == NULL)
+
+                $tsql = "SELECT [id],[Name],[Location] FROM dbo.Queue";
+
+            else{
+                $tsql = "SELECT [id],[Name],[Location] FROM dbo.Queue WHERE $condition";
+
+            }
 
             $getQueues = sqlsrv_query($conn, $tsql);
             if ($getQueues == FALSE) {
@@ -50,32 +57,6 @@
     }
 
     function getQueue($conn, $id){
-        try
-        {
-
-            $tsql = "SELECT [id],[Name],[Location] FROM dbo.Queue WHERE [id]=$id";
-
-            $getQueue = sqlsrv_query($conn, $tsql);
-            if ($getQueue == FALSE) {
-                echo("Error!!");
-                die(FormatErrors(sqlsrv_errors()));
-            }
-
-            $queue = new Queue($getQueue['id'],$getQueue['Name'],$getQueue['Location']);
-
-
-            sqlsrv_free_stmt($getQueue);
-//            sqlsrv_close($conn);
-
-            echo("Selection done");
-            if (!empty($queue)) {
-                return  $queue;
-            }else{
-                return ' ';
-            }
-        }
-        catch(Exception $e) {
-            echo("Error!");
-        }
-
+        $cond = "id = $id";
+        $queue = getQueues($conn, $cond)[1];
     }
