@@ -27,7 +27,7 @@
 		try{
 			$result = sqlsrv_fetch_array(sqlsrv_query($this->conn, "DELETE FROM user 
 						JOIN(SELECT MIN(queue_position) AS min_queue_pos FROM user) user2
-						WHERE user.queue_position = user2.min_queue_pos AND user.queue_id = ".$_SESSION['id']."
+						WHERE user.queue_position = user2.min_queue_pos AND user.queue_id = ".$_GET['id']."
 						"));		
 		}
 		catch(Exception $e){
