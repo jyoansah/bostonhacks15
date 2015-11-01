@@ -28,7 +28,7 @@
             $getQueues = sqlsrv_query($conn, $tsql);
             if ($getQueues == FALSE) {
                 echo("Error!!");
-                die(FormatErrors(sqlsrv_errors()));
+                die(print_r( sqlsrv_errors(), true));
             }
 
 
@@ -84,7 +84,7 @@
             if ($insertReview == FALSE) {
 
                 echo("here 333");
-                die(FormatErrors(sqlsrv_errors()));
+                die(print_r( sqlsrv_errors(), true));
             }
 
             echo "Product Key inserted is :";
