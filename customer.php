@@ -33,6 +33,13 @@
 
 		</div>
 		<?php
+
+			if(isset($_GET['id'])){
+				$lastInLine = getLastInLine($conn, $_GET['id']);
+				echo '<div id="lastInLine">';
+				echo $lastInLine;
+				echo '</div>';
+			}
 			//Get current customer
 			if(isset($_POST['new_customer']) && isset($_GET['id'])){
 				echo '<div id="queue_number">';
