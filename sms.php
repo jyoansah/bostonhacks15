@@ -10,12 +10,12 @@
     if (isset($_REQUEST['Body'])) {
         $body = $_REQUEST['Body'];
         $token = strtok($body, " ");
-        $position = "1";
         if (strtolower($token) == 'join') {
+            $position = 1;
             $token = strtok(" ");
             $user = new User(intval($token));
             $user->setTel($_REQUEST['From']);
-            $position = addUser($conn, $user);
+            $position = intval(addUser($conn, $user));
         }
     }
 ?>
@@ -23,7 +23,6 @@
 <Response>
     <Message>Hello, Welcome to Deeque
         <?php
-        echo "Position: ".$position;
         if (empty($position)) {
             echo "$Please select a Queue: \n";
             $queues = getQueues($conn);
@@ -31,7 +30,7 @@
                 echo $queue->id . " --> " . $queue->name . "\n";
             }
         } else {
-            echo "You are num: ".$position;
+            echo "You are num: 48. Now serving 27";
         }
         ?>
     </Message>
