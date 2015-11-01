@@ -107,12 +107,9 @@
                 die(print_r( sqlsrv_errors(), true));
             }
 
-            echo "Queue Key inserted is :";
-
             while($row = sqlsrv_fetch_array($insertReview, SQLSRV_FETCH_ASSOC))
             {
                 $new_id = $row['id'];
-                echo $new_id."<br>";
             }
             sqlsrv_free_stmt($insertReview);
             sqlsrv_close($conn);
