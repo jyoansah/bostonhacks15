@@ -228,7 +228,6 @@
     function getfirstInLine($conn, $queue_id){
         try{
             $tsql = "SELECT TOP 1 position FROM dbo.Users WHERE queue_id=".$queue_id." ORDER BY position ASC";
-            echo $tsql;
             $results = sqlsrv_query($conn, $tsql);
 
             if ($results == FALSE) {
