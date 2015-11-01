@@ -4,6 +4,9 @@
         <link href="index.css" type="text/css" rel="stylesheet">
     </head>
     <body>
+        <header>
+            <h1>DQ - Don't Queue!</h1>
+        </header>
         <h2>Please enter sign up details:</h2>
         <form action="metricsPage.php" method="post">
             <label for="name">Name:</label>
