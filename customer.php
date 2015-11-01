@@ -47,7 +47,7 @@
 				}
 				echo '</div>';
 			}
-			else if (!isset($_POST['new_customer']) && !isset($_GET['id'])){
+			else if (!isset($_POST['new_customer']) && isset($_GET['id'])){
 	    	echo '<form method="POST" action="">';
 	        echo '<button name="new_customer" value="submit">Get Number</button>';
 	        echo '</form>';
