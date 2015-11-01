@@ -42,7 +42,7 @@
 					
 					$new_user = new User($_GET['id']);
 					$results = addUser($conn, $new_user);
-					$_SESSION['position'];
+					$_SESSION['position'] = $results;
 					echo "Your queue number is:". $results;
 				}
 				catch(Exception $e){
