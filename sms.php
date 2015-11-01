@@ -1,5 +1,4 @@
 <?php
-
     header("content-type: text/xml");
     echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
     header("access-control-allow-origin: *");
@@ -21,15 +20,14 @@
     }
 ?>
 
-
 <Response>
     <Message>Hello, Welcome to Deeque
-    Please select a Queue:
         <?php
             if(!empty($position)) {
                 echo  "You are num: ".$position;
             }
             else{
+                echo "Please select a Queue: \n";
                 $queues = getQueues($conn);
                 foreach ($queues as $queue) {
                     echo $queue->id . " --> " . $queue->name . "\n";
