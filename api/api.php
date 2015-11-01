@@ -51,7 +51,7 @@ class api {
                     echo "Get User<br>";
 //                    $u = new User(39);
 
-                    $u = getFirstinLine();
+                    $u = getFirstinLine($this->conn, 39);
                     echo $u;
 
 
