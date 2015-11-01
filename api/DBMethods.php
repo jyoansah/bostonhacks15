@@ -12,7 +12,7 @@
         }
     }
 
-    function getQueues($conn, $condition){
+    function queueGetter($conn, $condition){
         try
         {
 
@@ -58,9 +58,14 @@
 
     function getQueue($conn, $id){
         $cond = "id = '$id''";
-        $queues = getQueues($conn, $cond);
+        $queues = queueGetter($conn, $cond);
 
         return $queues[1];
+    }
+
+    function getQueues($conn){
+        $queues = queueGetter($conn, null);
+        return $queues;
     }
 
 
