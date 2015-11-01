@@ -1,11 +1,11 @@
 <html>
     <head>
-        <title>User Sign Up</title>
+        <title>DQ - Don't Queue!</title>
         <link href="index.css" type="text/css" rel="stylesheet">
     </head>
     <body>
         <header>
-            <h1>DQ - Don't Queue!</h1>
+            <h1>User Sign Up</h1>
         </header>
         <h2>Please enter sign up details:</h2>
         <form action="metricsPage.php" method="post">
