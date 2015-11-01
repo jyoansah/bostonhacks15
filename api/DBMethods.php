@@ -163,7 +163,7 @@ function getUsers($conn){
 
 function addUser($conn, $user){
     $QueueId = $user->getQueueId();
-    $Position = $user->getLocation();
+    $Position = $user->getPosition();
 
     try {
         $tsql = "INSERT INTO dbo.Queue (queue_id, position)
