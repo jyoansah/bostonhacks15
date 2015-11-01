@@ -11,7 +11,7 @@
         <form action="metricsPage.php" method="post">
             <label for="name">Name:</label>
             <input type="text" name="name"><br>
-            <label for="address">Address Line 1:</label>
+            <label for="address">Address:</label>
             <input type="text" name="address"><br>
             <label for="city">City:</label>
             <input type="text" width="50px" name="city"><br>
