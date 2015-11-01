@@ -49,6 +49,7 @@
 		catch(Exception $e){
 			echo $e->getMessage();
 		}
+	}
 	/**
 	try{
 		$current_position = getfirstInLine($conn, $_SESSION['id']);
