@@ -31,13 +31,13 @@ class api {
 
                 case DB_METHODS:
 
-                    $q = new Queue("TestQueue2", "Test Location2<br>");
-                    $q->setId(addQueue($this->conn, $q));
-                    echo "New Queue Created: ".getQueue($this->conn, $q->getId())."<br>";
-
-                    $u = new User($q->getId());
-                    $u->setId(addUser($this->conn, $u));
-                    echo "New User Created: ".getUser($this->conn, $u->getId())."<br>";
+//                    $q = new Queue("TestQueue2", "Test Location2<br>");
+//                    $q->setId(addQueue($this->conn, $q));
+//                    echo "New Queue Created: ".getQueue($this->conn, $q->getId())."<br>";
+//
+//                    $u = new User($q->getId());
+//                    $u->setId(addUser($this->conn, $u));
+//                    echo "New User Created: ".getUser($this->conn, $u->getId())."<br>";
 
                     break;
 

@@ -190,11 +190,13 @@
     }
 
     function addUser($conn, $user){
+
         $QueueId = $user->getQueueId();
         $Position = getLastInLine($conn, $QueueId);
         $Position++;
 
         try {
+
             $tsql = "INSERT INTO dbo.Users (queue_id, position)
                     OUTPUT INSERTED.id VALUES ('$QueueId','$Position')";
             //Insert query
@@ -208,7 +210,7 @@
 
             while($row = sqlsrv_fetch_array($insertReview, SQLSRV_FETCH_ASSOC))
             {
-                $new_id = $row['id'];
+                $new_position = $row['position'];
             }
             sqlsrv_free_stmt($insertReview);
             sqlsrv_close($conn);
@@ -219,10 +221,10 @@
             echo("Add User Error!");
         }
 
-        if (empty($new_id)){
+        if (empty($new_position)){
             return null;
         }else{
-            return $new_id;
+            return $new_position;
         }
     }
 
