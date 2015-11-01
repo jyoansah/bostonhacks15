@@ -214,8 +214,9 @@ function getfirstInLine($conn, $queue_id){
 
 function deQueueUser($conn, $queue_id){
     try{
-        $tsql = "DELETE TOP 1 FROM dbo.Users
-                 ORDER BY position ASC";
+        $tsql = "WITH q AS
+        (SELECT TOP 1 *
+        FROM dbo.Users ORDER BY position ASC) DELETE FROM q";
         $results = sqlsrv_query($conn, $tsql);
 
         if ($results == FALSE) {
