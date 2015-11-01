@@ -26,17 +26,6 @@
 		echo $e->getMessage();
 	}
 
-	if(isset($_GET['id'])){
-		$_SESSION['id'] = $_GET['id'];	
-		//Get list of all people in the queue
-		$queue_users = getUsers($conn, $_SESSION['id']);
-		foreach($queue_users as $queue_user){
-				echo "id: ".$queue_user->id.", ";
-				echo "Queue id: ".$queue_user->queue_id.", ";
-				echo "Position: ".$queue_user->position."<br>";
-			}
-	}
-
 	
 	//Get current customer
 	if(isset($_POST['next_customer'])){
@@ -49,6 +38,17 @@
 		}
 	}
 	
+	if(isset($_GET['id'])){
+		$_SESSION['id'] = $_GET['id'];	
+		//Get list of all people in the queue
+		$queue_users = getUsers($conn, $_SESSION['id']);
+		foreach($queue_users as $queue_user){
+				echo "id: ".$queue_user->id.", ";
+				echo "Queue id: ".$queue_user->queue_id.", ";
+				echo "Position: ".$queue_user->position."<br>";
+			}
+	}
+
 	try{
 		$current_position = getfirstInLine($conn, $_SESSION['id']);
 	}
