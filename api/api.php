@@ -50,7 +50,7 @@ class api {
                     echo("<br>");
 
                     echo "Get 1 Queue<br>";
-                    $queue1 = getQueue($this->conn, '0');
+                    $queue1 = getQueue($this->conn, 1);
                     echo($queue1);
 
                     break;

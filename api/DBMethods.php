@@ -57,7 +57,7 @@
     }
 
     function getQueue($conn, $id){
-        $cond = "[id] = $id";
+        $cond = "id = $id";
         echo("herexx");
         $queues = queueGetter($conn, $cond);
         echo("here3");
