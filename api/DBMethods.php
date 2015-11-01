@@ -1,205 +1,198 @@
 <?php
 
-    require_once('config.php');
-    global $connection;
-    $connection = OpenConnection();
 
-
-    //Encode result in json format
-    function sanitizeResult($result, $code = 200) {
-        if (count($result) > 0) {
-            sendResponse($code, json_encode($result));
-            return true;
-        } else {
-            sendResponse($code, json_encode("ERROR"));
-            return true;
-        }
+//Encode result in json format
+function sanitizeResult($result, $code = 200) {
+    if (count($result) > 0) {
+        sendResponse($code, json_encode($result));
+        return true;
+    } else {
+        sendResponse($code, json_encode("ERROR"));
+        return true;
     }
+}
 
-    function queueGetter($condition){
-        try
+function queueGetter($conn, $condition){
+    try
+    {
+
+        if($condition == NULL) {
+            $tsql = "SELECT [id],[Name],[Location] FROM dbo.Queue";
+        }
+        else{
+            $tsql = "SELECT [id],[Name],[Location] FROM dbo.Queue WHERE $condition";
+
+        }
+        $getQueues = sqlsrv_query($conn, $tsql);
+        if ($getQueues == FALSE) {
+            echo("Error!!<br>");
+            die(print_r( sqlsrv_errors(), true));
+        }
+
+
+        while($row = sqlsrv_fetch_array($getQueues, SQLSRV_FETCH_ASSOC))
         {
+            $queue = new Queue($row['id'],$row['Name'],$row['Location']);
+            $queues[] = $queue;
 
-            if($condition == NULL) {
-                $tsql = "SELECT [id],[Name],[Location] FROM dbo.Queue";
-            }
-            else{
-                $tsql = "SELECT [id],[Name],[Location] FROM dbo.Queue WHERE $condition";
-
-            }
-            $getQueues = sqlsrv_query($this->connection, $tsql);
-            if ($getQueues == FALSE) {
-                echo("Error!!<br>");
-                die(print_r( sqlsrv_errors(), true));
-            }
-
-
-            while($row = sqlsrv_fetch_array($getQueues, SQLSRV_FETCH_ASSOC))
-            {
-                $queue = new Queue($row['id'],$row['Name'],$row['Location']);
-                $queues[] = $queue;
-
-            }
-
-            sqlsrv_free_stmt($getQueues);
-
-            if (!empty($queues)) {
-                return  $queues;
-            }else{
-                return 'Empty';
-            }
-        }
-        catch(Exception $e)
-        {
-            echo("Get Queue Error!");
-        }
-    }
-
-    function getQueue($id){
-        $cond = "id = $id";
-        $queues = queueGetter($cond);
-
-        if (empty($queues)){
-            return "not found";
         }
 
-        return $queues[0];
-    }
+        sqlsrv_free_stmt($getQueues);
 
-    function getQueues(){
-        $queues = queueGetter(null);
-        return $queues;
-    }
-
-    function addQueue($queue){
-        $Name = $queue->getName();
-        $Location = $queue->getLocation();
-
-        try {
-            $tsql = "INSERT INTO dbo.Queue ( Name, Location)
-            OUTPUT INSERTED.id VALUES ('$Name','$Location')";
-            //Insert query
-            $insertReview = sqlsrv_query($this->connection, $tsql);
-
-            if ($insertReview == FALSE) {
-                die(print_r( sqlsrv_errors(), true));
-            }
-
-            echo "Product Key inserted is :";
-
-            while($row = sqlsrv_fetch_array($insertReview, SQLSRV_FETCH_ASSOC))
-            {
-                $new_id = $row['id'];
-            }
-            sqlsrv_free_stmt($insertReview);
-            sqlsrv_close($this->connection);
-        }
-        catch(Exception $e)
-        {
-            echo("Add Queue Error!");
-        }
-
-        if (empty($new_id)){
-            return "not found";
-        }
-        return $new_id;
-
-    }
-
-
-
-    function userGetter($condition){
-        try
-        {
-            if($condition == NULL) {
-                $tsql = "SELECT [id],[queue_id],[position] FROM dbo.Users";
-            }
-            else{
-                $tsql = "SELECT [id],[queue_id],[position] FROM dbo.Users WHERE $condition";
-
-            }
-            var_dump($this->connection);
-            $getUsers = sqlsrv_query($this->connection, $tsql);
-            if ($getUsers == FALSE) {
-                echo("Error!!<br>");
-                die(print_r( sqlsrv_errors(), true));
-            }
-
-
-            while($row = sqlsrv_fetch_array($getUsers, SQLSRV_FETCH_ASSOC))
-            {
-                $user = new Queue($row['id'],$row['queue_id'],$row['position']);
-                $users[] = $user;
-
-            }
-
-            sqlsrv_free_stmt($getUsers);
-
-            if (!empty($users)) {
-                return  $users;
-            }else{
-                return 'Empty';
-            }
-        }
-        catch(Exception $e)
-        {
-            echo("Get Queue Error!");
-        }
-    }
-
-    function getUser( $id){
-        $cond = "id = $id";
-        $users = queueGetter( $cond);
-
-        if (empty($users)){
-            return null;
-        }
-
-        return $users[0];
-    }
-
-    function getUsers(){
-        $users = userGetter( null);
-        return $users;
-    }
-
-    function addUser($user){
-        $QueueId = $user->getQueueId();
-        $Position = $user->getLocation();
-
-        try {
-            $tsql = "INSERT INTO dbo.Queue (queue_id, position)
-                OUTPUT INSERTED.id VALUES ('$QueueId','$Position')";
-            //Insert query
-            $insertReview = sqlsrv_query($this->connection, $tsql);
-
-            if ($insertReview == FALSE) {
-                die(print_r( sqlsrv_errors(), true));
-            }
-
-            echo "Product Key inserted is :";
-
-            while($row = sqlsrv_fetch_array($insertReview, SQLSRV_FETCH_ASSOC))
-            {
-                $new_id = $row['id'];
-            }
-            sqlsrv_free_stmt($insertReview);
-            sqlsrv_close($this->connection);
-        }
-        catch(Exception $e)
-        {
-            echo("Add Queue Error!");
-        }
-        if (empty($new_id)){
-            return null;
+        if (!empty($queues)) {
+            return  $queues;
         }else{
-            return $new_id;
+            return 'Empty';
+        }
+    }
+    catch(Exception $e)
+    {
+        echo("Get Queue Error!");
+    }
+}
+
+function getQueue($conn, $id){
+    $cond = "id = $id";
+    $queues = queueGetter($conn, $cond);
+
+    if (empty($queues)){
+        return "not found";
+    }
+    return $queues[0];
+}
+
+function getQueues($conn){
+    $queues = queueGetter($conn, null);
+    return $queues;
+}
+
+function addQueue($conn, $queue){
+    $Name = $queue->getName();
+    $Location = $queue->getLocation();
+
+    try {
+        $tsql = "INSERT INTO dbo.Queue (id, Name, Location)
+            OUTPUT INSERTED.id VALUES (6, '$Name','$Location')";
+        //Insert query
+        $insertReview = sqlsrv_query($conn, $tsql);
+
+        if ($insertReview == FALSE) {
+            die(print_r( sqlsrv_errors(), true));
+        }
+
+        echo "Product Key inserted is :";
+
+        while($row = sqlsrv_fetch_array($insertReview, SQLSRV_FETCH_ASSOC))
+        {
+            $new_id = $row['id'];
+        }
+        sqlsrv_free_stmt($insertReview);
+        sqlsrv_close($conn);
+    }
+    catch(Exception $e)
+    {
+        echo("Add Queue Error!");
+    }
+
+    if (empty($new_id)){
+        return null;
+    }else{
+        return $new_id;
+    }
+
+}
+
+
+
+function userGetter($conn, $condition){
+    try
+
+
+    {
+        if($condition == NULL) {
+            $tsql = "SELECT [id],[queue_id],[position] FROM dbo.Users";
+        }
+        else{
+            $tsql = "SELECT [id],[queue_id],[position] FROM dbo.Users WHERE $condition";
+
+        }
+        $getUsers = sqlsrv_query($conn, $tsql);
+        if ($getUsers == FALSE) {
+            echo("Error!!<br>");
+            die(print_r( sqlsrv_errors(), true));
         }
 
 
+        while($row = sqlsrv_fetch_array($getUsers, SQLSRV_FETCH_ASSOC))
+        {
+            $user = new Queue($row['id'],$row['queue_id'],$row['position']);
+            $users[] = $user;
+
+        }
+
+        sqlsrv_free_stmt($getUsers);
+
+        if (!empty($users)) {
+            return  $users;
+        }else{
+            return 'Empty';
+        }
+    }
+    catch(Exception $e)
+    {
+        echo("Get Queue Error!");
+    }
+}
+
+function getUser($conn, $id){
+    $cond = "id = $id";
+    $users = queueGetter($conn, $cond);
+
+    if (empty($users)){
+        return "not found";
+    }
+    return $users[0];
+}
+
+function getUsers($conn){
+    $users = userGetter($conn, null);
+    return $users;
+}
+
+
+function addUser($conn, $user){
+    $QueueId = $user->getQueueId();
+    $Position = $user->getLocation();
+
+    try {
+        $tsql = "INSERT INTO dbo.Queue (id, queue_id, position)
+                OUTPUT INSERTED.id VALUES (6, '$QueueId','$Position')";
+        //Insert query
+        $insertReview = sqlsrv_query($conn, $tsql);
+
+        if ($insertReview == FALSE) {
+            die(print_r( sqlsrv_errors(), true));
+        }
+
+        echo "Product Key inserted is :";
+
+        while($row = sqlsrv_fetch_array($insertReview, SQLSRV_FETCH_ASSOC))
+        {
+            $new_id = $row['id'];
+        }
+        sqlsrv_free_stmt($insertReview);
+        sqlsrv_close($conn);
+    }
+    catch(Exception $e)
+    {
+        echo("Add Queue Error!");
+    }
+
+    if (empty($new_id)){
+        return null;
+    }else{
+        return $new_id;
     }
 
 
-    function getUsersForQueue(){
-
-    }
+}
