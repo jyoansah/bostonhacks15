@@ -6,16 +6,16 @@
  session_start();
 ?>
 
-<?php
-	
-?>
 <html>
     <head>
         <meta charset="UTF-8">
         <title>Customer</title>
     </head>
     <body>
-   		<div id="sidebar">
+<?php
+	try{
+		?>
+		<div id="sidebar">
 			<?php
 			$queues = getqueues($conn);
 			foreach($queues as $queue){
@@ -25,6 +25,13 @@
 				//echo '<a href="restaurant.php/?id='.$queue["id"].'">'."sup".$queue['name'].'</a>"';
 			}
 			?>
+		</div>
+		<?php
+	}
+	catch(Exception $e){
+		echo $e->getMessage();
+	}
+
 		</div>
 		<?php
 			//Get current customer
