@@ -13,8 +13,7 @@
         <?php
             $queues = getQueues($conn);
             foreach ($queues as $queue) {
-                echo 'here2';
-                echo 'Queue ID: '.$queue->id.' --> '.$queue->name.'<br>';
+                echo $queue->id.' --> '.$queue->name.'<br>';
             }
         ?>
     </Sms>
