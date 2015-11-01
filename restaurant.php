@@ -47,14 +47,15 @@
 				echo "Queue id: ".$queue_user->queue_id.", ";
 				echo "Position: ".$queue_user->position."<br>";
 			}
-	}
-
-	try{
-		$current_position = getfirstInLine($conn, $_SESSION['id']);
-	}
+			
+		try{
+			$current_position = getfirstInLine($conn, $_SESSION['id']);
+		}
 		catch(Exception $e){
 			echo $e->getMessage();
 		}
+	}
+
 		
 		
 ?>
