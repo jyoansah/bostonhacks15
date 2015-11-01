@@ -50,12 +50,14 @@
 			echo $e->getMessage();
 		}
 	}
+	/**
 	try{
 		$current_position = getfirstInLine($conn, $_SESSION['id']);
 	}
 		catch(Exception $e){
 			echo $e->getMessage();
 		}
+		**/
 		
 ?>
 <html>
