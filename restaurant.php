@@ -11,12 +11,9 @@
 	echo "test";
 	try{
 		$queues = queueGetter($conn, NULL);
-		var_dump($queues);
 		foreach($queues as $queue){
-			echo "hi";
-			echo "id:".$queue->id."\n";
-			echo "Name: ".$queue->name."\n";
-			echo "Location: ".$queue->location."\n";
+			echo '<a href="restaurants.php/'.$queue->id.'>'.$queue->name.'</a><br>';
+			echo "Location: ".$queue->location."<br>";
 			//echo '<a href="restaurant.php/?id='.$queue["id"].'">'."sup".$queue['name'].'</a>"';
 		}
 		
