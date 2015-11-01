@@ -7,6 +7,9 @@ form{
     background-color: #fae3d9;
     line-height: 20px;
     padding: 10px;
+    border-width: 5px;
+    border-color: white;
+    opacity: 0.6;
 }
 
 h{
