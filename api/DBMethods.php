@@ -166,7 +166,7 @@ function addUser($conn, $user){
     $Position = $user->getPosition();
 
     try {
-        $tsql = "INSERT INTO dbo.Queue (queue_id, position)
+        $tsql = "INSERT INTO dbo.Users (queue_id, position)
                 OUTPUT INSERTED.id VALUES ('$QueueId','$Position')";
         //Insert query
         $insertReview = sqlsrv_query($conn, $tsql);
