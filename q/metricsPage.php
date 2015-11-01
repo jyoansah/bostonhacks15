@@ -13,5 +13,9 @@
             ?>
             </span>
         </header>
+        <p>Current Customer: #6</p>
+        <form action="$_SERVER['PHP_SELF']" method="post">
+            <input type="submit" value="Next" name="submit">
+        </form>
     </body>
 </html>
