@@ -14,7 +14,7 @@
         <?php
             $queues = getQueues($conn);
             foreach ($queues as $queue) {
-                echo $queue->id.' --> '.$queue->name;
+                echo $queue->id.' --> '.$queue->name.'\n';
             }
         ?>
     </Message>
