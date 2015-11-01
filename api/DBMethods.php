@@ -29,10 +29,8 @@
             while($row = sqlsrv_fetch_array($getQueues, SQLSRV_FETCH_ASSOC))
             {
 
-                $queue = new Queue($row['Name'],$row['Location']);
-                echo("\nHere11\n");
+                $queue = new Queue($row['id'],$row['Name'],$row['Location']);
                 $queues[] = $queue;
-                echo("\nHere2\n");
 
             }
 
@@ -52,4 +50,33 @@
         }
     }
 
+    function getQueue($conn, $id){
+        try
+        {
 
+            $tsql = "SELECT [id],[Name],[Location] FROM dbo.Queue WHERE [id] = $id";
+
+            $getQueue = sqlsrv_query($conn, $tsql);
+            if ($getQueue == FALSE) {
+                echo("Error!!");
+                die(FormatErrors(sqlsrv_errors()));
+            }
+
+            $queue = new Queue($getQueue['id'],$getQueue['Name'],$getQueue['Location']);
+
+
+            sqlsrv_free_stmt($getQueue);
+            sqlsrv_close($conn);
+
+            echo("Selection done");
+            if (!empty($queue)) {
+                return  $queue;
+            }else{
+                return ' ';
+            }
+        }
+        catch(Exception $e) {
+            echo("Error!");
+        }
+
+    }
