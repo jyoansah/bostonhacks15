@@ -67,7 +67,6 @@
         return $queues;
     }
 
-
     function addQueue($conn, $queue){
         $Name = $queue->getName();
         $Location = $queue->getLocation();
@@ -103,12 +102,11 @@
     function userGetter($conn, $condition){
         try
         {
-
             if($condition == NULL) {
-                $tsql = "SELECT [id],[queue_id],[position] FROM dbo.User";
+                $tsql = "SELECT [id],[queue_id],[position] FROM dbo.Users";
             }
             else{
-                $tsql = "SELECT [id],[queue_id],[position] FROM dbo.User WHERE $condition";
+                $tsql = "SELECT [id],[queue_id],[position] FROM dbo.Users WHERE $condition";
 
             }
             $getUsers = sqlsrv_query($conn, $tsql);
