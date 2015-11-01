@@ -81,7 +81,7 @@
             //Insert query
             $insertReview = sqlsrv_query($conn, $tsql);
 
-            echo("here 222");
+            echo("here 222 $insertReview");
             if($insertReview == FALSE)
                 die(FormatErrors( sqlsrv_errors()));
             echo "Product Key inserted is :";
