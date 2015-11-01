@@ -10,7 +10,7 @@ class User {
 
     public function __construct($id, $queue_id, $position) {
         $this->id = $id;
-        $this->$queue_id = $queue_id;
+        $this->queue_id = $queue_id;
         $this->position = $position;
     }
 

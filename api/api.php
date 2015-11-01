@@ -49,7 +49,6 @@ class api {
 
                     echo "Add User<br>";
                     $u = new User('1', '5', '8');
-                    echo "Im here";
                     echo addUser($this->conn, $u);
 
                     $u->setId();
