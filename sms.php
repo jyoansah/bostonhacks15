@@ -12,10 +12,7 @@
         $token = strtok($body, " ");
         if (strtolower($token) == 'join') {
             $position = 1;
-            $token = strtok(" ");
-            $user = new User(intval($token));
-            $user->setTel($_REQUEST['From']);
-            $position = intval(addUser($conn, $user));
+            
         }
     }
 ?>
