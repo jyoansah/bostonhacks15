@@ -11,7 +11,7 @@
 	echo "test";
 	try{
 		$queues = queueGetter($conn, NULL);
-		foreach ($queues as $queue){
+		while ($queue = sqlsrv_fetch_array($queues)){
 			echo '<a href="restaurant.php/?id='.$queue["id"].'">'."sup".$queue['name'].'</a>"';
 		}
 	}
