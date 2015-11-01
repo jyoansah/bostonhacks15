@@ -31,27 +31,31 @@ class api {
                 case DB_METHODS:
                     echo "This is a test api call<br><br>";
 
-
-                    echo "Get Users<br>";
-                    $users = getUsers($this->conn);
-                    foreach($users as &$user){
-                        echo($user);
-                    }
-
-
-                    echo "Add Queue<br>";
-
-                    $q = new Queue(0, 'Test3', 'A location');
-                    $q->setId(addQueue($this->conn, $q));
-
-                    echo getQueue($this->conn, $q->getId());
-
+//
+//                    echo "Get Users<br>";
+//                    $users = getUsers($this->conn);
+//                    foreach($users as &$user){
+//                        echo($user);
+//                    }
+//
+//
+//                    echo "Add Queue<br>";
+//
+//                    $q = new Queue(0, 'Test3', 'A location');
+//                    $q->setId(addQueue($this->conn, $q));
+//
+//                    echo getQueue($this->conn, $q->getId());
+//
                     echo "Add User<br>";
 
                     $u = new User(1, 5, 8);
                     $u->setId(addUser($this->conn, $u));
 
                     echo getUser($this->conn, $u->getId());
+
+                    echo "Get 1 Queue<br>";
+                    $queue1 = getQueue($this->conn, 1);
+                    echo($queue1);
 
 
 //                    echo "get queues<br>";

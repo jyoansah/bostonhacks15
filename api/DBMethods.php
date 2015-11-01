@@ -12,6 +12,7 @@ function sanitizeResult($result, $code = 200) {
     }
 }
 
+
 function queueGetter($conn, $condition){
     try
     {
@@ -159,7 +160,6 @@ function getUsers($conn){
     $users = userGetter($conn, null);
     return $users;
 }
-
 
 function addUser($conn, $user){
     $QueueId = $user->getQueueId();
