@@ -38,7 +38,6 @@
 
             }
 
-            var_dump($queues);
             sqlsrv_free_stmt($getQueues);
 
             if (!empty($queues)) {
@@ -59,6 +58,7 @@
         $queues = queueGetter($conn, $cond);
         echo("here3");
 
+        var_dump($queues);
         if (empty($queues)){
             return "not found";
         }
