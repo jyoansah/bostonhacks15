@@ -21,7 +21,7 @@
     function Select($conn, $param, $table) {
 
         $tsql = "SELECT [$param] FROM dbo.$table";
-        $data = sqlsrv_query($this->conn, $tsql);
+        $data = sqlsrv_query($conn, $tsql);
 
         if ($data == FALSE) {
             echo("Error!!");
@@ -31,7 +31,7 @@
         $array = sqlsrv_fetch_array($data, SQLSRV_FETCH_ASSOC);
 
         sqlsrv_free_stmt($data);
-        sqlsrv_close($this->conn);
+        sqlsrv_close($conn);
 
         return $array;
     }
