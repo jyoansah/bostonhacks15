@@ -59,7 +59,7 @@
     function getQueue($conn, $id){
         $cond = "id = $id";
         $queues = queueGetter($conn, $cond);
-
+        echo("here");
         return $queues[1];
     }
 
