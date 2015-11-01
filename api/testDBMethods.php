@@ -54,3 +54,6 @@ function InsertData($conn) {
     }
 }
 
+function newDumm(){
+    
+}
