@@ -1,38 +1,38 @@
 <?php
-header("access-control-allow-origin: *");
-include_once 'api/api.php';
-global $conn, $body, $position, $api;
-session_start();
+    header("access-control-allow-origin: *");
+    include_once 'api/api.php';
+    global $conn, $body, $position, $api;
+    session_start();
+
+    if(isset($_REQUEST['Body'])){
+        $body =  $_REQUEST['Body'];
+
+        $token = strtok($body, " ");
+
+        if (strtolower($token) == 'join'){
+            $position = "You are num: ";
+            $token = strtok(" ");
+            $user = new User(intval($token));
+            $user->setTel( $_REQUEST['From']);
+            $position = $position.addUser($conn, $user);
+        }
+    }
 ?>
 
 
 <Response>
     <Message>Hello, Welcome to Deeque
-        Please select a Queue:
+    Please select a Queue:
         <?php
-        echo "Here0";
-
-        if (isset($_REQUEST['Body'])) {
-            echo $_REQUEST['Body'];
-            $body = $_REQUEST['Body'];
-
-            $token = strtok($body, " ");
-            echo "Here" . $token;
-
-            if (strtolower($token) == 'join') {
-                echo "Here2";
-                $token = strtok(" ");
-                $user = new User(intval($token));
-                $user->setTel($_REQUEST['From']);
-                $position = "You are num: " . $position . addUser($conn, $user);
+            if(!empty($position)) {
+                echo  $position;
             }
-        } else {
-            echo "Here3";
-            $queues = getQueues($conn);
-            foreach ($queues as $queue) {
-                echo $queue->id . " --> " . $queue->name . "\n";
+            else{
+                $queues = getQueues($conn);
+                foreach ($queues as $queue) {
+                    echo $queue->id . " --> " . $queue->name . "\n";
+                }
             }
-        }
         ?>
     </Message>
 </Response>
