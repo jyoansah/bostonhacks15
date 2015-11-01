@@ -107,7 +107,7 @@
           <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
           <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
             
-            <div class="demo-card-wide mdl-card mdl-shadow--2dp" style="margin-top:20px; left:40%;">
+            <div class="demo-card-wide mdl-card mdl-shadow--2dp" style="margin-top:20px; left:27%;">
 			  <div class="mdl-card__title">
 			    <h2 class="mdl-card__title-text">Welcome</h2>
 			  </div>
@@ -127,7 +127,7 @@
 			  </div>
 			</div>
 
-			<div class="demo-card-wide mdl-card mdl-shadow--2dp" style="margin-top:20px; left:40%;">
+			<div class="demo-card-wide mdl-card mdl-shadow--2dp" style="margin-top:20px; left:27%;">
 			  <div class="mdl-card__title">
 			    <h2 class="mdl-card__title-text">Welcome</h2>
 			  </div>
