@@ -31,8 +31,11 @@ class api {
                     break;
 
                 case DB_METHODS:
-                    echo "This is a test api call";
+                    echo "This is a test api call\n\n";
                     $queues = getQueues($this->conn);
+                    foreach($queues as &$queue){
+                        echo($queue->getName()." + ".$queue->getLocation()."\n");
+                    }
                     break;
 
                 //Aux command calls

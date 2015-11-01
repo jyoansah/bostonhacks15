@@ -12,35 +12,37 @@
     }
     }
 
-    function ReadData() {
-
-    }
-
-
     function getQueues($conn){
         try
         {
 
             $tsql = "SELECT [id],[Name],[Location] FROM dbo.Queue";
 
-            echo("Starting Select");
             $getQueues = sqlsrv_query($conn, $tsql);
             if ($getQueues == FALSE) {
                 echo("Error!!");
                 die(FormatErrors(sqlsrv_errors()));
             }
-            $queueCount = 0;
+
+
+
             while($row = sqlsrv_fetch_array($getQueues, SQLSRV_FETCH_ASSOC))
             {
-                echo($row['id']." + ".$row['Name']." + ".$row['Location']);
-                echo("<br/>");
-                $queueCount++;
+
+                $queue = new Queue($row['Name'],$row['Location']);
+                $queues[] = $queue;
+
             }
+
             sqlsrv_free_stmt($getQueues);
             sqlsrv_close($conn);
 
             echo("Selection done");
-            return "YES!!";
+            if (!empty($queues)) {
+                return  $queues;
+            }else{
+                return ' ';
+            }
         }
         catch(Exception $e)
         {
