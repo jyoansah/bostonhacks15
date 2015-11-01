@@ -147,6 +147,7 @@ function userGetter($conn, $condition){
 
 function getUser($conn, $id){
     $cond = "id =".$id;
+    echo $cond;
     $users = userGetter($conn, $cond);
 
     if (empty($users)){
