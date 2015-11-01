@@ -17,50 +17,33 @@
     }
 
 
-    //Default selects everything in table
-    function Select($conn, $param, $table) {
+function getQueues($conn){
+    try
+    {
 
-        $tsql = "SELECT [$param] FROM dbo.$table";
-        $data = sqlsrv_query($conn, $tsql);
-        echo($data);
-        echo("Here 0");
+        $tsql = "SELECT [id],[Name],[Location] FROM dbo.Queue";
 
-        if ($data == FALSE) {
+        echo("Starting Select");
+        $getQueues = sqlsrv_query($conn, $tsql);
+        if ($getQueues == FALSE) {
             echo("Error!!");
             die(FormatErrors(sqlsrv_errors()));
         }
-
+        $queueCount = 0;
+        while($row = sqlsrv_fetch_array($getQueues, SQLSRV_FETCH_ASSOC))
+        {
+            echo($row['id']." + "$row['Name']." + ".$row['Location']);
+            echo("<br/>");
+            $queueCount++;
+        }
+        sqlsrv_free_stmt($getQueues);
         sqlsrv_close($conn);
 
-        return $data;
+        echo("Selection done");
+        return "YES!!";
     }
-
-    function getQueues($conn)
+    catch(Exception $e)
     {
-        $getQueues = Select($conn, 'Name', 'Queue');
-        $queueCount = 0;
-
-        echo("Here 1");
-        while ($row = sqlsrv_fetch_array($getQueues, SQLSRV_FETCH_ASSOC)) {
-
-            echo("Here 2");
-                echo("<br/>");
-                echo($row['Name']);
-                echo("<br/>");
-                $queueCount++;
-        }
-
-        return "Yes!";
+        echo("Error!");
     }
-
-
-//    //Inserts row in table
-//    function Insert($conn, $searchBy, $table) {
-//        $param = NQMultiplePreProcessor($searchBy);
-//        $sql = "INSERT INTO $table $param";
-//        $stmt = $conn->prepare($sql);
-//        NQBasicBindParamPreProcessor($stmt, $searchBy, true);
-//
-//        return $stmt;
-//    }
-
+}
