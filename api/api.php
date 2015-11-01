@@ -60,6 +60,7 @@ class api {
                     echo "From regular<br>";
                     echo "Type num:".gettype(89);
                     echo getUser($this->conn, 89);
+                    echo getUser($this->conn, 100);
 
 
                     echo "From getID<br>";
