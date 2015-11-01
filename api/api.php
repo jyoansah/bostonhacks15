@@ -69,6 +69,10 @@ class api {
                     $u->setId(addUser($this->conn, $u));
                     echo "<br>Type num2: ".gettype($u->getId());
                     echo "<br>Type num3: ".gettype(intval($u->getId()));
+                    $tester = intval($u->getId());
+
+                    echo "Tester".$tester;
+
                     echo getUser($this->conn, intval($u->getId()));
 //                    echo getUser($this->conn, (int) $inter);
 
