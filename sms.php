@@ -13,7 +13,7 @@ session_start();
         <?php
             echo 'here';
             $queues = getqueues($this->conn);
-            echo 'here1'
+            echo 'here1';
             foreach ($queues as $queue) {
                 echo 'here2';
                 echo 'Queue ID: '.$queue->getId().' --> '.$queue->getName().'<br>';
