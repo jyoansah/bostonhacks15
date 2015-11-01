@@ -10,40 +10,42 @@
         sendResponse($code, json_encode("ERROR"));
         return true;
     }
-}
+    }
 
     function ReadData() {
 
     }
 
 
-function getQueues($conn){
-    try
-    {
-
-        $tsql = "SELECT [id],[Name],[Location] FROM dbo.Queue";
-
-        echo("Starting Select");
-        $getQueues = sqlsrv_query($conn, $tsql);
-        if ($getQueues == FALSE) {
-            echo("Error!!");
-            die(FormatErrors(sqlsrv_errors()));
-        }
-        $queueCount = 0;
-        while($row = sqlsrv_fetch_array($getQueues, SQLSRV_FETCH_ASSOC))
+    function getQueues($conn){
+        try
         {
-            echo($row['id']." + "$row['Name']." + ".$row['Location']);
-            echo("<br/>");
-            $queueCount++;
-        }
-        sqlsrv_free_stmt($getQueues);
-        sqlsrv_close($conn);
 
-        echo("Selection done");
-        return "YES!!";
+            $tsql = "SELECT [id],[Name],[Location] FROM dbo.Queue";
+
+            echo("Starting Select");
+            $getQueues = sqlsrv_query($conn, $tsql);
+            if ($getQueues == FALSE) {
+                echo("Error!!");
+                die(FormatErrors(sqlsrv_errors()));
+            }
+            $queueCount = 0;
+            while($row = sqlsrv_fetch_array($getQueues, SQLSRV_FETCH_ASSOC))
+            {
+                echo($row['id']." + ".$row['Name']." + ".$row['Location']);
+                echo("<br/>");
+                $queueCount++;
+            }
+            sqlsrv_free_stmt($getQueues);
+            sqlsrv_close($conn);
+
+            echo("Selection done");
+            return "YES!!";
+        }
+        catch(Exception $e)
+        {
+            echo("Error!");
+        }
     }
-    catch(Exception $e)
-    {
-        echo("Error!");
-    }
-}
+
+
