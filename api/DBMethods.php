@@ -16,15 +16,14 @@
         try
         {
 
-            if($condition == NULL)
-
+            if($condition == NULL) {
                 $tsql = "SELECT [id],[Name],[Location] FROM dbo.Queue";
-
+            }
             else{
                 $tsql = "SELECT [id],[Name],[Location] FROM dbo.Queue WHERE $condition";
 
             }
-
+            echo($tsql);
             $getQueues = sqlsrv_query($conn, $tsql);
             if ($getQueues == FALSE) {
                 echo("Error!!<br>");
