@@ -34,6 +34,13 @@ class api {
                     foreach($queues as &$queue){
                         echo($queue->getId()." + ".$queue->getName()." + ".$queue->getLocation()."\n");
                     }
+
+                    echo("<br>");
+                    echo("<br>");
+
+                    $queue1 = getQueue($this->conn, '1');
+                    echo($queue1->getId()." + ".$queue1->getName()." + ".$queue1->getLocation()."\n");
+
                     break;
 
                 //Aux command calls
