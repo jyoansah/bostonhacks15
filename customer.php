@@ -39,7 +39,7 @@
 				try{
 					
 					$new_user = new User($_GET['id']);
-					$results = addUser($new_user);
+					$results = addUser($conn, $new_user);
 					echo "Your queue number is:". $results;
 				}
 				catch(Exception $e){
