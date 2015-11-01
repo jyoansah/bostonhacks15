@@ -24,6 +24,7 @@
                 echo "Connection failed";
                 die(FormatErrors(sqlsrv_errors()));
             }else{
+                echo "db connected";
                 return $conn;
             }
         } catch(Exception $e){
