@@ -13,11 +13,10 @@
         $token = strtok($body, " ");
 
         if (strtolower($token) == 'join'){
-            $position = "You are num: ";
             $token = strtok(" ");
             $user = new User(intval($token));
             $user->setTel( $_REQUEST['From']);
-            $position = $position.addUser($conn, $user);
+            $position = addUser($conn, $user);
         }
     }
 ?>
@@ -28,7 +27,7 @@
     Please select a Queue:
         <?php
             if(!empty($position)) {
-                echo  $position;
+                echo  "You are num: ".$position;
             }
             else{
                 $queues = getQueues($conn);
