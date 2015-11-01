@@ -11,9 +11,9 @@
 
         $token = strtok($body, " ");
 
-        if ($token == 'join' || $token == 'Join'){
+        if (strtolower($token) == 'join'){
             echo "here";
-            $token = strtok($body, " ");
+            $token = strtok(" ");
             $user = new User(intval($token));
             $user->setTel( $_REQUEST['From']);
             $position = addUser($conn, $user);
