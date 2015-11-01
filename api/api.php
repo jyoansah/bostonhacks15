@@ -61,8 +61,8 @@ class api {
 
                     $u = new User(39);
                     $u->setId(addUser($this->conn, $u));
-                    echo $u->getId();
-                    echo getUser($this->conn, $u->getId());
+                    $inter  = $u->getId();
+                    echo getUser($this->conn, (int) $inter);
 
 
 
