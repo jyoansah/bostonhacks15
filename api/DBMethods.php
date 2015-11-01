@@ -37,7 +37,6 @@
             sqlsrv_free_stmt($getQueues);
             sqlsrv_close($conn);
 
-            echo("Selection done");
             if (!empty($queues)) {
                 return  $queues;
             }else{
@@ -54,7 +53,7 @@
         try
         {
 
-            $tsql = "SELECT [id],[Name],[Location] FROM dbo.Queue WHERE [id]='$id'";
+            $tsql = "SELECT [id],[Name],[Location] FROM dbo.Queue WHERE [id]=$id";
 
             $getQueue = sqlsrv_query($conn, $tsql);
             if ($getQueue == FALSE) {

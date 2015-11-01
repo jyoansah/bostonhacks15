@@ -38,7 +38,7 @@ class api {
                     echo("<br>");
                     echo("<br>");
 
-                    $queue1 = getQueue($this->conn, '1');
+                    $queue1 = getQueue($this->conn, 1);
                     echo($queue1->getId()." + ".$queue1->getName()." + ".$queue1->getLocation()."<br>");
 
                     break;
