@@ -1,8 +1,8 @@
 <?php
-//
-//function testFunction($conn){
-//    echo "Private to mars function works";
-//}
+
+function testFunction($conn){
+    echo "Private to mars function works";
+}
 //
 //function createSampleTable($conn){
 //    echo "inCreateSample method";
