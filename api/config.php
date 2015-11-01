@@ -21,7 +21,10 @@
             $connectionOptions = array("Database"=>"$dbname", "Uid"=>"$dbuser", "PWD"=>"$dbpass");
             $conn = sqlsrv_connect($serverName, $connectionOptions);
             if ($conn == false) {
+                echo "Connection failed";
                 die(FormatErrors(sqlsrv_errors()));
+            }else{
+                return $conn;
             }
         } catch(Exception $e){
             echo("Error!");
@@ -29,4 +32,4 @@
         }
     }
 
-    $conn = OpenConnection();
+    //$conn = OpenConnection();
