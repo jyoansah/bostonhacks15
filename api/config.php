@@ -20,6 +20,9 @@
         echo("starting!");
         try
         {
+            
+
+        echo("connected!");
             $serverName = "tcp:c3185u2dmj.database.windows.net,1433";
             $connectionOptions = array("Database"=>"deeque",
                 "Uid"=>"deeque", "PWD"=>"ASdf1234");
@@ -31,8 +34,6 @@
         {
             echo("Error!");
         }
-
-        echo("connected!");
     }
 
     $conn = OpenConnection();
