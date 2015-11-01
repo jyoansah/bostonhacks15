@@ -6,18 +6,21 @@
 
         function listQs()
         {
+            $ret = "";
             $queues = getqueues($this->conn);
             foreach ($queues as $queue) {
-                echo 'Queue ID: ' . $queue->id . ' --> ' . $queue->name . '<br>';
+                $ret =  $ret.'Queue ID: ' . $queue->id . ' --> ' . $queue->name . '<br>';
             }
+
+            return $ret;
         }
 ?>
 
 <Response>
-    <Message>Hello, Welcome to Deeque<br>
+    <Sms>Hello, Welcome to Deeque<br>
     Please select a queue:
         <?php
-            listQs();
+            echo listQs();
         ?>
-    </Message>
+    </Sms>
 </Response>
