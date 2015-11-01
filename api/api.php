@@ -72,8 +72,9 @@ class api {
                     $tester = intval($u->getId());
 
                     echo "Tester".$tester;
+                    $tester--;
 
-                    echo getUser($this->conn, intval($u->getId()));
+                    echo getUser($this->conn, $tester);
 //                    echo getUser($this->conn, (int) $inter);
 
 
