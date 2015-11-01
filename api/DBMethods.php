@@ -172,7 +172,6 @@
 
     function getUser($conn, $id){
         $cond = "id =".intval($id);
-        echo $cond;
         $users = userGetter($conn, $cond);
 
         if (empty($users)){

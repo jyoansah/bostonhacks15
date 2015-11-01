@@ -62,7 +62,7 @@ class api {
                     echo $u."<br>";
                     $inter  = $u->getId();
 
-                    print_r( getUser($this->conn, $inter));
+                    print_r( getUser($this->conn, intval($inter)));
 //                    echo getUser($this->conn, (int) $inter);
 
 
