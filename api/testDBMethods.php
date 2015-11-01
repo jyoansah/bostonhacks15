@@ -30,9 +30,7 @@
             {
 
                 $queue = new Queue($row['Name'],$row['Location']);
-                echo("\nHere11\n");
                 $queues[] = $queue;
-                echo("\nHere2\n");
 
             }
 
