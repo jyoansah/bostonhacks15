@@ -3,14 +3,14 @@
 function ReadData($conn) {
     try
     {
-        $tsql = "SELECT [CompanyName] FROM SalesLT.Customer";
+        $tsql = "SELECT [Name] FROM deeque.Queue";
         $getProducts = sqlsrv_query($conn, $tsql);
         if ($getProducts == FALSE)
             die(FormatErrors(sqlsrv_errors()));
         $productCount = 0;
         while($row = sqlsrv_fetch_array($getProducts, SQLSRV_FETCH_ASSOC))
         {
-            echo($row['CompanyName']);
+            echo($row['Name']);
             echo("<br/>");
             $productCount++;
         }
