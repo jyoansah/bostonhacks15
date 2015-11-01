@@ -169,6 +169,7 @@ function addUser($conn, $user){
         $tsql = "INSERT INTO dbo.Queue (queue_id, position)
                 OUTPUT INSERTED.id VALUES ('$QueueId','$Position')";
         //Insert query
+        echo "here: ".$tsql;
         $insertReview = sqlsrv_query($conn, $tsql);
 
         if ($insertReview == FALSE) {
