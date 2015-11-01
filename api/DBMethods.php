@@ -134,7 +134,7 @@
         try
 
         {
-            if($condition == NULL) {
+            if(empty($condition)) {
                 $tsql = "SELECT [id],[queue_id],[position] FROM dbo.Users";
             }
             else{
@@ -190,16 +190,25 @@
         return $users;
     }
 
+
     function addUser($conn, $user){
 
         $QueueId = $user->getQueueId();
         $Position = getLastInLine($conn, $QueueId);
+        $Tel = $user->getTel();
         $Position++;
 
         try {
 
-            $tsql = "INSERT INTO dbo.Users (queue_id, position)
+            if(empty($Tel)) {
+                $tsql = "INSERT INTO dbo.Users (queue_id, position)
                     OUTPUT INSERTED.position VALUES ('$QueueId','$Position')";
+            }
+            else {
+                $tsql = "INSERT INTO dbo.Users (queue_id, position, telephone)
+                    OUTPUT INSERTED.position VALUES ('$QueueId','$Position', '$Tel')";
+
+            }
             //Insert query
             $conn = OpenConnection();
             $insertReview = sqlsrv_query($conn, $tsql);

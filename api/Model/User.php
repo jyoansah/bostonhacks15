@@ -6,6 +6,8 @@ class User {
     public $queue_id;
     public $queue;
     public $position;
+    public $tel;
+
 
 
     public function newUser($id, $queue_id, $position) {
@@ -87,6 +89,23 @@ class User {
     {
         $this->position = $position;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getTel()
+    {
+        return $this->tel;
+    }
+
+    /**
+     * @param mixed $tel
+     */
+    public function setTel($tel)
+    {
+        $this->tel = $tel;
+    }
+
 
 
 

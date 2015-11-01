@@ -8,6 +8,14 @@
 
     if(isset($_REQUEST['Body'])){
         $body =  $_REQUEST['Body'];
+
+        $tokens = strtok($body, " ");
+
+        if ($body[0] == 'join' || $body[0] == 'Join'){
+            $user = new User(intval($body[1]));
+            $user->setTel( $_REQUEST['From']);
+            addUser($conn, $user);
+        }
     }
 ?>
 
