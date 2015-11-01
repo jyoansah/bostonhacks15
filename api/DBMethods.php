@@ -196,7 +196,7 @@ function addUser($conn, $user){
 
 function getfirstInLine($conn, $queue_id){
     try{
-        $tsql = "SELECT position FROM dbo.Users WHERE queue_id=".$queue_id."ORDER BY position DESC LIMIT 1 ";
+        $tsql = "SELECT position FROM dbo.Users WHERE queue_id=".$queue_id." ORDER BY position DESC LIMIT 1";
         $results = sqlsrv_query($conn, $tsql);
 
         if ($results == FALSE) {
