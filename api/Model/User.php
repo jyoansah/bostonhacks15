@@ -9,11 +9,9 @@ class User {
 
 
     public function __construct($id, $queue_id, $position) {
-        echo "here 4";
         $this->id = $id;
         $this->queue_id = $queue_id;
         $this->position = $position;
-        echo "here 5";
     }
 
 

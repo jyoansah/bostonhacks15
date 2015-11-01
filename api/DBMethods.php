@@ -162,7 +162,6 @@ function getUsers($conn){
 }
 
 function addUser($conn, $user){
-    echo "here 1111";
     $QueueId = $user->getQueueId();
     $Position = $user->getPosition();
 
@@ -170,7 +169,6 @@ function addUser($conn, $user){
         $tsql = "INSERT INTO dbo.Queue (queue_id, position)
                 OUTPUT INSERTED.id VALUES ('$QueueId','$Position')";
         //Insert query
-        echo "here: ".$tsql;
         $insertReview = sqlsrv_query($conn, $tsql);
 
         if ($insertReview == FALSE) {
