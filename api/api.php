@@ -26,7 +26,8 @@ class api {
             switch ($action) {
                 case API_CALL:
                         echo "This is a test api call";
-                        createSampleTable($this->conn);
+                        
+                        createSampleTable($conn);
                     break;
 
                 //Aux command calls
