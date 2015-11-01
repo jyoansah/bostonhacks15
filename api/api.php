@@ -58,13 +58,16 @@ class api {
 //                    echo "<br>";
 
                     echo "From regular<br>";
-                    getUser($this->conn, 89);
+                    echo "Type num:".gettype(89);
+                    echo getUser($this->conn, 89);
 
 
                     echo "From getID<br>";
 
                     $u = new User(39);
                     $u->setId(addUser($this->conn, $u));
+                    echo "<br>Type num2:".gettype($u->getId()));
+                    echo "<br>Type num3:".gettype(intval($u->getId()));
                     echo getUser($this->conn, intval($u->getId()));
 //                    echo getUser($this->conn, (int) $inter);
 
