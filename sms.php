@@ -10,7 +10,7 @@
     if (isset($_REQUEST['Body'])) {
         $body = $_REQUEST['Body'];
         $token = strtok($body, " ");
-        $position = "";
+        $position = "1";
         if (strtolower($token) == 'join') {
             $token = strtok(" ");
             $user = new User(intval($token));
