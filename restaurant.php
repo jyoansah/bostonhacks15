@@ -37,13 +37,13 @@
 			}
 	}
 
-	/**
+	
 	//Get current customer
 	if(isset($_POST['next_customer'])){
 		try{
-			$result = sqlsrv_fetch_array(sqlsrv_query($this->conn, "DELETE FROM user 
-						JOIN(SELECT MIN(queue_position) AS min_queue_pos FROM user) user2
-						WHERE user.queue_position = user2.min_queue_pos AND user.queue_id = ".$_GET['id']."
+			$result = sqlsrv_fetch_array(sqlsrv_query($this->conn, "DELETE FROM dbo.Users 
+						JOIN(SELECT MIN(position) AS min_queue_pos FROM dbo.Users) user2
+						WHERE min_queue_pos = user2.position AND user.queue_id = ".$_SESSION['id']."
 						"));		
 		}
 		catch(Exception $e){
@@ -57,7 +57,7 @@
 		catch(Exception $e){
 			echo $e->getMessage();
 		}
-		**/
+		
 ?>
 <html>
     <head>
