@@ -35,7 +35,7 @@ class api {
 
                     $queues = getQueues($this->conn);
                     foreach($queues as &$queue){
-                        echo($queue->getId()." + ".$queue->getName()." + ".$queue->getLocation()."<br>");
+                        echo($queue);
                     }
 
                     echo("<br>");
@@ -43,6 +43,7 @@ class api {
                     echo "Add queues<br>";
 
                     $q = new Queue(0, 'Test3', 'A location');
+                    echo($q);
                     addQueue($this->conn, $q);
 
                     echo("<br>");
@@ -50,7 +51,7 @@ class api {
 
                     echo "Get 1 Queue<br>";
                     $queue1 = getQueue($this->conn, 1);
-                    echo($queue1->getId()." + ".$queue1->getName()." + ".$queue1->getLocation()."<br>");
+                    echo($queue1);
 
                     break;
 

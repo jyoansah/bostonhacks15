@@ -12,7 +12,7 @@
         }
     }
 
-    function getQueues($conn, $condition){
+    function queueGetter($conn, $condition){
         try
         {
 
@@ -58,24 +58,30 @@
 
     function getQueue($conn, $id){
         $cond = "id = '$id''";
-        $queues = getQueues($conn, $cond);
+        $queues = queueGetter($conn, $cond);
 
         return $queues[1];
     }
 
+    function getQueues($conn){
+        $queues = queueGetter($conn, null);
+        return $queues;
+    }
+
 
     function addQueue($conn, $queue){
-
         $Name = $queue->getName();
         $Location = $queue->getLocation();
 
         try
         {
-
+            echo("here 111");
             $tsql = "INSERT INTO dbo.Users (queue_id, queue_location)
             OUTPUT INSERTED.id VALUES ('$Name', '$Location')";
             //Insert query
             $insertReview = sqlsrv_query($conn, $tsql);
+
+            echo("here 222 $insertReview");
             if($insertReview == FALSE)
                 die(FormatErrors( sqlsrv_errors()));
             echo "Product Key inserted is :";

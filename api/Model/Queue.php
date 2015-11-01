@@ -15,6 +15,11 @@ class Queue {
     }
 
 
+    function __toString()
+    {
+        return $this->getId()." + ".$this->getName()." + ".$this->getLocation()."<br>";
+    }
+
     /**
      * @return mixed
      */
