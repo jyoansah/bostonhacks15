@@ -30,7 +30,7 @@
 		$_SESSION['id'] = $_GET['id'];	
 		//Get list of all people in the queue
 		var_dump($_SESSION['id']);
-		$queue_entries = getQueue($conn, $_SESSION['id']);
+		$queue_entries = getUsers($conn);
 		var_dump($queue_entries);
 	}
 
