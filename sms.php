@@ -9,11 +9,11 @@ session_start();
 
 <Response>
     <Sms>Hello, Welcome to Deeque<br>
-    Please select a queue:
+    Please select a 2queue:
         <?php
             $queues = getqueues($this->conn);
             foreach ($queues as $queue) {
-                echo 'Queue ID: '.$queue->id.' --> '.$queue->name.'<br>';
+                echo 'Queue ID: '.$queue->getId().' --> '.$queue->getName().'<br>';
             }
         ?>
     </Sms>

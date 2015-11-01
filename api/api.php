@@ -56,5 +56,4 @@ class api {
 
 }
 
-$action = $_REQUEST['q'];
 $api = new api();
