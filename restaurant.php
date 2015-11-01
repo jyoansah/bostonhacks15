@@ -32,17 +32,7 @@
 <?php
 	try{
 		?>
-		<div id="sidebar">
-			<?php
-			$queues = getqueues($conn);
-			foreach($queues as $queue){
-				echo "Location: ".$queue->location." ";
-				echo '<a href="/restaurant.php/?id='.$queue->id.'">'.$queue->name.'</a><br>';
-				
-				//echo '<a href="restaurant.php/?id='.$queue["id"].'">'."sup".$queue['name'].'</a>"';
-			}
-			?>
-		</div>
+		
 		<?php
 	}
 	catch(Exception $e){
@@ -122,14 +112,11 @@
 			  <div class="mdl-card__title">
 			    <h2 class="mdl-card__title-text"><?php 	echo $queue->location; ?></h2>
 			  </div>
-			  <div class="mdl-card__supporting-text">
-			    <?php
-					echo '<a href="/restaurant.php/?id='.$queue->id.'">'.$queue->name.'</a><br>';
-			    ?>
-			  </div>
 			  <div class="mdl-card__actions mdl-card--border">
 			    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-			      Get Started
+			       <?php
+					echo '<a href="/restaurant.php/?id='.$queue->id.'">'.$queue->name.'</a><br>';
+			    ?>
 			    </a>
 			  </div>
 			  <div class="mdl-card__menu">
@@ -153,6 +140,25 @@
 
 			
 
+          </div>
+
+          <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
+				<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+				  <thead>
+				    <tr>
+				      <th class="mdl-data-table__cell--non-numeric">ID</th>
+				      <th>Queue ID</th>
+				      <th>Position</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <tr>
+				      <td class="mdl-data-table__cell--non-numeric">Acrylic (Transparent)</td>
+				      <td>25</td>
+				      <td>$2.90</td>
+				    </tr>
+				  </tbody>
+				</table>
           </div>
         </div>
         <footer class="demo-footer mdl-mini-footer">
