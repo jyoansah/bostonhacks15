@@ -123,7 +123,9 @@ function userGetter($conn, $condition){
 
         while($row = sqlsrv_fetch_array($getUsers, SQLSRV_FETCH_ASSOC))
         {
-            $user = new User($row['id'],$row['queue_id'],$row['position']);
+            $user = new User($row['queue_id']);
+            $user->setPosition($row['position']);
+            $user->setId($row['id']);
             $users[] = $user;
 
         }
@@ -160,7 +162,7 @@ function getUsers($conn, $queue_id){
 
 function addUser($conn, $user){
     $QueueId = $user->getQueueId();
-    $Position = $user->getPosition();
+    $Position = getLastInLine($conn, $QueueId) + 1;
 
     try {
         $tsql = "INSERT INTO dbo.Users (queue_id, position)
@@ -197,6 +199,24 @@ function addUser($conn, $user){
 function getfirstInLine($conn, $queue_id){
     try{
         $tsql = "SELECT TOP 1 position FROM dbo.Users WHERE queue_id=".$queue_id." ORDER BY position ASC";
+        $results = sqlsrv_query($conn, $tsql);
+
+        if ($results == FALSE) {
+            die(print_r( sqlsrv_errors(), true));
+        }
+
+        $results = sqlsrv_fetch_array($results, SQLSRV_FETCH_ASSOC);
+        $result = $results['position'];
+        return $result;
+    }
+    catch(Exception $e){
+        echo $e->getMessage();
+    }
+}
+
+function getLastInLine($conn, $queue_id){
+    try{
+        $tsql = "SELECT TOP 1 position FROM dbo.Users WHERE queue_id=".$queue_id." ORDER BY position DESC";
         $results = sqlsrv_query($conn, $tsql);
 
         if ($results == FALSE) {

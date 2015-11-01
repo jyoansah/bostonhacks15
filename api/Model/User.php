@@ -8,10 +8,14 @@ class User {
     public $position;
 
 
-    public function __construct($id, $queue_id, $position) {
+    public function newUser($id, $queue_id, $position) {
         $this->id = $id;
         $this->queue_id = $queue_id;
         $this->position = $position;
+    }
+
+    public function __construct($queue_id){
+        $this->$queue_id = $queue_id;
     }
 
 
