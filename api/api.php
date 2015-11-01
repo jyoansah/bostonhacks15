@@ -48,12 +48,11 @@ class api {
 //                    echo getQueue($this->conn, $q->getId());
 
 
-                    echo "Add User<br>";
-                    $u = new User(39);
+                    echo "Get User<br>";
+//                    $u = new User(39);
 
-                    $u->setId(addUser($this->conn, $u));
+                    $u = getFirstinLine();
                     echo $u;
-                    echo getUser($this->conn, $u->getId());
 
 
 
