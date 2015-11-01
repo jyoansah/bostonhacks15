@@ -29,17 +29,17 @@ class api {
                     break;
 
                 case DB_METHODS:
-                    echo "This is a test api call\n\n";
+                    echo "This is a test api call<br><br>";
                     $queues = getQueues($this->conn);
                     foreach($queues as &$queue){
-                        echo($queue->getId()." + ".$queue->getName()." + ".$queue->getLocation()."\n");
+                        echo($queue->getId()." + ".$queue->getName()." + ".$queue->getLocation()."<br>");
                     }
 
                     echo("<br>");
                     echo("<br>");
 
                     $queue1 = getQueue($this->conn, '1');
-                    echo($queue1->getId()." + ".$queue1->getName()." + ".$queue1->getLocation()."\n");
+                    echo($queue1->getId()." + ".$queue1->getName()." + ".$queue1->getLocation()."<br>");
 
                     break;
 
