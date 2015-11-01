@@ -152,8 +152,9 @@ function getUser($conn, $id){
     return $users[0];
 }
 
-function getUsers($conn){
-    $users = userGetter($conn, null);
+function getUsers($conn, $queue_id){
+    $condition = "queue_id = " . $queue_id; 
+    $users = userGetter($conn, $condition);
     return $users;
 }
 
