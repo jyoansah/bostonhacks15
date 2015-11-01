@@ -113,16 +113,17 @@
             }
             sqlsrv_free_stmt($insertReview);
             sqlsrv_close($conn);
+
+            if (empty($new_id)){
+                return null;
+            }else{
+                return $new_id;
+            }
+
         }
         catch(Exception $e)
         {
             echo("Add Queue Error!");
-        }
-
-        if (empty($new_id)){
-            return null;
-        }else{
-            return $new_id;
         }
 
     }
@@ -198,7 +199,7 @@
         try {
 
             $tsql = "INSERT INTO dbo.Users (queue_id, position)
-                    OUTPUT INSERTED.id VALUES ('$QueueId','$Position')";
+                    OUTPUT INSERTED.position VALUES ('$QueueId','$Position')";
             //Insert query
             $conn = OpenConnection();
             $insertReview = sqlsrv_query($conn, $tsql);
