@@ -7,8 +7,6 @@
 ?>
 
 <?php
-
-	echo "test";
 	try{
 		$queues = queueGetter($conn, NULL);
 		foreach($queues as $queue){

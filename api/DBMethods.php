@@ -12,7 +12,6 @@ function sanitizeResult($result, $code = 200) {
 
 
 function queueGetter($conn, $condition){
-    var_dump($conn);
     try
     {
         if($condition == NULL) {
