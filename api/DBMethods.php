@@ -140,6 +140,7 @@
 
             }
             echo "<br>TSQL= ".$tsql."<br>";
+            $conn = OpenConnection();
             $getUsers = sqlsrv_query($conn, $tsql);
 
             if ($getUsers == FALSE) {
