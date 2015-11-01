@@ -11,10 +11,13 @@
         <link rel="stylesheet" type="text/css" href="style/index.css">
     </head>
     <body>
-        Do you hate queues? We do too!
-        <?php
-          $api->api(DB_METHODS);
-        ?>
-        Are you a <a href="customer.php">customer</a> or a <a href="restaurant.php">restaurant</a>
+        <div id="main_container">
+            <div id="title">deeque</div>
+            Do you hate queues? We do too!
+            <?php
+              $api->api(DB_METHODS);
+            ?>
+            Are you a <a href="customer.php">customer</a> or a <a href="restaurant.php">restaurant</a>
+        </div>
     </body>
 </html>
