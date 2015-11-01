@@ -56,8 +56,30 @@
 		$queue_users = getUsers($conn, $_SESSION['id']);
 		foreach($queue_users as $queue_user){
 				echo "id: ".$queue_user->id.", ";
-				echo "Queue id: ".$queue_user->queue_id.", ";
+				
 				echo "Position: ".$queue_user->position."<br>";
+
+?>
+				 <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col" style="margin-top:20px;">
+				<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp" width="100%" style="left: 30%;">
+				  <thead>
+				    <tr>
+				      <th class="mdl-data-table__cell--non-numeric">ID</th>
+				       <?php echo "<th>Queue id</th>: ".$queue_user->queue_id." ";?>
+
+				       <?php echo "<th>Position</th>: ".$queue_user->position." ";?> <?php?>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <tr>
+				      <td class="mdl-data-table__cell--non-numeric">Acrylic (Transparent)</td>
+				      <td>25</td>
+				      <td>$2.90</td>
+				    </tr>
+				  </tbody>
+				</table>
+          </div>
+          <?php
 			}
 
 		try{
@@ -136,24 +158,7 @@
 
 
 
-          <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col" style="margin-top:20px;">
-				<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp" width="100%">
-				  <thead>
-				    <tr>
-				      <th class="mdl-data-table__cell--non-numeric">ID</th>
-				      <th>Queue ID</th>
-				      <th>Position</th>
-				    </tr>
-				  </thead>
-				  <tbody>
-				    <tr>
-				      <td class="mdl-data-table__cell--non-numeric">Acrylic (Transparent)</td>
-				      <td>25</td>
-				      <td>$2.90</td>
-				    </tr>
-				  </tbody>
-				</table>
-          </div>
+         
 
 
 			
