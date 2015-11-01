@@ -28,23 +28,20 @@
             die(FormatErrors(sqlsrv_errors()));
         }
 
-        $array = sqlsrv_fetch_array($data, SQLSRV_FETCH_ASSOC);
-
-        sqlsrv_free_stmt($data);
         sqlsrv_close($conn);
 
-        return $array;
+        return $data;
     }
 
     function getQueues($conn)
     {
         $getQueues = Select($conn, 'Name', 'Queue');
         $queueCount = 0;
-        
-        while (count($getQueues) >= $queueCount) {
+
+        while ($row = sqlsrv_fetch_array($getQueues, SQLSRV_FETCH_ASSOC)) {
 
                 echo("<br/>");
-                echo($getQueues['Name']);
+                echo($row['Name']);
                 echo("<br/>");
                 $queueCount++;
         }
