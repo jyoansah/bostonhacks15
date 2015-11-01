@@ -71,11 +71,13 @@
 
         try
         {
-
+            echo("here 111");
             $tsql = "INSERT INTO dbo.Users (queue_id, queue_location)
             OUTPUT INSERTED.id VALUES ('$Name', '$Location')";
             //Insert query
             $insertReview = sqlsrv_query($conn, $tsql);
+
+            echo("here 222");
             if($insertReview == FALSE)
                 die(FormatErrors( sqlsrv_errors()));
             echo "Product Key inserted is :";
