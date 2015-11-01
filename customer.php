@@ -32,10 +32,27 @@
 	?>
 
 		</div>
-		
+		<?php
+			//Get current customer
+			if(isset($_POST['new_customer']) && isset($_GET['id'])){
+				echo '<div id="queue_number">';
+				try{
+					$new_user = new User($_GET['id']);
+					$results = addUser($new_user);
+					echo "Your queue number is:". $results;
+				}
+				catch(Exception $e){
+					echo $e->getMessage();
+				}
+				echo '</div>'
+			}
+			else{
+		?>
     	<form method="POST" action="">
         	<button name="new_customer" value="submit">Get Number</button>
         </form>
-        
+        <?php
+    }
+    ?>
     </body>
 </html>
