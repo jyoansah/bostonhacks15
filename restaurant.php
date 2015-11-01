@@ -122,14 +122,11 @@
 			  <div class="mdl-card__title">
 			    <h2 class="mdl-card__title-text"><?php 	echo $queue->location; ?></h2>
 			  </div>
-			  <div class="mdl-card__supporting-text">
-			    <?php
-					echo '<a href="/restaurant.php/?id='.$queue->id.'">'.$queue->name.'</a><br>';
-			    ?>
-			  </div>
 			  <div class="mdl-card__actions mdl-card--border">
 			    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-			      Get Started
+			       <?php
+					echo '<a href="/restaurant.php/?id='.$queue->id.'">'.$queue->name.'</a><br>';
+			    ?>
 			    </a>
 			  </div>
 			  <div class="mdl-card__menu">
