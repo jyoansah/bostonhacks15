@@ -48,10 +48,10 @@
 				echo '</div>';
 			}
 			else{
-	
-    	echo '<form method="POST" action="">';
-        echo '<button name="new_customer" value="submit">Get Number</button>';
-        echo '</form>';
+		
+	    	echo '<form method="POST" action="">';
+	        echo '<button name="new_customer" value="submit">Get Number</button>';
+	        echo '</form>';
         
     }
    
