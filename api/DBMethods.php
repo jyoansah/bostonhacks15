@@ -1,5 +1,9 @@
 <?php
 
+    require_once('config.php');
+    global $connection;
+    $connection = OpenConnection();
+
 
     //Encode result in json format
     function sanitizeResult($result, $code = 200) {
@@ -23,7 +27,7 @@
                 $tsql = "SELECT [id],[Name],[Location] FROM dbo.Queue WHERE $condition";
 
             }
-            $getQueues = sqlsrv_query($this->conn, $tsql);
+            $getQueues = sqlsrv_query($this->connection, $tsql);
             if ($getQueues == FALSE) {
                 echo("Error!!<br>");
                 die(print_r( sqlsrv_errors(), true));
@@ -75,7 +79,7 @@
             $tsql = "INSERT INTO dbo.Queue ( Name, Location)
             OUTPUT INSERTED.id VALUES ('$Name','$Location')";
             //Insert query
-            $insertReview = sqlsrv_query($conn, $tsql);
+            $insertReview = sqlsrv_query($this->connection, $tsql);
 
             if ($insertReview == FALSE) {
                 die(print_r( sqlsrv_errors(), true));
@@ -88,7 +92,7 @@
                 $new_id = $row['id'];
             }
             sqlsrv_free_stmt($insertReview);
-            sqlsrv_close($conn);
+            sqlsrv_close($this->connection);
         }
         catch(Exception $e)
         {
@@ -114,8 +118,8 @@
                 $tsql = "SELECT [id],[queue_id],[position] FROM dbo.Users WHERE $condition";
 
             }
-            var_dump($this->conn);
-            $getUsers = sqlsrv_query($this->conn, $tsql);
+            var_dump($this->connection);
+            $getUsers = sqlsrv_query($this->connection, $tsql);
             if ($getUsers == FALSE) {
                 echo("Error!!<br>");
                 die(print_r( sqlsrv_errors(), true));
@@ -167,7 +171,7 @@
             $tsql = "INSERT INTO dbo.Queue (queue_id, position)
                 OUTPUT INSERTED.id VALUES ('$QueueId','$Position')";
             //Insert query
-            $insertReview = sqlsrv_query($this->conn, $tsql);
+            $insertReview = sqlsrv_query($this->connection, $tsql);
 
             if ($insertReview == FALSE) {
                 die(print_r( sqlsrv_errors(), true));
@@ -180,7 +184,7 @@
                 $new_id = $row['id'];
             }
             sqlsrv_free_stmt($insertReview);
-            sqlsrv_close($conn);
+            sqlsrv_close($this->connection);
         }
         catch(Exception $e)
         {

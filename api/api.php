@@ -93,4 +93,5 @@ class api {
 
 }
 
-$api = new api();
+global $api;
+$api= new api();
