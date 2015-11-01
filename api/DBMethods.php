@@ -211,3 +211,19 @@ function getfirstInLine($conn, $queue_id){
         echo $e->getMessage();
     }
 }
+
+function deQueueUser($conn, $queue_id){
+    try{
+        $tsql = "DELETE FROM dbo.Users AS user
+                 JOIN(SELECT MIN(position) AS min_queue_pos FROM dbo.Users) user2
+                 WHERE user2.min_queue_pos = user.position AND user.queue_id = ".$_SESSION['id'];
+        $results = sqlsrv_query($conn, $tsql);
+
+        if ($results == FALSE) {
+            die(print_r( sqlsrv_errors(), true));
+        }
+    }
+    catch(Exception $e){
+        echo $e->getMessage();
+    }
+}
