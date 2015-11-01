@@ -28,7 +28,6 @@
             die(FormatErrors(sqlsrv_errors()));
         }
 
-
         sqlsrv_close($conn);
         return $data;
 
@@ -37,6 +36,7 @@
     function getQueues($conn)
     {
         $Queues = Select($conn, 'Name', 'Queue');
+        print_r($Queues);
         $queueCount = 0;
         while ($row = sqlsrv_fetch_array($Queues, SQLSRV_FETCH_ASSOC)) {
 
