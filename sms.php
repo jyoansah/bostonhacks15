@@ -9,11 +9,9 @@
 
 <Response>
     <Sms>Hello, Welcome to Deeque<br>
-    Please select a 4queue:
+    Please select a Queue:<br>
         <?php
-            echo 'here';
             $queues = getQueues($conn);
-            echo 'here1';
             foreach ($queues as $queue) {
                 echo 'here2';
                 echo 'Queue ID: '.$queue->id.' --> '.$queue->name.'<br>';
