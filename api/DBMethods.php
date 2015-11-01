@@ -56,7 +56,8 @@
 
             while($row = sqlsrv_fetch_array($getQueues, SQLSRV_FETCH_ASSOC))
             {
-                $queue = new Queue($row['id'],$row['Name'],$row['Location']);
+                $queue = new Queue($row['Name'],$row['Location']);
+                $queue->setId($row['id']);
                 $queues[] = $queue;
 
             }
