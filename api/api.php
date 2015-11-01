@@ -31,7 +31,7 @@ class api {
 
                 case DB_METHODS:
                     echo "This is a test api call";
-                    $queues = getQueues();
+                    $queues = getQueues($this->conn);
                     break;
 
                 //Aux command calls

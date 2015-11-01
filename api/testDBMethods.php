@@ -18,9 +18,9 @@
 
 
     //Default selects everything in table
-    function Select($param, $table) {
+    function Select($conn, $param, $table) {
 
-        $tsql = "SELECT $param FROM dbo.$table";
+        $tsql = "SELECT [$param] FROM dbo.$table";
         $data = sqlsrv_query($this->conn, $tsql);
 
         if ($data == FALSE) {
@@ -36,18 +36,19 @@
         return $array;
     }
 
-    function getQueues()
+    function getQueues($conn)
     {
-        $getQueues = Select('Name', 'Queue');
-        while ($row = sqlsrv_fetch_array($getQueues, SQLSRV_FETCH_ASSOC)) {
-            $queueCount = 0;
-            while ($row = sqlsrv_fetch_array($getQueues, SQLSRV_FETCH_ASSOC)) {
+        $getQueues = Select($conn, 'Name', 'Queue');
+        $queueCount = 0;
+        while ($getQueues) {
+
                 echo("<br/>");
-                echo($row['Name']);
+                echo($getQueues['Name']);
                 echo("<br/>");
                 $queueCount++;
-            }
         }
+
+        return "Yes!";
     }
 
 
