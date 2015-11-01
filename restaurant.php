@@ -54,7 +54,7 @@
 		$_SESSION['id'] = $_GET['id'];	
 		//Get list of all people in the queue
 		$queue_users = getUsers($conn, $_SESSION['id']);
-		foreach($queue_users as $queue_user){
+		// foreach($queue_users as $queue_user){
 
 ?>
 				 <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col" style="margin-top:20px;">
@@ -67,16 +67,18 @@
 				    </tr>
 				  </thead>
 				  <tbody>
+				  <?php foreach($queue_users as $queue_user){ ?>
 				    <tr>
 				      <td class="mdl-data-table__cell--non-numeric"><?php echo $queue_user->id;?></td>
 				      <td><?php  echo $queue_user->queue_id ;?></td>
 				      <td><?php  echo $queue_user->position ;?></td>
 				    </tr>
+				    <?php } ?>
 				  </tbody>
 				</table>
           </div>
           <?php
-			}
+			// }
 
 		try{
 			$current_position = getfirstInLine($conn, $_SESSION['id']);
