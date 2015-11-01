@@ -123,7 +123,7 @@ function userGetter($conn, $condition){
 
         while($row = sqlsrv_fetch_array($getUsers, SQLSRV_FETCH_ASSOC))
         {
-            $user = new Queue($row['id'],$row['queue_id'],$row['position']);
+            $user = new User($row['id'],$row['queue_id'],$row['position']);
             $users[] = $user;
 
         }
