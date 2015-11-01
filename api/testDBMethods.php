@@ -22,6 +22,8 @@
 
         $tsql = "SELECT [$param] FROM dbo.$table";
         $data = sqlsrv_query($conn, $tsql);
+        echo($data);
+        echo("Here 0");
 
         if ($data == FALSE) {
             echo("Error!!");
@@ -38,8 +40,10 @@
         $getQueues = Select($conn, 'Name', 'Queue');
         $queueCount = 0;
 
+        echo("Here 1");
         while ($row = sqlsrv_fetch_array($getQueues, SQLSRV_FETCH_ASSOC)) {
 
+            echo("Here 2");
                 echo("<br/>");
                 echo($row['Name']);
                 echo("<br/>");
@@ -50,13 +54,13 @@
     }
 
 
-    //Inserts row in table
-    function Insert($conn, $searchBy, $table) {
-        $param = NQMultiplePreProcessor($searchBy);
-        $sql = "INSERT INTO $table $param";
-        $stmt = $conn->prepare($sql);
-        NQBasicBindParamPreProcessor($stmt, $searchBy, true);
-
-        return $stmt;
-    }
+//    //Inserts row in table
+//    function Insert($conn, $searchBy, $table) {
+//        $param = NQMultiplePreProcessor($searchBy);
+//        $sql = "INSERT INTO $table $param";
+//        $stmt = $conn->prepare($sql);
+//        NQBasicBindParamPreProcessor($stmt, $searchBy, true);
+//
+//        return $stmt;
+//    }
 
