@@ -28,7 +28,7 @@ class api {
                         echo "This is a test api call<br/>";
                         //testFunction($conn);
                         //testFunction($this->conn);
-                        testFunctionCreate();
+                        testFunctionCreate($conn);
                         //createSampleTable(OpenConnection());
                     break;
 
