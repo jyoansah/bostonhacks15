@@ -12,26 +12,6 @@
         <title>Customer</title>
     </head>
     <body>
-<?php
-	try{
-		?>
-		<div id="sidebar">
-			<?php
-			$queues = getqueues($conn);
-			foreach($queues as $queue){
-				echo "Location: ".$queue->location." ";
-				echo '<a href="/customer.php/?id='.$queue->id.'">'.$queue->name.'</a><br>';
-				
-				//echo '<a href="restaurant.php/?id='.$queue["id"].'">'."sup".$queue['name'].'</a>"';
-			}
-			?>
-		</div>
-		<?php
-	}
-	catch(Exception $e){
-		echo $e->getMessage();
-	}
-	?>
 
 		</div>
 		<?php
