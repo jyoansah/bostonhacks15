@@ -42,6 +42,7 @@
 	if(isset($_POST['next_customer'])){
 		try{
 			$result = deQueueUser($conn, $_SESSION['id']);
+			echo '<script>console.log('.$result.')</script>';
 		}
 		catch(Exception $e){
 			echo $e->getMessage();
