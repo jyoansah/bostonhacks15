@@ -196,15 +196,16 @@ function addUser($conn, $user){
 
 function getfirstInLine($conn, $queue_id){
     try{
-        $tsql = "SELECT TOP 1 position FROM dbo.Users WHERE queue_id=".$queue_id." ORDER BY position DESC";
+        $tsql = "SELECT TOP 1 position FROM dbo.Users WHERE queue_id=".$queue_id." ORDER BY position ASC";
         $results = sqlsrv_query($conn, $tsql);
 
         if ($results == FALSE) {
             die(print_r( sqlsrv_errors(), true));
         }
 
-        return sqlsrv_fetch_array($results, SQLSRV_FETCH_ASSOC);
-
+        $results = sqlsrv_fetch_array($results, SQLSRV_FETCH_ASSOC);
+        $result = $results['position'];
+        return $result;
     }
     catch(Exception $e){
         echo $e->getMessage();

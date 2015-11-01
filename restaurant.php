@@ -66,9 +66,6 @@
         <title>Restaurant Control Panel</title>
     </head>
     <body>
-    <?php
-    	var_dump($current_position);
-    ?>
     	Now serving: <?php echo $current_position; ?>
     	<form method="POST" action="">
         	<button name="next_customer" value="submit">Next customer</button>
