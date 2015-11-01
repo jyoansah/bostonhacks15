@@ -8,7 +8,7 @@ function ReadData($conn) {
         
         if ($getProducts == FALSE) {
             echo "read f";
-            die(FormatErrors(sqlsrv_errors()));
+            //die(FormatErrors(sqlsrv_errors()));
         }else{
             echo "read success";
         }
