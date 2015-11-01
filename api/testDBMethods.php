@@ -1,5 +1,16 @@
 <?php
 
+//Encode result in json format
+function sanitizeResult($result, $code = 200) {
+    if (count($result) > 0) {
+        sendResponse($code, json_encode($result));
+        return true;
+    } else {
+        sendResponse($code, json_encode("ERROR"));
+        return true;
+    }
+}
+
 function ReadData($conn) {
 
 }

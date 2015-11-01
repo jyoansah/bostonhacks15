@@ -43,7 +43,7 @@ class api {
                     break;
             }
         } else {
-            //sanitizeResult('Invalid Request', 400);
+            sanitizeResult('Invalid Request', 400);
             echo "Bad Call. Boohoo";
         }
     }
