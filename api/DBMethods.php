@@ -23,7 +23,6 @@
                 $tsql = "SELECT [id],[Name],[Location] FROM dbo.Queue WHERE $condition";
 
             }
-            echo($tsql);
             $getQueues = sqlsrv_query($conn, $tsql);
             if ($getQueues == FALSE) {
                 echo("Error!!<br>");
@@ -31,10 +30,9 @@
             }
 
 
-            echo("here 1");
             while($row = sqlsrv_fetch_array($getQueues, SQLSRV_FETCH_ASSOC))
             {
-
+                echo("here 1");
                 $queue = new Queue($row['id'],$row['Name'],$row['Location']);
                 $queues[] = $queue;
 
