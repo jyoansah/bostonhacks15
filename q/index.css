@@ -11,6 +11,13 @@ form{
     border-color: white;
 }
 
+label{
+    float: left;
+    width: 100px;
+    text-align: right;
+    margin-right: 10px;
+}
+
 h{
     color: #2096ba;
     text-align: center;
