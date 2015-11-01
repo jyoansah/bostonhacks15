@@ -141,6 +141,25 @@
 			
 
           </div>
+
+          <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
+				<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+				  <thead>
+				    <tr>
+				      <th class="mdl-data-table__cell--non-numeric">ID</th>
+				      <th>Queue ID</th>
+				      <th>Position</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <tr>
+				      <td class="mdl-data-table__cell--non-numeric">Acrylic (Transparent)</td>
+				      <td>25</td>
+				      <td>$2.90</td>
+				    </tr>
+				  </tbody>
+				</table>
+          </div>
         </div>
         <footer class="demo-footer mdl-mini-footer">
           <div class="mdl-mini-footer--left-section">
