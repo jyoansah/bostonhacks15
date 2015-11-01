@@ -120,7 +120,7 @@
 			?>
 				<div class="demo-card-wide mdl-card mdl-shadow--2dp" style="margin-top:20px; left:27%;">
 			  <div class="mdl-card__title">
-			    <h2 class="mdl-card__title-text"><?php 	$queue->location; ?></h2>
+			    <h2 class="mdl-card__title-text"><?php 	echo $queue->location; ?></h2>
 			  </div>
 			  <div class="mdl-card__supporting-text">
 			    <?php
@@ -140,6 +140,18 @@
 			</div><?php
 			}
 			?>
+
+
+
+
+
+
+
+
+
+
+
+			
 
           </div>
         </div>
