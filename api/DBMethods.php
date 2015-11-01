@@ -171,7 +171,7 @@
     }
 
     function getUser($conn, $id){
-        $cond = "id =".$id;
+        $cond = "id =$id";
         $users = userGetter($conn, $cond);
 
         if (empty($users)){
