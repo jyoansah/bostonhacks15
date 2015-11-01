@@ -19,7 +19,8 @@ class api {
     
     // API interface
     function api($action = null, $msg = null) {
-
+        echo "we are here";
+        
         if ((isset($action) && isset($msg)) || isset($action)) {
             
             //NQAssertSession();
