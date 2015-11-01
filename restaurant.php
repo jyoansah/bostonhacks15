@@ -9,22 +9,25 @@
 <?php
 	echo "test";
 	try{
-		$queues = queueGetter($this->conn, NULL);
+		$queues = queueGetter($conn, NULL);
 		var_dump($queues);
+		while($row = sqlsrv_fetch_array($queues)){
+		echo '<a href="restaurant.php/?id='.$row["id"].'">'.$row['name'].'</a>"';
 	}
 	catch(Exception $e){
 		echo $e->getMessage();
 	}
 	/**
-	while($row = sqlsrv_fetch_array($queues)){
-		echo $row;
+	if(isset($_GET['$id'])){
+		$_SESSION['id'] = $_GET['$id'];
 	}
+	
 	//Get current customer
 	if(isset($_POST['next_customer'])){
 		try{
 			$result = sqlsrv_fetch_array(sqlsrv_query($this->conn, "DELETE FROM user 
 						JOIN(SELECT MIN(queue_position) AS min_queue_pos FROM user) user2
-						WHERE user.queue_position = user2.min_queue_pos
+						WHERE user.queue_position = user2.min_queue_pos AND user.queue_id = ".$_SESSION['id']."
 						"));		
 		}
 		catch(Exception $e){
