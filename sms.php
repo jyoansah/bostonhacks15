@@ -10,7 +10,9 @@
     <Message>Hello, Welcome to Deeque
     Please select a Queue:
         <?php
-            if(isset($_REQUEST['Body'])){
+            echo "Here0";
+
+        if(isset($_REQUEST['Body'])){
                 $body =  $_REQUEST['Body'];
 
                 $token = strtok($body, " ");
