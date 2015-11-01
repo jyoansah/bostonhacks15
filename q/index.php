@@ -9,7 +9,7 @@
             <header>
             <h1 class="grid_12">User Sign Up</h1>
         </header>
-        <h2 class="grid_12">Please enter sign up details:</h2>
+        <h2 class="grid_8">Please enter sign up details:</h2>
         <form class="grid_8" action="metricsPage.php" method="post">
             <label class="grid_3" for="name">Name:</label>
             <input type="text" name="name"><br>
