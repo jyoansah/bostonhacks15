@@ -38,13 +38,14 @@
 
             }
 
-            echo("here 2<br>$queues[1]");
+            var_dump($queues);
             sqlsrv_free_stmt($getQueues);
 
             if (!empty($queues)) {
                 return  $queues;
             }else{
-                return ' ';
+                echo 'empty';
+                return 'Empty';
             }
         }
         catch(Exception $e)
@@ -55,14 +56,15 @@
 
     function getQueue($conn, $id){
         $cond = "id = $id";
-        echo("herexx");
         $queues = queueGetter($conn, $cond);
         echo("here3");
 
         if (empty($queues)){
             return "not found";
         }
-        return $queues[1];
+        $ret = $queues[1];
+        echo $ret;
+        return $ret;
     }
 
     function getQueues($conn){
