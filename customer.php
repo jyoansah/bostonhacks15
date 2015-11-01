@@ -35,9 +35,9 @@
 		<?php
 
 			if(isset($_GET['id'])){
-				$lastInLine = getLastInLine($conn, $_GET['id']);
-				echo '<div id="lastInLine">';
-				echo $lastInLine;
+				$firstInLine = getfirstInLine($conn, $_GET['id']);
+				echo '<div id="firstInLine">';
+				echo "Now Serving: ".$firstInLine;
 				echo '</div>';
 			}
 			//Get current customer
