@@ -41,9 +41,9 @@ session_start();
 
                     if (isset($_SESSION['position'])) {
                         echo '<div id="position">';
-                        echo '<h2>Your current position is:</h2>';
+                        echo '<h3>Your current position is:</h3>';
                         echo '<h1 class="cover-heading"> ' . $_SESSION['position'] . '</h1>';
-                        echo '<h3 class="cover-heading"> In Queue "' . $_SESSION['curr_queue'] . '"</h3>';
+                        echo '<h3 > In Queue "' . $_SESSION['curr_queue'] . '"</h3>';
                         echo '</div>';
                     }
 
@@ -95,7 +95,7 @@ session_start();
                             $queues = getqueues($conn);
                             foreach ($queues as $queue) {
                                 echo '<p class="lead"><a class="btn btn-lg btn-secondary" href="/customer.php/?id=' . $queue->id . '">' . $queue->name . '
-                                <span>In: ' . $queue->location . '</span></a></p><br>';
+                                <span>In ' . $queue->location . '</span></a></p><br>';
                             }
 
                         } catch (Exception $e) {
