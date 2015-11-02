@@ -15,7 +15,7 @@ session_start();
 
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
+    <link rel="icon" href="/../../favicon.ico">
 
 
     <title>Join a Queue!</title>
@@ -25,7 +25,11 @@ session_start();
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
     <!-- Custom styles for this template -->
-    <link href="style/cover.css" rel="stylesheet">
+    <link href="/style/cover.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="/js/ie10-viewport-bug-workaround.js"></script>
+
 </head>
 <body>
 <div class="site-wrapper">
@@ -65,15 +69,19 @@ session_start();
                     if (isset($_GET['id'])) {
                         $firstInLine = getfirstInLine($conn, $_GET['id']);
                         if(!empty($firstInLine)) {
-                            echo '<div id="firstInLine">';
-                            echo '<h2>Now Serving:</h2>';
-                            echo '<h1 class="cover-heading"> ' . $firstInLine . '</h1>';
-                            echo '</div>';
 
                             $lastInLine = getLastInLine($conn, $_GET['id']);
 
+                            $length = (intval($lastInLine) - intval($firstInLine));
+
                             echo '<div id="lastInLine">';
-                            echo '<h2>There are ' . (intval($lastInLine) - intval($firstInLine)) . ' people queued</h2>';
+                            if($length > 1){
+                                echo '<h2>There are ' . (intval($lastInLine) - intval($firstInLine)) . ' people queued</h2>';
+                            }elseif($length == 0){
+                                echo '<h2>There are ' . (intval($lastInLine) - intval($firstInLine)) . ' people queued</h2>';
+                            }
+
+
                             echo '</div>';
                         }
                         else{
@@ -82,7 +90,7 @@ session_start();
 
                     }
 
-                    if (!isset($_POST['new_customer']) && isset($_GET['id'])) {
+                    if (!isset($_POST['new_customer']) && isset($_GET['id']) && !isset($_SESSION['position'])) {
                         echo '<form method="POST" action="">';
                         echo '<button class="btn btn-lg btn-secondary" name="new_customer" value="submit">Join Queue</button>';
                         echo '</form>';
