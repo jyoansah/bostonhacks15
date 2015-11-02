@@ -4,7 +4,7 @@
 
     header("access-control-allow-origin: *");
     include_once 'api/api.php';
-    global $conn, $body, $position, $api;
+    global $conn, $body, $joined, $api;
     session_start();
 
     if (isset($_REQUEST['Body'])) {
@@ -14,22 +14,23 @@
             $token = strtok(" ");
             $user = new User(intval($token));
             $user->setTel($_REQUEST['From']);
-            $position = addUser($conn, $user);
+            $joined = addUserSMS($conn, $user);
         }
     }
 ?>
 
 <Response>
-    <Message>Hello, Welcome to Deeque
+    <Message>
         <?php
-        if (empty($position)) {
-            echo "$Please select a Queue: \n";
+        if (empty($joined)) {
+            echo "Hello, Welcome to Deeque! Please select a Queue: \n";
             $queues = getQueues($conn);
             foreach ($queues as $queue) {
                 echo $queue->id . " --> " . $queue->name . "\n";
             }
         } else {
-            echo "You are num: ".$position;
+            echo "You joined : ".$joined['queue'].". You are number: ".$joined['position'].
+                ". Now serving: ".$joined['serving'];
         }
         ?>
     </Message>

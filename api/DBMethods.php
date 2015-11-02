@@ -238,6 +238,14 @@
         }
     }
 
+    function addUserSms($conn, $user){
+        $array = [
+            "queue" => getQueue($conn, $user->getQueueId())->getName(),
+            "position" => addUser($conn,$user),
+            "serving" => getfirstInLine($conn, $user->getQueueId()),
+        ];
+        return $array;
+    }
 
 
     function getfirstInLine($conn, $queue_id){
