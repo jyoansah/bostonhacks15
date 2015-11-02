@@ -84,9 +84,9 @@ session_start();
                 <div class="que">
                     <?php
                     if (isset($_GET['id'])) {
-                        echo "here3";
+                        echo "here31";
 
-                        $queue_sel = getQueue($conn, $_SESSION['id'])->getName();
+                        $queue_sel = getQueue($conn, $_SESSION['id']);
                         echo $queue_sel;
                         echo '<h1 class="que-heading"> Queue: "' . $queue_sel . '"</h1>';
 
