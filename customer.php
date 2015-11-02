@@ -45,9 +45,10 @@ session_start();
                 <div class="cust>">
                     <?php
 
-                    echo "here1";
+
                     //Get current customer
                     if (isset($_POST['new_customer']) && isset($_GET['id'])) {
+                        echo "here1";
                         try {
                             $new_user = new User($_GET['id']);
                             $results = addUser($conn, $new_user);
@@ -85,7 +86,9 @@ session_start();
                     if (isset($_GET['id'])) {
                         echo "here3";
 
-                        echo '<h1 class="que-heading"> Queue: "' . getQueue($conn, $_SESSION['id'])->getName() . '"</h1>';
+                        $queue_sel = getQueue($conn, $_SESSION['id'])->getName();
+                        echo $queue_sel;
+                        echo '<h1 class="que-heading"> Queue: "' . $queue_sel . '"</h1>';
 
                         $firstInLine = getfirstInLine($conn, $_GET['id']);
 

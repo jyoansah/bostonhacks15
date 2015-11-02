@@ -39,7 +39,7 @@
     function queueGetter($conn, $condition){
         try
         {
-            if($condition == NULL) {
+            if(empty($condition)) {
                 $tsql = "SELECT [id],[Name],[Location] FROM dbo.Queue";
             }
             else{
