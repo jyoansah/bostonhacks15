@@ -26,9 +26,6 @@ session_start();
 
     <!-- Custom styles for this template -->
     <link href="style/cover.css" rel="stylesheet">
-
-<!--    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->-->
-<!--    <script src="js/ie10-viewport-bug-workaround.js"></script>-->
 </head>
 <body>
 <div class="site-wrapper">
@@ -42,6 +39,14 @@ session_start();
 
                 <?php
 
+                    if (isset($_SESSION['position'])) {
+                        echo '<div id="position">';
+                        echo '<h2>Your current position is:</h2>';
+                        echo '<h1 class="cover-heading"> ' . $_SESSION['position'] . '</h1>';
+                        echo '<h3 class="cover-heading"> In Queue \"' . $_SESSION['curr_queue'] . '\"</h3>';
+                        echo '</div>';
+                    }
+
                     //Get current customer
                     if (isset($_POST['new_customer']) && isset($_GET['id'])) {
                         echo '<div id="queue_number">';
@@ -49,6 +54,7 @@ session_start();
                             $new_user = new User($_GET['id']);
                             $results = addUser($conn, $new_user);
                             $_SESSION['position'] = $results;
+                            $_SESSION['curr_queue'] = getQueue($conn, $_GET['id'])->getName();
                             echo '<h1 class="cover-heading">Your queue number is: ' . $results . '</h1>';
                         } catch (Exception $e) {
                             echo $e->getMessage();
@@ -76,13 +82,6 @@ session_start();
 
                     }
 
-                    if (isset($_SESSION['position'])) {
-                        echo '<div id="position">';
-                        echo '<h2>Your current position is:</h2>';
-                        echo '<h1 class="cover-heading"> ' . $_SESSION['position'] . '</h1>';
-                        echo '</div>';
-                    }
-
                     if (!isset($_POST['new_customer']) && isset($_GET['id'])) {
                         echo '<form method="POST" action="">';
                         echo '<button class="btn btn-lg btn-secondary" name="new_customer" value="submit">Join Queue</button>';
@@ -95,8 +94,8 @@ session_start();
                             echo '<h1 class="cover-heading">Join a Queue!</h1>';
                             $queues = getqueues($conn);
                             foreach ($queues as $queue) {
-                                echo '<p class="lead"><a class="btn btn-lg btn-secondary" href="/customer.php/?id=' . $queue->id . '">' . $queue->name . '</a></p><br>';
-                                echo "In: " . $queue->location . " ";
+                                echo '<p class="lead"><a class="btn btn-lg btn-secondary" href="/customer.php/?id=' . $queue->id . '">' . $queue->name . '
+                                <span>In: ' . $queue->location . '</span></a></p><br>';
                             }
 
                         } catch (Exception $e) {
