@@ -1,28 +1,70 @@
 <!DOCTYPE html>
-<?php 
- header("access-control-allow-origin: *");
- include_once 'api/api.php';
- global $conn, $api;
+<?php
+header("access-control-allow-origin: *");
+include_once 'api/api.php';
+global $conn, $api;
 ?>
 <html>
     <head>
-        <meta charset="UTF-8">
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="../../favicon.ico">
+
+
         <title>I hate queues!</title>
 
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+        <!-- Custom styles for this template -->
+        <link href="style/cover.css" rel="stylesheet">
+
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <script src="js/ie10-viewport-bug-workaround.js"></script>
+
     </head>
+
+
     <body>
-        <div class="container">
-            <p class="text-center"><h1>deeque</h1></p>
-            <p class="text-center"><h3>Do you hate waiting in line? We do too!</h3></p>
-            <?php
-              $api->api(DB_METHODS);
-            ?>
-            <br>
-            <br>
-            Are you a <a href="customer.php">customer</a> or a <a href="restaurant.php">restaurant</a>
+        <div class="site-wrapper">
+
+            <div class="site-wrapper-inner">
+
+                <div class="cover-container">
+
+                    <div class="masthead clearfix">
+                        <div class="inner">
+                            <h3 class="masthead-brand">Cover</h3>
+                            <nav class="nav nav-masthead">
+                                <a class="nav-link active" href="#">Home</a>
+                                <a class="nav-link" href="customer.php">Customer</a>
+                                <a class="nav-link" href="#">restaurant.php</a>
+                            </nav>
+                        </div>
+                    </div>
+
+                    <div class="inner cover">
+                        <h1 class="cover-heading">deeque</h1>
+
+                        <p class="lead">Do you hate waiting in line? We do too!</p>
+
+                        <p class="lead">
+                            <a href="customer.php" class="btn btn-lg btn-secondary">Customer</a>
+                            <a href="restaurant.php" class="btn btn-lg btn-secondary">Restaurant</a>
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
         </div>
     </body>
 </html>
