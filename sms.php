@@ -11,8 +11,10 @@
         $body = $_REQUEST['Body'];
         $token = strtok($body, " ");
         if (strtolower($token) == 'join') {
-            $position = 1;
-            
+            $token = strtok(" ");
+            $user = new User(intval($token));
+            $user->setTel($_REQUEST['From']);
+            $position = addUser($conn, $user);
         }
     }
 ?>
@@ -27,7 +29,7 @@
                 echo $queue->id . " --> " . $queue->name . "\n";
             }
         } else {
-            echo "You are num: 48. Now serving 27";
+            echo "You are num: ".$position;
         }
         ?>
     </Message>

@@ -103,7 +103,6 @@ class User {
      */
     public function setTel($tel)
     {
-        echo 'setting tel'.$tel;
         $this->tel = $tel;
     }
 
