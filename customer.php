@@ -44,6 +44,8 @@ session_start();
 
                 <div class="cust>">
                     <?php
+
+                    echo "here1";
                     //Get current customer
                     if (isset($_POST['new_customer']) && isset($_GET['id'])) {
                         try {
@@ -59,6 +61,7 @@ session_start();
 
                     //User has a positon
                     if (isset($_SESSION['position'])) {
+                        echo "here2";
 
                         //clear user after serving
                         $firstInLine = getfirstInLine($conn, $_GET['id']);
@@ -80,6 +83,7 @@ session_start();
                 <div class="que">
                     <?php
                     if (isset($_GET['id'])) {
+                        echo "here3";
 
                         echo '<h1 class="que-heading"> Queue: "' . getQueue($conn, $_SESSION['id'])->getName() . '"</h1>';
 
@@ -104,12 +108,14 @@ session_start();
                     }
 
                     if (!isset($_POST['new_customer']) && isset($_GET['id']) && !isset($_SESSION['position'])) {
+                        echo "here4";
                         echo '<form method="POST" action="">';
                         echo '<button class="btn btn-lg btn-secondary" name="new_customer" value="submit">Join Queue</button>';
                         echo '</form>';
                     }
 
                     if (!isset($_POST['new_customer']) && !isset($_GET['id']) &&!isset($_SESSION['position'])) {
+                        echo "here5";
                         try {
 
                             echo '<h1 class="cover-heading">Join a Queue!</h1>';
