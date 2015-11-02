@@ -46,6 +46,7 @@
                 $tsql = "SELECT [id],[Name],[Location] FROM dbo.Queue WHERE $condition";
 
             }
+            echo $tsql;
             $conn = OpenConnection();
             $getQueues = sqlsrv_query($conn, $tsql);
             if ($getQueues == FALSE) {
@@ -68,7 +69,7 @@
             if (!empty($queues)) {
                 return  $queues;
             }else{
-                return 'Empty';
+                return null;
             }
         }
         catch(Exception $e)
@@ -82,13 +83,16 @@
         $queues = queueGetter($conn, $cond);
 
         if (empty($queues)){
-            return "not found";
+            return "Queue not found!";
         }
         return $queues[0];
     }
 
     function getQueues($conn){
         $queues = queueGetter($conn, null);
+        if (empty($queues)){
+            return "No queues available";
+        }
         return $queues;
     }
 
