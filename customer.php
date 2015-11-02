@@ -43,7 +43,7 @@ session_start();
                         echo '<div id="position">';
                         echo '<h2>Your current position is:</h2>';
                         echo '<h1 class="cover-heading"> ' . $_SESSION['position'] . '</h1>';
-                        echo '<h3 class="cover-heading"> In Queue \"' . $_SESSION['curr_queue'] . '\"</h3>';
+                        echo '<h3 class="cover-heading"> In Queue "' . $_SESSION['curr_queue'] . '"</h3>';
                         echo '</div>';
                     }
 
@@ -73,7 +73,7 @@ session_start();
                             $lastInLine = getLastInLine($conn, $_GET['id']);
 
                             echo '<div id="lastInLine">';
-                            echo '<h2>There are' . (intval($lastInLine) - intval($firstInLine)) . ' queued</h2>';
+                            echo '<h2>There are ' . (intval($lastInLine) - intval($firstInLine)) . ' people queued</h2>';
                             echo '</div>';
                         }
                         else{
