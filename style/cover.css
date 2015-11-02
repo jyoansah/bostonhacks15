@@ -156,4 +156,9 @@ body {
 
 .cust{
     border: solid white 10px;
+    margin-bottom: 30px;
+}
+
+.que-heading {
+    color: #0091ea;
 }

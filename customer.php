@@ -81,6 +81,8 @@ session_start();
                     <?php
                     if (isset($_GET['id'])) {
 
+                        echo '<h1 class="que-heading"> ' . getQueue($conn, $_SESSION['id'])->getName() . '</h1>';
+
                         $firstInLine = getfirstInLine($conn, $_GET['id']);
 
                         if (!empty($firstInLine)) {
@@ -89,17 +91,12 @@ session_start();
 
                             $length = (intval($lastInLine) - intval($firstInLine));
 
-                            echo '<div id="lastInLine">';
-
                             if ($length > 1) {
-                                echo '<h2>There are ' . (intval($lastInLine) - intval($firstInLine)) . ' people queued</h2>';
-                            } elseif ($length == 0) {
-                                echo 'You\'re Up!';
-                            } else {
-
+                                echo '<h2>There are ' . $length . ' people queued</h2>';
+                            } elseif ($length == 1) {
+                                echo '<h2>There is ' . $length . ' person queued</h2>';
                             }
 
-                            echo '</div>';
                         } else {
                             echo '<h1 class="cover-heading">Queue is Empty!!</h1>';
                         }
