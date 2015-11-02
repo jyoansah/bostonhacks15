@@ -55,25 +55,36 @@ session_start();
                         }
                         echo '</div>';
                     }
+
                     if (isset($_GET['id'])) {
                         $firstInLine = getfirstInLine($conn, $_GET['id']);
-                        echo '<div id="firstInLine">';
-                        echo '<h1 class="cover-heading">Now Serving: ' . $firstInLine . '</h1>';;
-                        echo '</div>';
+                        if(!empty($firstInLine)) {
+                            echo '<div id="firstInLine">';
+                            echo '<h2>Now Serving:</h2>';
+                            echo '<h1 class="cover-heading"> ' . $firstInLine . '</h1>';
+                            echo '</div>';
 
-                        $lastInLine = getLastInLine($conn, $_GET['id']);
-                        echo '<div id="lastInLine">';
-                        echo "Last In Line: " . $lastInLine;
-                        echo '</div>';
+                            $lastInLine = getLastInLine($conn, $_GET['id']);
+                            echo '<div id="lastInLine">';
+                            echo '<h2>There are ' . $lastInLine - $firstInLine . 'queued</h2>';
+                            echo '</div>';
+                        }
+                        else{
+                            echo '<h1 class="cover-heading">Queue is Empty!!</h1>';
+                        }
+                        
                     }
+
                     if (isset($_SESSION['position'])) {
                         echo '<div id="position">';
-                        echo "Your current position is: " . $_SESSION['position'];
+                        echo '<h2>Your current position is:</h2>';
+                        echo '<h1 class="cover-heading"> ' . $_SESSION['position'] . '</h1>';
                         echo '</div>';
                     }
+
                     if (!isset($_POST['new_customer']) && isset($_GET['id'])) {
                         echo '<form method="POST" action="">';
-                        echo '<button name="new_customer" value="submit">Get Number</button>';
+                        echo '<button class="btn btn-lg btn-secondary" name="new_customer" value="submit">Join Queue</button>';
                         echo '</form>';
                     }
 
