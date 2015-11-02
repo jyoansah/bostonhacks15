@@ -40,63 +40,58 @@ session_start();
 
             <div class="inner cover">
 
-                <h1 class="cover-heading">Join a Queue!</h1>
-
                 <?php
-                try {
-                    ?>
-                        <?php
-                        $queues = getqueues($conn);
-                        foreach ($queues as $queue) {
-                            echo "Location: " . $queue->location . " ";
-                            echo '<p class="lead"><a class="btn btn-lg btn-secondary" href="/customer.php/?id=' . $queue->id . '">' . $queue->name . '</a></p><br>';
+
+                    //Get current customer
+                    if (isset($_POST['new_customer']) && isset($_GET['id'])) {
+                        echo '<div id="queue_number">';
+                        try {
+                            $new_user = new User($_GET['id']);
+                            $results = addUser($conn, $new_user);
+                            $_SESSION['position'] = $results;
+                            echo '<h1 class="cover-heading">Your queue number is: ' . $results . '</h1>';
+                        } catch (Exception $e) {
+                            echo $e->getMessage();
                         }
-                        ?>
-                    <?php
-                } catch (Exception $e) {
-                    echo $e->getMessage();
-                }
+                        echo '</div>';
+                    }
+                    if (isset($_GET['id'])) {
+                        $firstInLine = getfirstInLine($conn, $_GET['id']);
+                        echo '<div id="firstInLine">';
+                        echo '<h1 class="cover-heading">Now Serving: ' . $firstInLine . '</h1>';;
+                        echo '</div>';
+
+                        $lastInLine = getLastInLine($conn, $_GET['id']);
+                        echo '<div id="lastInLine">';
+                        echo "Last In Line: " . $lastInLine;
+                        echo '</div>';
+                    }
+                    if (isset($_SESSION['position'])) {
+                        echo '<div id="position">';
+                        echo "Your current position is: " . $_SESSION['position'];
+                        echo '</div>';
+                    }
+                    if (!isset($_POST['new_customer']) && isset($_GET['id'])) {
+                        echo '<form method="POST" action="">';
+                        echo '<button name="new_customer" value="submit">Get Number</button>';
+                        echo '</form>';
+                    }
+
+                    if (!isset($_POST['new_customer']) && !isset($_GET['id'])) {
+                        try {
+
+                            echo '<h1 class="cover-heading">Join a Queue!</h1>';
+                            $queues = getqueues($conn);
+                            foreach ($queues as $queue) {
+                                echo '<p class="lead"><a class="btn btn-lg btn-secondary" href="/customer.php/?id=' . $queue->id . '">' . $queue->name . '</a></p><br>';
+                                echo "In: " . $queue->location . " ";
+                            }
+
+                        } catch (Exception $e) {
+                            echo $e->getMessage();
+                        }
+                    }
                 ?>
-
-            <?php
-
-            //Get current customer
-            if (isset($_POST['new_customer']) && isset($_GET['id'])) {
-                echo '<div id="queue_number">';
-                try {
-
-                    $new_user = new User($_GET['id']);
-                    $results = addUser($conn, $new_user);
-                    $_SESSION['position'] = $results;
-                    echo "Your queue number is:" . $results;
-                } catch (Exception $e) {
-                    echo $e->getMessage();
-                }
-                echo '</div>';
-            }
-            if (isset($_GET['id'])) {
-                $firstInLine = getfirstInLine($conn, $_GET['id']);
-                echo '<div id="firstInLine">';
-                echo "Now Serving: " . $firstInLine;
-                echo '</div>';
-
-                $lastInLine = getLastInLine($conn, $_GET['id']);
-                echo '<div id="lastInLine">';
-                echo "Last In Line: " . $lastInLine;
-                echo '</div>';
-            }
-            if (isset($_SESSION['position'])) {
-                echo '<div id="position">';
-                echo "Your current position is: " . $_SESSION['position'];
-                echo '</div>';
-            }
-            if (!isset($_POST['new_customer']) && isset($_GET['id'])) {
-                echo '<form method="POST" action="">';
-                echo '<button name="new_customer" value="submit">Get Number</button>';
-                echo '</form>';
-            }
-            ?>
-
 
         </div>
 
