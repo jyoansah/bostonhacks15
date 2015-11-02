@@ -81,7 +81,7 @@ session_start();
                     <?php
                     if (isset($_GET['id'])) {
 
-                        echo '<h1 class="que-heading"> ' . getQueue($conn, $_SESSION['id'])->getName() . '</h1>';
+                        echo '<h1 class="que-heading"> Queue: "' . getQueue($conn, $_SESSION['id'])->getName() . '"</h1>';
 
                         $firstInLine = getfirstInLine($conn, $_GET['id']);
 
