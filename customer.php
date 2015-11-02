@@ -87,8 +87,7 @@ session_start();
                         echo "here30";
 
                         $queue_sel = getQueue($conn, intval($_GET['id']));
-                        echo $queue_sel;
-                        echo '<h1 class="que-heading"> Queue: "' . $queue_sel . '"</h1>';
+                        echo '<h1 class="que-heading">"' . $queue_sel->getName() . '"</h1>';
 
                         $firstInLine = getfirstInLine($conn, $_GET['id']);
 
@@ -96,7 +95,7 @@ session_start();
 
                             $lastInLine = getLastInLine($conn, $_GET['id']);
 
-                            $length = (intval($lastInLine) - intval($firstInLine));
+                            $length = (intval($lastInLine) - intval($firstInLine) + 1);
 
                             if ($length > 1) {
                                 echo '<h2>There are ' . $length . ' people queued</h2>';
