@@ -54,6 +54,7 @@ session_start();
                             $results = addUser($conn, $new_user);
                             $_SESSION['position'] = $results['position'];
                             $_SESSION['curr_queue'] = $results['queue'];
+                            $_SESSION['queue_id'] = $results['queue_id'];
                             echo '<h1 class="cover-heading"> Queue Joined</h1>';
                         } catch (Exception $e) {
                             echo $e->getMessage();
@@ -65,7 +66,7 @@ session_start();
                         echo "here2";
 
                         //clear user after serving
-                        $firstInLine = getfirstInLine($conn, $_GET['id']);
+                        $firstInLine = getfirstInLine($conn, $_SESSION['queue_id']);
                         if ($firstInLine > $_SESSION['position']) {
                             unset($_SESSION['position']);
                         } else {
@@ -96,6 +97,10 @@ session_start();
                             $lastInLine = getLastInLine($conn, $_GET['id']);
 
                             $length = (intval($lastInLine) - intval($firstInLine) + 1);
+
+                            for($i = 0; $i< $length; $i++){
+                                echo '<i class="que-circle"></i>';
+                            }
 
                             if ($length > 1) {
                                 echo '<h2>There are ' . $length . ' people queued</h2>';

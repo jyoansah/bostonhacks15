@@ -161,4 +161,11 @@ body {
 
 .que-heading {
     color: #0091ea;
+    text-align: left;
 }
+
+.que-circle:before {
+    color: #0091ea;
+    font-size: 200px;
+}
+

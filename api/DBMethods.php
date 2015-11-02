@@ -243,6 +243,7 @@
 
     function addUser($conn, $user){
         $array = [
+            'queue_id' => $user->getQueueId(),
             "queue" => getQueue($conn, $user->getQueueId())->getName(),
             "position" => addUserDB($conn,$user),
             "serving" => getfirstInLine($conn, $user->getQueueId()),
