@@ -65,14 +65,15 @@ session_start();
                             echo '</div>';
 
                             $lastInLine = getLastInLine($conn, $_GET['id']);
+
                             echo '<div id="lastInLine">';
-                            echo '<h2>There are ' . $lastInLine - $firstInLine . 'queued</h2>';
+                            echo '<h2>There are' . (intval($lastInLine) - intval($firstInLine)) . ' queued</h2>';
                             echo '</div>';
                         }
                         else{
                             echo '<h1 class="cover-heading">Queue is Empty!!</h1>';
                         }
-                        
+
                     }
 
                     if (isset($_SESSION['position'])) {
