@@ -38,17 +38,7 @@ global $conn, $api;
             <div class="site-wrapper-inner">
 
                 <div class="cover-container">
-
-                    <div class="masthead clearfix">
-                        <div class="inner">
-                            <h3 class="masthead-brand">Cover</h3>
-                            <nav class="nav nav-masthead">
-                                <a class="nav-link active" href="#">Home</a>
-                                <a class="nav-link" href="customer.php">Customer</a>
-                                <a class="nav-link" href="#">restaurant.php</a>
-                            </nav>
-                        </div>
-                    </div>
+                    
 
                     <div class="inner cover">
                         <h1 class="cover-heading">deeque</h1>
