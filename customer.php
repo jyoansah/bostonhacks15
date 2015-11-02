@@ -48,7 +48,6 @@ session_start();
 
                     //Get current customer
                     if (isset($_POST['new_customer']) && isset($_GET['id'])) {
-                        echo "here1";
                         try {
                             $new_user = new User($_GET['id']);
                             $results = addUser($conn, $new_user);
@@ -63,7 +62,6 @@ session_start();
 
                     //User has a positon
                     if (isset($_SESSION['position'])) {
-                        echo "here2";
 
                         //clear user after serving
                         $firstInLine = getfirstInLine($conn, $_SESSION['queue_id']);
@@ -84,28 +82,35 @@ session_start();
 
                 <div class="que">
                     <?php
-                    if (isset($_GET['id'])) {
-                        echo "here30";
+                    if (isset($_GET['id']) || isset($_SESSION['queue_id'])) {
 
-                        $queue_sel = getQueue($conn, intval($_GET['id']));
+
+
+                        if(isset($_GET['id'])){
+                            $pgqid = $_GET['id'];
+                        }else{
+                            $pgqid = $_SESSION['queue_id'];
+                        }
+
+                        $queue_sel = getQueue($conn, intval($pgqid));
                         echo '<h1 class="que-heading">"' . $queue_sel->getName() . '"</h1>';
 
-                        $firstInLine = getfirstInLine($conn, $_GET['id']);
+                        $firstInLine = getfirstInLine($conn, $pgqid);
 
                         if (!empty($firstInLine)) {
 
-                            $lastInLine = getLastInLine($conn, $_GET['id']);
+                            $lastInLine = getLastInLine($conn, $pgqid);
 
-                            $length = (intval($lastInLine) - intval($firstInLine) + 1);
+                            $length = (intval($lastInLine) - intval($firstInLine));
 
                             for($i = 0; $i< $length; $i++){
                                 echo '<i class="que-circle"></i>';
                             }
 
                             if ($length > 1) {
-                                echo '<h2>There are ' . $length . ' people queued</h2>';
+                                echo '<h2>There are ' . $length . ' people ahead of you</h2>';
                             } elseif ($length == 1) {
-                                echo '<h2>There is ' . $length . ' person queued</h2>';
+                                echo '<h2>There is ' . $length . ' person ahead of you</h2>';
                             }
 
                         } else {
@@ -115,15 +120,13 @@ session_start();
                     }
 
                     if (!isset($_POST['new_customer']) && isset($_GET['id']) && !isset($_SESSION['position'])) {
-                        echo "here4";
                         echo '<form method="POST" action="">';
                         echo '<button class="btn btn-lg btn-secondary" name="new_customer" value="submit">Join Queue</button>';
                         echo '</form>';
                     }
 
                     if (!isset($_POST['new_customer']) && !isset($_GET['id']) &&!isset($_SESSION['position'])) {
-                        echo "here5";
-                        try {
+                         try {
 
                             echo '<h1 class="cover-heading">Join a Queue!</h1>';
                             $queues = getqueues($conn);
