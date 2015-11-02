@@ -46,7 +46,6 @@
                 $tsql = "SELECT [id],[Name],[Location] FROM dbo.Queue WHERE $condition";
 
             }
-            echo $tsql;
             $conn = OpenConnection();
             $getQueues = sqlsrv_query($conn, $tsql);
             if ($getQueues == FALSE) {

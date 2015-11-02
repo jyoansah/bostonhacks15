@@ -86,7 +86,7 @@ session_start();
                     if (isset($_GET['id'])) {
                         echo "here30";
 
-                        $queue_sel = getQueue($conn, intval($_SESSION['id']));
+                        $queue_sel = getQueue($conn, intval($_GET['id']));
                         echo $queue_sel;
                         echo '<h1 class="que-heading"> Queue: "' . $queue_sel . '"</h1>';
 
