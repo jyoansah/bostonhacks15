@@ -45,7 +45,6 @@ session_start();
                 <div class="cust>">
                     <?php
 
-
                     //Get current customer
                     if (isset($_POST['new_customer']) && isset($_GET['id'])) {
                         try {
@@ -77,11 +76,6 @@ session_start();
                         }
                     }
 
-                    ?>
-                </div>
-
-                <div class="que">
-                    <?php
                     if (isset($_GET['id']) || isset($_SESSION['queue_id'])) {
 
 
@@ -118,6 +112,13 @@ session_start();
                         }
 
                     }
+
+                    ?>
+                </div>
+
+                <div class="que">
+                    <?php
+
 
                     if (!isset($_POST['new_customer']) && isset($_GET['id']) && !isset($_SESSION['position'])) {
                         echo '<form method="POST" action="">';

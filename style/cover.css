@@ -59,6 +59,24 @@ body {
 }
 
 
+/*custom styles */
+.cust {
+    border: solid white 4px;
+    margin-bottom: 30px;
+}
+
+.que-heading {
+    color: #0091ea;
+    text-align: left;
+}
+
+.que-circle:before {
+    color: #0091ea;
+    font-size: 200px;
+}
+
+
+
 /*
  * Header
  */
@@ -153,19 +171,3 @@ body {
     width: 42rem;
   }
 }
-
-.cust{
-    border: solid white 10px;
-    margin-bottom: 30px;
-}
-
-.que-heading {
-    color: #0091ea;
-    text-align: left;
-}
-
-.que-circle:before {
-    color: #0091ea;
-    font-size: 200px;
-}
-
