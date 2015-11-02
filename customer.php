@@ -46,7 +46,6 @@ session_start();
                     <?php
                     //Get current customer
                     if (isset($_POST['new_customer']) && isset($_GET['id'])) {
-                        echo '<div id="queue_number">';
                         try {
                             $new_user = new User($_GET['id']);
                             $results = addUser($conn, $new_user);
@@ -56,7 +55,6 @@ session_start();
                         } catch (Exception $e) {
                             echo $e->getMessage();
                         }
-                        echo '</div>';
                     }
 
                     //User has a positon
@@ -114,7 +112,7 @@ session_start();
                         echo '</form>';
                     }
 
-                    if (!isset($_POST['new_customer']) && !isset($_GET['id'])) {
+                    if (!isset($_POST['new_customer']) && !isset($_GET['id']) &&!isset($_SESSION['position'])) {
                         try {
 
                             echo '<h1 class="cover-heading">Join a Queue!</h1>';
