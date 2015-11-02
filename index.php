@@ -38,7 +38,7 @@ global $conn, $api;
             <div class="site-wrapper-inner">
 
                 <div class="cover-container">
-                    
+
 
                     <div class="inner cover">
                         <h1 class="cover-heading">deeque</h1>
