@@ -191,7 +191,7 @@
     }
 
 
-    function addUser($conn, $user){
+    function addUserDB($conn, $user){
 
         $QueueId = $user->getQueueId();
         $Position = getLastInLine($conn, $QueueId);
@@ -238,10 +238,10 @@
         }
     }
 
-    function addUserSms($conn, $user){
+    function addUser($conn, $user){
         $array = [
             "queue" => getQueue($conn, $user->getQueueId())->getName(),
-            "position" => addUser($conn,$user),
+            "position" => addUserDB($conn,$user),
             "serving" => getfirstInLine($conn, $user->getQueueId()),
         ];
         return $array;

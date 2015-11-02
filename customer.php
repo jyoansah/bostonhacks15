@@ -41,50 +41,68 @@ session_start();
 
             <div class="inner cover">
 
-                <?php
 
-                    if (isset($_SESSION['position'])) {
-                        echo '<div id="position">';
-                        echo '<h3>Your current position is:</h3>';
-                        echo '<h1 class="cover-heading"> ' . $_SESSION['position'] . '</h1>';
-                        echo '<h3 > In Queue "' . $_SESSION['curr_queue'] . '"</h3>';
-                        echo '</div>';
-                    }
-
+                <div class="cust>">
+                    <?php
                     //Get current customer
                     if (isset($_POST['new_customer']) && isset($_GET['id'])) {
                         echo '<div id="queue_number">';
                         try {
                             $new_user = new User($_GET['id']);
                             $results = addUser($conn, $new_user);
-                            $_SESSION['position'] = $results;
-                            $_SESSION['curr_queue'] = getQueue($conn, $_GET['id'])->getName();
-                            echo '<h1 class="cover-heading">Your queue number is: ' . $results . '</h1>';
+                            $_SESSION['position'] = $results['position'];
+                            $_SESSION['curr_queue'] = $results['queue'];
+                            echo '<h1 class="cover-heading"> Queue Joined</h1>';
                         } catch (Exception $e) {
                             echo $e->getMessage();
                         }
                         echo '</div>';
                     }
 
-                    if (isset($_GET['id'])) {
+                    //User has a positon
+                    if (isset($_SESSION['position'])) {
+
+                        //clear user after serving
                         $firstInLine = getfirstInLine($conn, $_GET['id']);
-                        if(!empty($firstInLine)) {
+                        if ($firstInLine > $_SESSION['position']) {
+                            unset($_SESSION['position']);
+                        } else {
+                            // Always Show user Position
+                            echo '<div id="position">';
+                            echo '<h3>Your current position is:</h3>';
+                            echo '<h1 class="cover-heading"> ' . $_SESSION['position'] . '</h1>';
+                            echo '<h3 > In Queue "' . $_SESSION['curr_queue'] . '"</h3>';
+                            echo '</div>';
+                        }
+                    }
+
+                    ?>
+                </div>
+
+                <div class="que">
+                    <?php
+                    if (isset($_GET['id'])) {
+
+                        $firstInLine = getfirstInLine($conn, $_GET['id']);
+
+                        if (!empty($firstInLine)) {
 
                             $lastInLine = getLastInLine($conn, $_GET['id']);
 
                             $length = (intval($lastInLine) - intval($firstInLine));
 
                             echo '<div id="lastInLine">';
-                            if($length > 1){
+
+                            if ($length > 1) {
                                 echo '<h2>There are ' . (intval($lastInLine) - intval($firstInLine)) . ' people queued</h2>';
-                            }elseif($length == 0){
-                                echo '<h2>There are ' . (intval($lastInLine) - intval($firstInLine)) . ' people queued</h2>';
+                            } elseif ($length == 0) {
+                                echo 'You\'re Up!';
+                            } else {
+
                             }
 
-
                             echo '</div>';
-                        }
-                        else{
+                        } else {
                             echo '<h1 class="cover-heading">Queue is Empty!!</h1>';
                         }
 
@@ -110,13 +128,14 @@ session_start();
                             echo $e->getMessage();
                         }
                     }
-                ?>
+                    ?>
+                </div>
+
+            </div>
 
         </div>
 
     </div>
-
-</div>
 
 </div>
 </body>

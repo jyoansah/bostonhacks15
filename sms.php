@@ -14,7 +14,7 @@
             $token = strtok(" ");
             $user = new User(intval($token));
             $user->setTel($_REQUEST['From']);
-            $joined = addUserSMS($conn, $user);
+            $joined = addUserDB($conn, $user);
         }
     }
 ?>
