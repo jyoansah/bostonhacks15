@@ -93,7 +93,7 @@ function OpenConnection()
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         //Create Tables
-        $sql = "CREATE DATABASE IF NOT EXISTS deeque";
+        $sql = "CREATE DATABASE IF NOT EXISTS ".$dbname;
         $conn->exec($sql);
 
         //Create Database
