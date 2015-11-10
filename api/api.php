@@ -48,5 +48,3 @@ class api {
     }
 
 }
-
-$api = new api();

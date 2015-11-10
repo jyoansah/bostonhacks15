@@ -1,181 +1,120 @@
 <!DOCTYPE html>
-<?php 
- header("access-control-allow-origin: *");
- include_once 'api/api.php';
- global $conn, $api;
- session_start();
+<?php
+header("access-control-allow-origin: *");
+include_once 'api/api.php';
+global $conn, $api;
+session_start();
 ?>
 
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.5/material.indigo-pink.min.css">
-		<script src="https://storage.googleapis.com/code.getmdl.io/1.0.5/material.min.js"></script>
-		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-        <title>Restaurant Control Panel</title>
-        <style type="text/css">
-        .demo-card-wide.mdl-card {
-		  width: 512px;
-		}
-		.demo-card-wide > .mdl-card__title {
-		  color: #fff;
-		  height: 176px;
-		  background: url('http://www.getmdl.io/assets/demos/welcome_card.jpg') center / cover;
-		}
-		.demo-card-wide > .mdl-card__menu {
-		  color: #fff;
-		}
-		</style>
-    </head>
-    <body>
-    	
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/../../favicon.ico">
+
+
+    <title>Restaurant Control Panel</title>
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <!-- Custom styles for this template -->
+    <link href="/style/cover.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="/js/ie10-viewport-bug-workaround.js"></script>
+</head>
+<body>
+
+    <nav class="navbar navbar-default navbar-static-top">
+        <a href="/index.php" class="navbar-brand">DeeQue</a>
+    </nav>
+
+    <div class="site-wrapper">
+
+        <div class="site-wrapper-inner">
+
+            <div class="cover-container">
+
 <?php
-	try{
-		?>
-		
-		<?php
-	}
-	catch(Exception $e){
-		echo $e->getMessage();
-	}
 
-	
-	//Get current customer
-	if(isset($_POST['next_customer'])){
-		try{
-			$result = deQueueUser($conn, $_SESSION['id']);
-		}
-		catch(Exception $e){
-			echo $e->getMessage();
-		}
-	}
-	
-	if(isset($_GET['id'])){
-		$_SESSION['id'] = $_GET['id'];	
-		//Get list of all people in the queue
-		$queue_users = getUsers($conn, $_SESSION['id']);
-		// foreach($queue_users as $queue_user){
+    if (!isset($_GET['qid'])) {
+        $queues = getqueues($conn);
 
-?>
-				 <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col" style="margin-top:20px;">
-				<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp" width="100%" style="left: 30%;">
-				  <thead>
-				    <tr>
-				      <th class="mdl-data-table__cell--non-numeric">ID</th>
-				      <th>Queue ID</th> <?php ?>
-				      <th>Position</th> <?php?>
-				    </tr>
-				  </thead>
-				  <tbody>
-				  <?php foreach($queue_users as $queue_user){ ?>
-				    <tr>
-				      <td class="mdl-data-table__cell--non-numeric"><?php echo $queue_user->id;?></td>
-				      <td><?php  echo $queue_user->queue_id ;?></td>
-				      <td><?php  echo $queue_user->position ;?></td>
-				    </tr>
-				    <?php } ?>
-				  </tbody>
-				</table>
-          </div>
-          <?php
-			// }
+        echo '<h1 >Manage your Queues:</h1>';
 
-		try{
-			$current_position = getfirstInLine($conn, $_SESSION['id']);
-			echo 'Now serving: ' .$current_position;
-			echo '<form method="POST" action="">';
-        	echo '<button name="next_customer" value="submit">Next customer</button>';
-        	echo '</form>';
-		}
-		catch(Exception $e){
-			echo $e->getMessage();
-		}
-	}
+        foreach ($queues as $queue) {
+            echo '<p class="lead"><a class="btn btn-lg btn-secondary" href="/restaurant.php/?qid=' . $queue->id . '">' . $queue->name . '
+                                            <span>in ' . $queue->location . '</span></a></p>';
+        }
 
-		
-		
-?>
-<div class="mdl-layout__container has-scrolling-header"><div class="demo-layout mdl-layout mdl-layout--fixed-header mdl-js-layout mdl-color--grey-100 is-upgraded" data-upgraded=",MaterialLayout">
-      <header class="demo-header mdl-layout__header mdl-layout__header--scroll mdl-color--grey-100 mdl-color-text--grey-800">
-        <div class="mdl-layout__header-row">
-          <span class="mdl-layout-title">Material Design Lite</span>
-          <div class="mdl-layout-spacer"></div>
-          <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable is-upgraded" data-upgraded=",MaterialTextfield">
-            <label class="mdl-button mdl-js-button mdl-button--icon" for="search" data-upgraded=",MaterialButton">
-              <i class="material-icons">search</i>
-            </label>
-            <div class="mdl-textfield__expandable-holder">
-              <input class="mdl-textfield__input" type="text" id="search">
-              <label class="mdl-textfield__label" for="search">Enter your query...</label>
+    }
+    //Get current customer
+    if (isset($_POST['next_customer'])) {
+        try {
+            deQueueUser($conn, $_SESSION['qid']);
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    if (isset($_GET['qid'])) {
+        $_SESSION['qid'] = $_GET['qid'];
+
+        //Get list of all people in the queue
+        $queue_users = getUsers($conn, $_SESSION['qid']);
+        // foreach($queue_users as $queue_user){
+
+        ?>
+        <div class="table">
+                <?php
+                if (!empty($queue_users)) {
+
+                    try {
+
+                       $current_position = getfirstInLine($conn, $_SESSION['qid']);
+
+                        echo '<h1>Now serving: ' . $current_position . '</h1>';
+                        echo '<form method="POST" action="">';
+                        echo '<button class="btn btn-lg btn-secondary" name="next_customer" value="submit">Next customer</button>';
+                        echo '</form>';
+
+                    } catch (Exception $e) {
+                        echo "<br>" . $e->getMessage();
+                    }
+                    echo '<div class="draw">';
+                    foreach ($queue_users as $queue_user) {
+                        ?>
+
+                            <i class="fa fa-user fa-3x"></i>
+
+                    <?php }
+
+                    echo '</div>';
+                }else{
+                    echo '<h1>Queue Empty!</h1>';
+                } ?>
+
+        </div>
+        <?php
+        // }
+
+
+    }
+
+
+    ?>
+
+                </div>
             </div>
-          </div>
         </div>
-      </header>
-      <div class="demo-ribbon"></div>
-      <main class="demo-main mdl-layout__content">
-        <div class="demo-container mdl-grid">
-          <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
-          <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
-            
 
-
-
-            
-
-
-
-			<?php
-			$queues = getqueues($conn);
-			foreach($queues as $queue){
-			?>
-				<div class="demo-card-wide mdl-card mdl-shadow--2dp" style="margin-top:20px; left:27%;">
-			  <div class="mdl-card__title">
-			    <h2 class="mdl-card__title-text"><?php 	echo $queue->location; ?></h2>
-			  </div>
-			  <div class="mdl-card__actions mdl-card--border">
-			    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-			       <?php
-					echo '<a href="/restaurant.php/?id='.$queue->id.'">'.$queue->name.'</a><br>';
-			    ?>
-			    </a>
-			  </div>
-			  <div class="mdl-card__menu">
-			    <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-			      <i class="material-icons">share</i>
-			    </button>
-			  </div>
-			</div><?php
-			}
-			?>
-
-
-
-
-
-
-
-
-
-         
-
-
-			
-
-          </div>
-
-        </div>
-        <footer class="demo-footer mdl-mini-footer">
-          <div class="mdl-mini-footer--left-section">
-            <ul class="mdl-mini-footer--link-list">
-              <li><a href="#">Help</a></li>
-              <li><a href="#">Privacy and Terms</a></li>
-              <li><a href="#">User Agreement</a></li>
-            </ul>
-          </div>
-        </footer>
-      </main>
-    </div></div>
-	
-    	
-    </body>
+</body>
 </html>

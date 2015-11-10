@@ -21,6 +21,7 @@ session_start();
     <title>Join a Queue!</title>
 
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
@@ -32,6 +33,11 @@ session_start();
 
 </head>
 <body>
+
+<nav class="navbar navbar-default navbar-static-top">
+    <a href="/index.php" class="navbar-brand">DeeQue</a>
+</nav>
+
 <div class="site-wrapper">
 
     <div class="site-wrapper-inner">
@@ -45,7 +51,9 @@ session_start();
                 <div class="cust>">
                     <?php
 
-                    //Get current customer
+//                    echo 'cusPostion: ' . $_SESSION['position'];
+
+                    //Add customer to queue
                     if (isset($_POST['new_customer']) && isset($_GET['id'])) {
                         try {
                             $new_user = new User($_GET['id']);
@@ -62,50 +70,74 @@ session_start();
                     //User has a positon
                     if (isset($_SESSION['position'])) {
 
-                        //clear user after serving
+                        //Get first in line:
                         $firstInLine = getfirstInLine($conn, $_SESSION['queue_id']);
-                        if ($firstInLine > $_SESSION['position']) {
+
+//                        echo "<br>cusfil:" . $firstInLine;
+//                        echo "<br>cuspos:" . $_SESSION['position'];
+
+                        //Clear if served
+                        if ($firstInLine > $_SESSION['position'] || empty($firstInLine)) {
                             unset($_SESSION['position']);
-                        } else {
-                            // Always Show user Position
+                            unset($_SESSION['curr_queue']);
+                            unset($_SESSION['queue_id']);
+                        } //If user is front of line
+                        elseif ($firstInLine == $_SESSION['position']) {
                             echo '<div id="position">';
-                            echo '<h3>Your current position is:</h3>';
+                            echo '<h3>You\'re up!. Head to the front of:</h3>';
+                            echo '<h3 >' . $_SESSION['curr_queue'] . '</h3>';
+                            echo '</div>';
+                        } //if user is not in front of line.
+                        else {
+                            echo '<div id="position">';
+                            echo '<h3>Your number is:</h3>';
                             echo '<h1 class="cover-heading"> ' . $_SESSION['position'] . '</h1>';
-                            echo '<h3 > In Queue "' . $_SESSION['curr_queue'] . '"</h3>';
+                            echo '<h4 > In queue "' . $_SESSION['curr_queue'] . '"</h4>';
                             echo '</div>';
                         }
                     }
 
-                    if (isset($_GET['id']) || isset($_SESSION['queue_id'])) {
+
+                    //Queue currently selected
+                    if (isset($_GET['id'])) {
 
 
+                        $queue_sel = getQueue($conn, intval($_GET['id']));
 
-                        if(isset($_GET['id'])){
-                            $pgqid = $_GET['id'];
-                        }else{
-                            $pgqid = $_SESSION['queue_id'];
-                        }
-
-                        $queue_sel = getQueue($conn, intval($pgqid));
-                        echo '<h1 class="que-heading">"' . $queue_sel->getName() . '"</h1>';
-
-                        $firstInLine = getfirstInLine($conn, $pgqid);
+                        $firstInLine = getfirstInLine($conn, $_GET['id']);
 
                         if (!empty($firstInLine)) {
 
-                            $lastInLine = getLastInLine($conn, $pgqid);
+                            $lastInLine = getLastInLine($conn, $_GET['id']);
 
                             $length = (intval($lastInLine) - intval($firstInLine));
 
-                            for($i = 0; $i< $length; $i++){
-                                echo '<i class="que-circle"></i>';
+//                            echo "len".$length;
+
+                            if (isset($_SESSION['position'])) {
+                                if ($length > 1) {
+                                    echo '<h4>There are ' . $length . ' people ahead of you.</h4>';
+                                } elseif ($length == 1) {
+                                    echo '<h4>There is ' . $length . ' person ahead of you</h4>';
+                                }
+
+                                echo '<div class="draw">';
+                                for($x = 0; $x <= $length; $x++) {
+
+                                    echo '<i class="fa fa-user fa-3x" ></i >';
+
+                                }
+                                echo '</div>';
+
+                            } else {
+                                echo '<h1 class="que-heading">"' . $queue_sel->getName() . '"</h1>';
+                                if ($length > 0) {
+                                    echo '<h4>There are ' . ($length+1) . ' people in the queue.</h4>';
+                                } elseif ($length == 0) {
+                                    echo '<h4>There is ' . ($length+1) . ' person in the queue.</h4>';
+                                }
                             }
 
-                            if ($length > 1) {
-                                echo '<h2>There are ' . $length . ' people ahead of you</h2>';
-                            } elseif ($length == 1) {
-                                echo '<h2>There is ' . $length . ' person ahead of you</h2>';
-                            }
 
                         } else {
                             echo '<h1 class="cover-heading">Queue is Empty!!</h1>';
@@ -124,16 +156,18 @@ session_start();
                         echo '<form method="POST" action="">';
                         echo '<button class="btn btn-lg btn-secondary" name="new_customer" value="submit">Join Queue</button>';
                         echo '</form>';
+
+                        echo '<br><br><a href="customer.php"><button class="btn btn-sm btn-secondary">Back to Queues</button></a>';
                     }
 
-                    if (!isset($_POST['new_customer']) && !isset($_GET['id']) &&!isset($_SESSION['position'])) {
-                         try {
+                    if (!isset($_POST['new_customer']) && !isset($_GET['id']) && !isset($_SESSION['position'])) {
+                        try {
 
                             echo '<h1 class="cover-heading">Join a Queue!</h1>';
                             $queues = getqueues($conn);
                             foreach ($queues as $queue) {
                                 echo '<p class="lead"><a class="btn btn-lg btn-secondary" href="/customer.php/?id=' . $queue->id . '">' . $queue->name . '
-                                <span>In ' . $queue->location . '</span></a></p><br>';
+                                <span>in ' . $queue->location . '</span></a></p>';
                             }
 
                         } catch (Exception $e) {
