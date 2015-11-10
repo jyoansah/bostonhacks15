@@ -14,7 +14,7 @@
             $token = strtok(" ");
             $user = new User(intval($token));
             $user->setTel($_REQUEST['From']);
-            $joined = addUserDB($conn, $user);
+            $joined = addUser($conn, $user);
         }
     }
 ?>
@@ -23,7 +23,7 @@
     <Message>
         <?php
         if (empty($joined)) {
-            echo "Hello, Welcome to Deeque! Please select a Queue: \n";
+            echo "Hello, Welcome to Deeque! Please select a Queue (Send 'Join X'): \n";
             $queues = getQueues($conn);
             foreach ($queues as $queue) {
                 echo $queue->id . " --> " . $queue->name . "\n";
